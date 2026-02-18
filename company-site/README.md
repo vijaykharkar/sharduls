@@ -1,128 +1,16 @@
-# Company Site - Supplier Portal
+# React + Vite
 
-Supplier portal for SHARDUL-GE B2B marketplace built with React, Vite, TailwindCSS, and Context API.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- ✅ Supplier Authentication (Sign In/Sign Up)
-- ✅ Dashboard with Statistics
-- ✅ Profile Management
-- ✅ Document Upload
-- ✅ Catalog Upload
-- ✅ Support Center
-- ✅ Context API for State Management
-- ✅ Axios Integration with Auto Token Refresh
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tech Stack
+## React Compiler
 
-- **React 18** - UI Framework
-- **Vite** - Build Tool
-- **TailwindCSS** - Styling
-- **Context API** - State Management
-- **Axios** - HTTP Client
-- **Lucide React** - Icons
-- **React Router** - Routing
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Installation
+## Expanding the ESLint configuration
 
-```bash
-# Install dependencies
-npm install
-
-# Create .env file
-echo "VITE_API_BASE_URL=http://localhost:8000" > .env
-
-# Start development server
-npm run dev
-```
-
-## Project Structure
-
-```
-src/
-├── api/
-│   ├── axiosInstance.js       # Axios configuration
-│   └── authService.js         # Auth API methods
-├── context/
-│   ├── AuthContext.jsx        # Auth Context Provider
-│   └── index.js               # Context exports
-├── supplier/
-│   ├── components/
-│   │   ├── DashboardLayout.jsx
-│   │   ├── SignUpStep1.jsx
-│   │   ├── SignUpStep2.jsx
-│   │   └── profile/
-│   │       └── DocumentsStep.jsx
-│   └── pages/
-│       ├── SignInPage.jsx
-│       ├── SignUpPage.jsx
-│       ├── DashboardHome.jsx
-│       ├── ProfilePage.jsx
-│       ├── CatalogUploadPage.jsx
-│       └── SupportPage.jsx
-├── App.jsx                     # Main App component
-├── main.jsx                    # Entry point
-└── index.css                   # Global styles
-```
-
-## Available Routes
-
-- `/supplier/signin` - Supplier sign in
-- `/supplier/signup` - Supplier registration
-- `/supplier/dashboard` - Dashboard home
-- `/supplier/profile` - Profile management
-- `/supplier/catalog` - Catalog upload
-- `/supplier/support` - Support center
-
-## Usage
-
-### Using Auth Context
-
-```jsx
-import { useAuth } from './context';
-
-function MyComponent() {
-  const { user, login, logout, loading, error } = useAuth();
-
-  const handleLogin = async () => {
-    await login({ email, password });
-  };
-
-  return (
-    <div>
-      {isAuthenticated ? (
-        <p>Welcome, {user.full_name}</p>
-      ) : (
-        <button onClick={handleLogin}>Login</button>
-      )}
-    </div>
-  );
-}
-```
-
-## Environment Variables
-
-```env
-VITE_API_BASE_URL=http://localhost:8000
-```
-
-## Build
-
-```bash
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## License
-
-MIT
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
