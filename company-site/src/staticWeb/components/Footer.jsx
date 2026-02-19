@@ -22,10 +22,10 @@ const Footer = () => {
   ];
 
   const socials = [
-    { icon: Facebook, label: "Facebook" },
-    { icon: Twitter, label: "Twitter" },
-    { icon: Linkedin, label: "LinkedIn" },
-    { icon: Instagram, label: "Instagram" },
+    { icon: Facebook, label: "Facebook", url: "" },
+    { icon: Twitter, label: "Twitter", url: "" },
+    { icon: Linkedin, label: "LinkedIn", url: "https://www.linkedin.com/in/rupali-shardul-868565197?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+    { icon: Instagram, label: "Instagram", url: "" },
   ];
 
   return (
@@ -57,6 +57,9 @@ const Footer = () => {
                   className="w-12 h-12 bg-gradient-to-br from-[#102a43] to-[#d4a853] rounded-xl flex items-center justify-center text-white mb-5 group-hover:scale-110 hover:rotate-14 transition-all duration-500 shadow-lg"
                   style={{ animationDelay: `${index * 0.05}s` }}
                   aria-label={Item.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={Item.url}
                 >
                   <Item.icon size={20} />
                 </a>
