@@ -114,7 +114,7 @@ const About = () => {
                 <img
                   src={homeimg}
                   alt="Industrial Solutions"
-                  className="relative rounded-2xl shadow-2xl w-full h-150 object-cover"
+                  className="relative rounded-2xl shadow-2xl w-full h-auto object-cover"
                 />
               </div>
             </div>
@@ -148,7 +148,7 @@ const About = () => {
                   <img
                     src={founder}
                     alt="Founder & Director"
-                    className="w-full max-w-[300px] mx-auto object-cover rounded-2xl"
+                    className="w-full max-w-[300px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[600px] mx-auto object-cover rounded-2xl"
                   />
                 </div>
 
@@ -244,7 +244,7 @@ const About = () => {
                   <img
                     src={director}
                     alt="Mrs. Rupali S. Shardul"
-                    className="w-full max-w-[300px] mx-auto object-cover rounded-2xl"
+                    className="w-full max-w-[300px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[600px] mx-auto object-cover rounded-2xl"
                   />
                 </div>
               </div>
@@ -258,7 +258,7 @@ const About = () => {
                   <img
                     src={director1}
                     alt="Mr. Sachin B. Shardul"
-                    className="w-full max-w-[300px] mx-auto object-cover rounded-2xl"
+                    className="w-full max-w-[300px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[600px] mx-auto object-cover rounded-2xl"
                   />
                 </div> */}
 

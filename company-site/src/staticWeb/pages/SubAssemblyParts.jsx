@@ -182,8 +182,8 @@ const SubAssemblyParts = () => {
                 </div>
 
                 {/* Image */}
-                <div className="relative overflow-hidden rounded-2xl">
-                  <div className="aspect-[4/4] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                <div className="relative overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <img src={subassemblyImg} alt="Subassembly Image" className="w-full h-full object-cover" />
                   </div>
                 </div>
@@ -194,8 +194,8 @@ const SubAssemblyParts = () => {
             <div className="scroll-animate">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Image */}
-                <div className="relative overflow-hidden order-2 lg:order-1 rounded-2xl">
-                  <div className="aspect-[4/4] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                <div className="relative overflow-hidden order-2 lg:order-1 rounded-xl">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <img src={electricalsubassemblt} alt="Electrical Sub-Assembly Image" className="w-full h-full object-contain" />
                   </div>
                 </div>

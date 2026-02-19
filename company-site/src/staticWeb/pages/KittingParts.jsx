@@ -181,8 +181,8 @@ const KittingParts = () => {
                 </div>
 
                 {/* Image */}
-                <div className="relative overflow-hidden">
-                  <div className="aspect-[4/4] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-2xl">
+                <div className="relative overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <img src={kitpouch} alt="Kitting Parts" className="w-full h-full object-contain" />
                   </div>
                 </div>

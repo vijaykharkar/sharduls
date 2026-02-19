@@ -77,7 +77,7 @@ const Header = () => {
       {/* Main Navigation */}
       <nav className="bg-[#102a43]/90 shadow-lg">
         <div className="w-full mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <div className="flex items-center">

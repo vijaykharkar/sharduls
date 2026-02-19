@@ -182,11 +182,11 @@ const ThermoPlasticParts = () => {
                 </div>
 
                 {/* Image */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden rounded-xl">
                   <img
                     src={thermoplasticComponent}
                     alt="Injection Molded Parts"
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto aspect-[4/3] object-cover"
                   />
                 </div>
               </div>
@@ -196,11 +196,11 @@ const ThermoPlasticParts = () => {
             <div className="scroll-animate">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Image */}
-                <div className="relative overflow-hidden order-2 lg:order-1">
+                <div className="relative overflow-hidden order-2 lg:order-1 rounded-xl">
                   <img
                     src={turningParts}
                     alt="Engineering Plastics"
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto aspect-[4/3] object-cover"
                   />
                 </div>
 
