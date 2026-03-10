@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { href, Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import logo from '../../assets/images/shardulslogo.png';
+import LanguageSwitcher from '../../components/LanguageSwitcher';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isActive = (path) => location.pathname === path;
   const isProductActive = () => {
@@ -15,41 +18,43 @@ const Header = () => {
   };
 
   const navLinks = [
-    {name: 'Home', href: '/'},
-    { name: 'About Us', href: '/about' },
+    {name: t('header.menu.home'), href: '/'},
+    { name: t('header.menu.aboutUs'), href: '/about' },
     {
-      name: 'Our Products & Services',
+      name: t('header.menu.productsServices'),
       href: '/products',
       hasDropdown: true,
       dropdownSections: [
         {
-          title: 'For Business to Business',
+          title: t('header.b2b.title'),
           items: [
-            { name: 'High Precision Turning Parts', href: '/high-precision-parts' },
-            { name: 'CNC Components', href: '/cnc-components' },
-            { name: 'Fixings & Fasteners', href: '/fixings-fasteners' },
-            { name: 'Switchboard Components', href: '/switchboard-components' },
-            { name: 'Cable Management', href: '/cable-management' },
-            { name: 'Earthing Accessories', href: '/earthing-accessories' },
-            { name: 'Lugs & Connectors', href: '/lugs-connectors' },
-            // { name: 'Electrical Components', href: '/electrical-components' },
-            { name: 'Thermo Plastic Parts', href: '/thermo-plastic-parts' },
-            { name: 'Sub-Assembly Parts', href: '/sub-assembly-parts' },
-            { name: 'Kitting Parts', href: '/kitting-parts' },
-            { name: '3D Printing', href: '/3d-printing' },
+            { name: t('header.b2b.highPrecision'), href: '/high-precision-parts' },
+            { name: t('header.b2b.cnc'), href: '/cnc-components' },
+            { name: t('header.b2b.fixings'), href: '/fixings-fasteners' },
+            { name: t('header.b2b.switchboard'), href: '/switchboard-components' },
+            { name: t('header.b2b.cable'), href: '/cable-management' },
+            { name: t('header.b2b.earthing'), href: '/earthing-accessories' },
+            { name: t('header.b2b.lugs'), href: '/lugs-connectors' },
+            { name: t('header.b2b.thermo'), href: '/thermo-plastic-parts' },
+            { name: t('header.b2b.subAssembly'), href: '/sub-assembly-parts' },
+            { name: t('header.b2b.kitting'), href: '/kitting-parts' },
+            { name: t('header.b2b.3dPrinting'), href: '/3d-printing' },
+            {name:"All type of springs", href:"/spring-type"},
+            {name:"Silver plating" , href:"/silver-plating"}
           ]
         },
         {
-          title: 'For Business to Distributor',
+          title: t('header.b2c.title'),
           items: [
-            { name: 'Coming Soon......', href: '/' }
+            { name: t('header.b2c.comingSoon'), href: '/' }
           ]
         }
       ]
     },
-    { name: 'Why Choose Us', href: '/why-choose-us' },
-    { name: 'Quality System', href: '/quality' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: t('header.menu.whyChooseUs'), href: '/why-choose-us' },
+    { name: t('header.menu.qualitySystem'), href: '/quality' },
+    { name: t('header.menu.contactUs'), href: '/contact' },
+    {name : 'Sustainability & CBAM' , href:'/sustainability-cbam'}
   ];
 
   return (
@@ -67,8 +72,9 @@ const Header = () => {
           </a>
         </div>
         <div className="flex items-center gap-4">
+          <LanguageSwitcher />
           <a href="/contact" className="text-sm text-[#d4a853] hover:text-white transition-colors font-medium">
-            Enquiry Now
+            {t('header.enquiryNow')}
           </a>
         </div>
       </div>
@@ -94,12 +100,12 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-6">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative group">
                   {link.hasDropdown ? (
                     <button
-                      className={`flex items-center gap-1 hover:text-[#d4a853] transition-colors font-medium ${
+                      className={`flex items-center hover:text-[#d4a853] transition-colors font-medium ${
                         isProductActive() ? 'text-[#d4a853] border-b-2 border-[#d4a853] pb-1' : 'text-gray-300'
                       }`}
                       onMouseEnter={() => setIsProductsOpen(true)}
@@ -135,7 +141,7 @@ const Header = () => {
                               </h3>
                             </div>
                             {/* Section Items */}
-                            <div className="space-y-1">
+                            <div className="space-y-1 max-h-[400px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-[#d4a853] scrollbar-track-gray-200">
                               {section.items.map((item) => (
                                 <Link
                                   key={item.name}
@@ -160,7 +166,7 @@ const Header = () => {
                 to="/contact"
                 className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors shadow-md"
               >
-                Enquiry Now
+                {t('header.enquiryNow')}
               </Link>
             </div>
 
@@ -195,7 +201,7 @@ const Header = () => {
                             <p className="text-[#d4a853] font-bold text-xs uppercase tracking-wider mb-2">
                               {section.title}
                             </p>
-                            <div className="space-y-2">
+                            <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#d4a853] scrollbar-track-gray-700">
                               {section.items.map((item) => (
                                 <Link
                                   key={item.name}
@@ -220,7 +226,7 @@ const Header = () => {
                   className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors text-center mt-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Enquiry Now
+                  {t('header.enquiryNow')}
                 </Link>
               </div>
             </div>

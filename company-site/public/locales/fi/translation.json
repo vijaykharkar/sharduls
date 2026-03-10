@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Tiedustelu Nyt",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Etusivu",
+      "aboutUs": "Tietoa Meistä",
+      "productsServices": "Tuotteemme ja Palvelumme",
+      "whyChooseUs": "Miksi Valita Meidät",
+      "qualitySystem": "Laatujärjestelmä",
+      "contactUs": "Ota Yhteyttä"
+    },
+    "b2b": {
+      "title": "Yritykseltä Yritykselle",
+      "highPrecision": "Korkean Tarkkuuden Sorvausosat",
+      "cnc": "CNC-komponentit",
+      "fixings": "Kiinnikkeet ja Kiinnittimet",
+      "switchboard": "Kojeistokomponentit",
+      "cable": "Kaapelinhallinta",
+      "earthing": "Maadoitustarvikkeet",
+      "lugs": "Kaapelikengät ja Liittimet",
+      "thermo": "Termoplastiset Osat",
+      "subAssembly": "Alikokoonpano-osat",
+      "kitting": "Kitting-osat",
+      "3dPrinting": "3D-tulostus"
+    },
+    "b2c": {
+      "title": "Yritykseltä Jälleenmyyjälle",
+      "comingSoon": "Tulossa Pian......"
+    }
+  },
+  "hero": {
+    "title": "Rakentamassa Huomista",
+    "subtitle": "Hankintakeskus Intiasta",
+    "companyName": "SHARDUL-GE",
+    "description": "Ammattimaisesti johdettu organisaatio, joka toimittaa korkealaatuisia tuotteita ja luotettavia ratkaisuja useilla teollisuuden aloilla."
+  },
+  "whatWeOffer": {
+    "label": "MITÄ TARJOAMME",
+    "title": "Saumaton Toimitusketju",
+    "subtitle": "Voimme helpottaa hankintaanne Intiasta",
+    "description": "Tarjoamme erittäin laajan valikoiman varastossa olevia vakiokiinnikkeitä ja olemme erikoistuneet kaikkien kuviteltavissa olevien C-osien kauppaan ainutlaatuisten tarpeidenne mukaan. Se voi olla sorvattu, ruiskuvalettu, pursottu, stanssattu, taottu, jyrsitty, muotoiltu tai jopa koottu. Kaikki tarjouksemme osat perustuvat vuosien kokemukseen siitä, miten tehdä ero puolestanne.",
+    "features": {
+      "range": "Laaja Valikoima Vakiokiinnikkeitä",
+      "unique": "Asiakaskohtaiset C-osat",
+      "sourcing": "Maailmanlaajuinen Hankintaverkosto",
+      "quality": "Laadunvalvonta ja Testaus",
+      "logistics": "Tehokas Logistiikkavirta",
+      "sustainable": "Kestävät Toimitukset"
+    },
+    "button": "Lue Lisää Meistä"
+  },
+  "processFlow": {
+    "label": "MITEN TOIMIMME",
+    "title": "Sopimusvalmistusprosessimme",
+    "subtitle": "Hankinnasta toimitukseen - kattava työnkulku, joka varmistaa erinomaisuuden jokaisessa vaiheessa",
+    "steps": {
+      "supplierEvaluation": "Toimittajien Arviointi",
+      "vendorRegistration": "Toimittajien Rekisteröinti",
+      "purchase": "Osto",
+      "production": "Tuotanto",
+      "qualityInspection": "Laaduntarkastus",
+      "storage": "Varastointi",
+      "preDispatch": "Lähetystä Edeltävä Tarkastus ja Pakkaus",
+      "delivery": "Toimitus ja Logistiikka"
+    },
+    "quality": {
+      "title": "Laatulähestymistapamme..."
+    }
+  },
+  "ourExpertise": {
+    "label": "ASIANTUNTEMUKSEMME",
+    "title": "Materiaalit Joiden Kanssa Työskentelemme",
+    "description": "Olemme erikoistuneet tarkkuuskomponenttien sopimusvalmistukseen laajasta materiaalivalikoimasta ja tarjoamme erinomaisuutta jokaisessa komponentissa.",
+    "materials": {
+      "steel": "Ruostumaton Teräs",
+      "copper": "Kupari",
+      "aluminium": "Alumiini",
+      "brass": "Messinki",
+      "plastic": "Muovi"
+    }
+  },
+  "sectors": {
+    "label": "PALVELEMAMME ALAT...",
+    "title": "Palvelemme Toimialoja Huonekaluista Ilmailuun",
+    "description": "Työskentelemme asiakkaiden kanssa eri toimialoilla. Tarkkuuskomponenttimme palvelevat maailmanlaajuisia markkinoita tarjoten laatua ja luotettavuutta kaikilla aloilla.",
+    "list": {
+      "automotive": {
+        "name": "Autoteollisuus",
+        "description": "Vahvojen yhteyksien lisäksi moottoriurheiluteollisuuteen SKY GROUP on myös mukana toimittamassa komponentteja huippuluokan 'markkinarakoihin' autoteollisuudessa."
+      },
+      "electrical": {
+        "name": "Sähköteollisuus",
+        "description": "Korkealaatuisten sähkökomponenttien ja ratkaisujen toimittaminen erilaisiin sovelluksiin teollisuus- ja kaupallisilla aloilla."
+      },
+      "hydraulic": {
+        "name": "Hydrauliikka ja Pneumatiikka",
+        "description": "Tarkkuushydrauliset ja pneumaattiset komponentit, jotka varmistavat luotettavan suorituskyvyn vaativissa sovelluksissa."
+      },
+      "plastics": {
+        "name": "Muovit ja Kumi",
+        "description": "Edistyneet muovi- ja kumikomponentit valmistettu tarkkojen eritelmien mukaan erilaisiin teollisuustarpeisiin."
+      },
+      "communication": {
+        "name": "Viestintä",
+        "description": "Erikoistuneita komponentteja viestintäjärjestelmiin, jotka varmistavat saumattoman yhteyden ja luotettavuuden."
+      },
+      "solar": {
+        "name": "Aurinkoenergiateollisuus",
+        "description": "Korkean tarkkuuden aurinkoenergiakomponentit, jotka täyttävät tiukat laatu- ja turvallisuusstandardit."
+      },
+      "furniture": {
+        "name": "Huonekalut",
+        "description": "Edistyneet huonekalukomponentit ja ratkaisut tarkkuusinstrumentteihin ja järjestelmiin."
+      },
+      "gasOil": {
+        "name": "Kaasu- ja Öljyteollisuus",
+        "description": "Vankat komponentit suunniteltu vaativiin olosuhteisiin öljyn ja kaasun etsinnässä ja tuotannossa."
+      }
+    }
+  },
+  "cta": {
+    "label": "TIEDUSTELU NYT",
+    "title": "Anna Meidän Auttaa Sinua",
+    "subtitle": "Kiinnostunut Asiantuntemuksestamme ja Palveluistamme? Otetaan Yhteyttä",
+    "description": "Asiantuntijoidemme lukeminen ja kuuntelu on oikotie parantaaksesi hankintaa, laadunvalvontaa ja logistiikkaa C-osien toimitusketjullesi.",
+    "contactButton": "Ota Yhteyttä Tänään",
+    "callButton": "Soita Nyt",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Luotettava hankintatoimistosi Intiassa, kokeneiden ammattilaisten tukemana toimittaen laadukkaita teollisuusratkaisuja.",
+    "sections": {
+      "explore": "Tutustu",
+      "aboutUs": "Tietoa Meistä",
+      "services": "Palvelut",
+      "getInTouch": "Ota Yhteyttä"
+    },
+    "explore": {
+      "home": "Etusivu",
+      "about": "Tietoa Meistä",
+      "whyChooseUs": "Miksi Valita Meidät",
+      "quality": "Laatujärjestelmät",
+      "contact": "Ota Yhteyttä"
+    },
+    "about": {
+      "company": "Yritysprofiili"
+    },
+    "address": "Pune, Maharashtra, Intia",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Kaikki oikeudet pidätetään.",
+    "privacy": "Tietosuojakäytäntö",
+    "terms": "Käyttöehdot"
+  },
+  "about": {
+    "label": "TIETOA MEISTÄ",
+    "hero": {
+      "title": "Teollisuusratkaisut...",
+      "description": "Luotettava hankintatoimistosi Intiassa kokeneiden ammattilaisten tukemana toimittaen laadukkaita teollisuusratkaisuja."
+    },
+    "whoWeAre": {
+      "label": "TARINMME",
+      "title": "Keitä Me Olemme",
+      "paragraph1": "Olemme luotettava hankintakumppanisi Intiassa, kokeneiden Global Supply Chain Management (SCM) -ammattilaisten tukemana, jotka ovat sitoutuneet yksinkertaistamaan hankintaa ja varmistamaan johdonmukaisen laadun.",
+      "paragraph2": "Kykymme kattavat laajan valikoiman tuotteita, mukaan lukien kiinnikkeet, muovit, metallilevykomponentit, sorvatut osat, alikokoonpanot ja paljon muuta. Tuemme asiakkaita prototyypin kehityksestä massatuotantoon tarjoten joustavuutta jokaisessa vaiheessa.",
+      "paragraph3": "Teemme yhteistyötä yksinomaan huolellisesti tarkastettujen, luokkansa parhaiden toimittajien kanssa, jotka noudattavat kansainvälisiä liiketoimintastandardeja ja tiukkoja luottamuksellisuusvaatimuksia. Tiukkojen toimittaja-arviointien ja jatkuvien auditointien kautta varmistamme luotettavan laadun ja toimituksen.",
+      "paragraph4": "Ottamalla täyden vastuun laadusta, kustannuksista ja aikatauluista tarjoamme kustannustehokkaita hankintaratkaisuja ja pitkäaikaisia hintasopimusvaihtoehtoja auttaen asiakkaitamme saavuttamaan vakautta, säästöjä ja kestävää kasvua."
+    },
+    "leadership": {
+      "label": "JOHTAJUUS",
+      "title": "Tapaa Meidän",
+      "titleHighlight": "Johtoryhmämme",
+      "description": "Kokeneet ammattilaiset, jotka edistävät huippuosaamista ja innovaatiota SHARDUL-GE Technologiesissa",
+      "founder": {
+        "name": "Herra Bhanudas Ramdas Shardul",
+        "position": "Perustaja ja Johtaja, STPL",
+        "experienceTitle": "Kokemus ja Saavutukset",
+        "experience": "Entinen Guruprasad Engineering Worksin omistaja. Yli 30 vuoden kokemus työkaluhuoneen toiminnasta, teollisesta valmistuksesta ja kaupallisista puusepäntuotteista.",
+        "quote": "Laatu ei ole teko, se on tapa. Valmistuksen erinomaisuus tulee omistautumisesta, tarkkuudesta ja sitoutumisesta asiakkaisiin."
+      },
+      "director": {
+        "name": "Rouva Rupali Sachin Shardul",
+        "position": "Johtaja - HR ja Talous",
+        "description": "Johtamassa HR:n ja talouden huippuosaamista strategisella visiolla ja operatiivisella asiantuntemuksella"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "OTA YHTEYTTÄ",
+      "title": "Ota Yhteyttä",
+      "description": "Onko sinulla kysymys tai haluatko työskennellä yhdessä? Haluaisimme kuulla sinusta."
+    },
+    "form": {
+      "name": "Koko Nimi",
+      "email": "Sähköpostiosoite",
+      "phone": "Puhelinnumero",
+      "company": "Yrityksen Nimi",
+      "message": "Viestisi",
+      "submit": "Lähetä Viesti",
+      "sending": "Lähetetään..."
+    },
+    "info": {
+      "title": "Yhteystiedot",
+      "address": "Osoite",
+      "addressValue": "Pune, Maharashtra, Intia",
+      "phone": "Puhelin",
+      "email": "Sähköposti",
+      "hours": "Aukioloajat",
+      "hoursValue": "Ma - La: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Lue Lisää",
+    "learnMore": "Lue Lisää",
+    "viewAll": "Näytä Kaikki",
+    "getStarted": "Aloita",
+    "contactUs": "Ota Yhteyttä",
+    "requestQuote": "Pyydä Tarjous",
+    "downloadCatalog": "Lataa Luettelo",
+    "home": "Etusivu"
+  }
+}

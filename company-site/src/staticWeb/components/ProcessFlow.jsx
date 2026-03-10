@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Package, Search, Warehouse, Settings, CheckCircle2, Boxes, ClipboardCheck, Truck, Shield, FileCheck } from 'lucide-react';
 import qualitycontrol from '../../assets/images/qualitycontrol.jpg';
 
@@ -6,16 +7,17 @@ const ProcessFlow = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const [scrollLocked, setScrollLocked] = useState(false);
+  const { t } = useTranslation();
 
   const processSteps = [
-    { icon: Search, label: 'Supplier Evaluation', color: 'white' },
-    { icon: Package, label: 'Vendor Registration', color: 'blue' },
-    { icon: Shield, label: 'Purchase', color: 'white' },
-    { icon: Settings, label: 'Production', color: 'blue' },
-    { icon: FileCheck, label: 'Quality Inspection', color: 'white' },
-    { icon: Warehouse, label: 'Storage & Warehousing', color: 'blue' },
-    { icon: CheckCircle2, label: 'Pre-Dispatch Inspection & Packaging', color: 'white' },
-    { icon: Truck, label: 'Delivery & Logistics', color: 'blue' },
+    { icon: Search, label: t('processFlow.steps.supplierEvaluation'), color: 'white' },
+    { icon: Package, label: t('processFlow.steps.vendorRegistration'), color: 'blue' },
+    { icon: Shield, label: t('processFlow.steps.purchase'), color: 'white' },
+    { icon: Settings, label: t('processFlow.steps.production'), color: 'blue' },
+    { icon: FileCheck, label: t('processFlow.steps.qualityInspection'), color: 'white' },
+    { icon: Warehouse, label: t('processFlow.steps.storage'), color: 'blue' },
+    { icon: CheckCircle2, label: t('processFlow.steps.preDispatch'), color: 'white' },
+    { icon: Truck, label: t('processFlow.steps.delivery'), color: 'blue' },
   ];
 
   useEffect(() => {
@@ -76,13 +78,13 @@ const ProcessFlow = () => {
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="scroll-animate text-[#d4a853] font-semibold text-sm tracking-[0.2em] uppercase mb-4">
-            HOW WE WORK
+            {t('processFlow.label')}
           </p>
           <h2 className="scroll-animate delay-100 text-xl md:text-2xl lg:text-3xl font-bold text-[#1a3a5c] mb-4">
-            Our Contract Manufacturing Process Flow
+            {t('processFlow.title')}
           </h2>
           <p className="scroll-animate delay-200 text-gray-600 text-base max-w-3xl mx-auto">
-            From sourcing to delivery - a comprehensive workflow ensuring excellence at every stage
+            {t('processFlow.subtitle')}
           </p>
         </div>
 
@@ -157,7 +159,7 @@ const ProcessFlow = () => {
               {/* LEFT — Content */}
               <div>
                 <h3 className="scroll-animate text-2xl md:text-3xl lg:text-4xl font-bold text-[#1a3a5c] mb-8">
-                  Our Quality Approach...
+                  {t('processFlow.quality.title')}
                 </h3>
                 <div className="space-y-2 text-gray-700">
                   <p className="scroll-animate delay-100 text-base md:text-md leading-relaxed">

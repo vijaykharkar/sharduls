@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import steelImage from '../../assets/productImages/steel_beams.jpg';
 import copperImage from '../../assets/productImages/copper_beams.jpg';
@@ -8,6 +9,7 @@ import plasticImage from '../../assets/productImages/plastic_ball.jpg';
 
 const OurExpertise = () => {
   const sectionRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,27 +31,27 @@ const OurExpertise = () => {
 
   const materials = [
     {
-      name: 'Stainless Steel',
+      name: t('ourExpertise.materials.steel'),
       image: steelImage,
       link: '/products',
     },
     {
-      name: 'Copper',
+      name: t('ourExpertise.materials.copper'),
       image: copperImage,
       link: '/products',
     },
     {
-      name: 'Aluminium',
+      name: t('ourExpertise.materials.aluminium'),
       image: aluminiumImage,
       link: '/products',
     },
     {
-      name: 'Brass',
+      name: t('ourExpertise.materials.brass'),
       image: brassImage,
       link: '/products',
     },
     {
-      name: 'Plastic',
+      name: t('ourExpertise.materials.plastic'),
       image: plasticImage,
       link: '/products',
     },
@@ -61,14 +63,13 @@ const OurExpertise = () => {
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-10 lg:mb-12">
           <p className="scroll-animate text-[#d4a853] font-semibold text-xl sm:text-xl tracking-[0.2em] uppercase mb-3 md:mb-4">
-            OUR EXPERTISE
+            {t('ourExpertise.label')}
           </p>
           <h2 className="scroll-animate delay-100 text-3xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-[#1a3a5c] mb-3 md:mb-4">
-            Material In Which We Work
+            {t('ourExpertise.title')}
           </h2>
           <p className="scroll-animate delay-200 text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
-            We specialize in contract manufacturing of precision components across a wide range of materials, delivering
-            excellence in every component.
+            {t('ourExpertise.description')}
           </p>
         </div>
 
@@ -77,7 +78,7 @@ const OurExpertise = () => {
           {materials.map((material, index) => (
             <a
               key={index}
-              href={material.link}
+              // href={material.link}
               className={`scroll-animate delay-${Math.min((index + 3) * 100, 800)} group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer block`}
             >
               <div className="aspect-square img-zoom relative">

@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Vraag Nu Aan",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Home",
+      "aboutUs": "Over Ons",
+      "productsServices": "Onze Producten en Diensten",
+      "whyChooseUs": "Waarom Ons Kiezen",
+      "qualitySystem": "Kwaliteitssysteem",
+      "contactUs": "Neem Contact Op"
+    },
+    "b2b": {
+      "title": "Voor Business to Business",
+      "highPrecision": "Hoge Precisie Draaionderdelen",
+      "cnc": "CNC Componenten",
+      "fixings": "Bevestigingen en Bevestigingsmiddelen",
+      "switchboard": "Schakelbordcomponenten",
+      "cable": "Kabelmanagement",
+      "earthing": "Aardingsaccessoires",
+      "lugs": "Kabelschoenen en Connectoren",
+      "thermo": "Thermoplastische Onderdelen",
+      "subAssembly": "Sub-Assemblage Onderdelen",
+      "kitting": "Kitting Onderdelen",
+      "3dPrinting": "3D Printen"
+    },
+    "b2c": {
+      "title": "Voor Business to Distributor",
+      "comingSoon": "Binnenkort Beschikbaar......"
+    }
+  },
+  "hero": {
+    "title": "De Toekomst Bouwen",
+    "subtitle": "Inkoop HUB Vanuit India",
+    "companyName": "SHARDUL-GE",
+    "description": "Een professioneel beheerde organisatie die hoogwaardige producten en betrouwbare oplossingen levert in meerdere industriële sectoren."
+  },
+  "whatWeOffer": {
+    "label": "WAT WIJ BIEDEN",
+    "title": "Een Naadloze Toeleveringsketen",
+    "subtitle": "Wij kunnen uw inkoop uit India vereenvoudigen",
+    "description": "Wij bieden een extreem breed scala aan standaard bevestigingsmiddelen op voorraad en zijn gespecialiseerd in handel in alle denkbare C-onderdelen volgens uw unieke behoeften. Het kan gedraaid, geïnjecteerd, geëxtrudeerd, gestempeld, gesmeed, gefreesd, gegoten of zelfs geassembleerd zijn. Alle onderdelen van ons aanbod zijn gebaseerd op jarenlange ervaring in het maken van een verschil voor u.",
+    "features": {
+      "range": "Breed Scala aan Standaard Bevestigingsmiddelen",
+      "unique": "Klantspecifieke C-Onderdelen",
+      "sourcing": "Wereldwijd Inkoopnetwerk",
+      "quality": "Kwaliteitscontrole en Testen",
+      "logistics": "Efficiënte Logistieke Stroom",
+      "sustainable": "Duurzame Leveringen"
+    },
+    "button": "Meer Over Ons"
+  },
+  "processFlow": {
+    "label": "HOE WIJ WERKEN",
+    "title": "Ons Contract Productieproces",
+    "subtitle": "Van inkoop tot levering - een uitgebreide workflow die excellentie in elke fase garandeert",
+    "steps": {
+      "supplierEvaluation": "Leveranciersevaluatie",
+      "vendorRegistration": "Leveranciersregistratie",
+      "purchase": "Aankoop",
+      "production": "Productie",
+      "qualityInspection": "Kwaliteitsinspectie",
+      "storage": "Opslag en Magazijn",
+      "preDispatch": "Pre-Verzending Inspectie en Verpakking",
+      "delivery": "Levering en Logistiek"
+    },
+    "quality": {
+      "title": "Onze Kwaliteitsbenadering..."
+    }
+  },
+  "ourExpertise": {
+    "label": "ONZE EXPERTISE",
+    "title": "Materialen Waarin Wij Werken",
+    "description": "Wij zijn gespecialiseerd in contractproductie van precisiecomponenten in een breed scala aan materialen en leveren excellentie in elk component.",
+    "materials": {
+      "steel": "Roestvrij Staal",
+      "copper": "Koper",
+      "aluminium": "Aluminium",
+      "brass": "Messing",
+      "plastic": "Plastic"
+    }
+  },
+  "sectors": {
+    "label": "SECTOREN DIE WIJ BEDIENEN...",
+    "title": "Dienstverlening aan Industrieën van Meubilair tot Luchtvaart",
+    "description": "Wij werken met klanten in diverse industrieën. Onze precisiecomponenten bedienen wereldwijde markten en leveren kwaliteit en betrouwbaarheid in alle sectoren.",
+    "list": {
+      "automotive": {
+        "name": "Automotive",
+        "description": "Naast sterke banden in de motorsportindustrie is SKY GROUP ook betrokken bij het leveren van componenten aan de high-end 'nichemarkten' binnen de automobielindustrie."
+      },
+      "electrical": {
+        "name": "Elektrisch",
+        "description": "Het leveren van hoogwaardige elektrische componenten en oplossingen voor diverse toepassingen in industriële en commerciële sectoren."
+      },
+      "hydraulic": {
+        "name": "Hydraulisch en Pneumatisch",
+        "description": "Precisie hydraulische en pneumatische componenten die betrouwbare prestaties garanderen in veeleisende toepassingen."
+      },
+      "plastics": {
+        "name": "Kunststof en Rubber",
+        "description": "Geavanceerde kunststof en rubber componenten vervaardigd volgens exacte specificaties voor verschillende industriële behoeften."
+      },
+      "communication": {
+        "name": "Communicatie",
+        "description": "Gespecialiseerde componenten voor communicatiesystemen die naadloze connectiviteit en betrouwbaarheid garanderen."
+      },
+      "solar": {
+        "name": "Zonne-energie Industrieën",
+        "description": "Hoge precisie zonne-energie componenten die voldoen aan strikte kwaliteits- en veiligheidsnormen."
+      },
+      "furniture": {
+        "name": "Meubilair",
+        "description": "Geavanceerde meubelcomponenten en oplossingen voor precisie-instrumenten en systemen."
+      },
+      "gasOil": {
+        "name": "Gas- en Olie-industrieën",
+        "description": "Robuuste componenten ontworpen voor zware omgevingen in olie- en gasexploratie en -productie."
+      }
+    }
+  },
+  "cta": {
+    "label": "VRAAG NU AAN",
+    "title": "Laat Ons U Helpen",
+    "subtitle": "Geïnteresseerd in Onze Expertise en Diensten? Laten We Verbinden",
+    "description": "Lezen en luisteren naar onze experts is een snelkoppeling om uw inkoop, kwaliteitscontrole en logistiek voor uw toeleveringsketen van C-onderdelen te verbeteren.",
+    "contactButton": "Neem Vandaag Contact Op",
+    "callButton": "Bel Nu",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Uw vertrouwde inkoopkantoor in India, ondersteund door ervaren professionals die kwaliteitsindustriële oplossingen leveren.",
+    "sections": {
+      "explore": "Ontdek",
+      "aboutUs": "Over Ons",
+      "services": "Diensten",
+      "getInTouch": "Neem Contact Op"
+    },
+    "explore": {
+      "home": "Home",
+      "about": "Over Ons",
+      "whyChooseUs": "Waarom Ons Kiezen",
+      "quality": "Kwaliteitssystemen",
+      "contact": "Neem Contact Op"
+    },
+    "about": {
+      "company": "Bedrijfsprofiel"
+    },
+    "address": "Pune, Maharashtra, India",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Alle rechten voorbehouden.",
+    "privacy": "Privacybeleid",
+    "terms": "Servicevoorwaarden"
+  },
+  "about": {
+    "label": "OVER ONS",
+    "hero": {
+      "title": "Industriële Oplosser...",
+      "description": "Uw vertrouwde inkoopkantoor in India ondersteund door ervaren professionals die kwaliteitsindustriële oplossingen leveren."
+    },
+    "whoWeAre": {
+      "label": "ONS VERHAAL",
+      "title": "Wie Wij Zijn",
+      "paragraph1": "Wij zijn uw vertrouwde inkooppartner in India, ondersteund door een team van ervaren Global Supply Chain Management (SCM) professionals die zich inzetten voor het vereenvoudigen van inkoop en het waarborgen van consistente kwaliteit.",
+      "paragraph2": "Onze capaciteiten omvatten een breed scala aan producten, waaronder bevestigingsmiddelen, kunststoffen, plaatmetalen componenten, gedraaide onderdelen, sub-assemblages en meer. Wij ondersteunen klanten van prototypeontwikkeling tot bulkproductie en bieden flexibiliteit in elke fase.",
+      "paragraph3": "Wij werken uitsluitend samen met zorgvuldig gecontroleerde, best-in-class leveranciers die voldoen aan internationale bedrijfsnormen en strikte vertrouwelijkheidseisen. Door rigoureuze leveranciersevaluaties en voortdurende audits garanderen wij betrouwbare kwaliteit en levering.",
+      "paragraph4": "Door volledige verantwoordelijkheid te nemen voor kwaliteit, kosten en tijdlijnen, bieden wij kosteneffectieve inkoopoplossingen en langetermijnprijscontractopties, waarmee onze klanten stabiliteit, besparingen en duurzame groei bereiken."
+    },
+    "leadership": {
+      "label": "LEIDERSCHAP",
+      "title": "Ontmoet Ons",
+      "titleHighlight": "Leiderschapsteam",
+      "description": "Ervaren professionals die excellentie en innovatie stimuleren bij SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Dhr. Bhanudas Ramdas Shardul",
+        "position": "Oprichter en Directeur, STPL",
+        "experienceTitle": "Ervaring en Prestaties",
+        "experience": "Voormalig eigenaar van Guruprasad Engineering Works. Meer dan 30 jaar ervaring in gereedschapskameroperaties, industriële fabricage en commerciële timmerproducten.",
+        "quote": "Kwaliteit is geen handeling, het is een gewoonte. Excellentie in productie komt voort uit toewijding, precisie en betrokkenheid bij klanten."
+      },
+      "director": {
+        "name": "Mevr. Rupali Sachin Shardul",
+        "position": "Directeur - HR en Financiën",
+        "description": "Leiden van HR en Financiële Excellentie met strategische visie en operationele expertise"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "NEEM CONTACT OP",
+      "title": "Neem Contact Op",
+      "description": "Heeft u een vraag of wilt u samenwerken? We horen graag van u."
+    },
+    "form": {
+      "name": "Volledige Naam",
+      "email": "E-mailadres",
+      "phone": "Telefoonnummer",
+      "company": "Bedrijfsnaam",
+      "message": "Uw Bericht",
+      "submit": "Bericht Verzenden",
+      "sending": "Verzenden..."
+    },
+    "info": {
+      "title": "Contactinformatie",
+      "address": "Adres",
+      "addressValue": "Pune, Maharashtra, India",
+      "phone": "Telefoon",
+      "email": "E-mail",
+      "hours": "Openingstijden",
+      "hoursValue": "Ma - Za: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Lees Meer",
+    "learnMore": "Meer Informatie",
+    "viewAll": "Bekijk Alles",
+    "getStarted": "Begin",
+    "contactUs": "Neem Contact Op",
+    "requestQuote": "Offerte Aanvragen",
+    "downloadCatalog": "Catalogus Downloaden",
+    "home": "Home"
+  }
+}

@@ -1,17 +1,20 @@
+import { useTranslation } from 'react-i18next';
 import logo from '../../assets/images/logo.jpeg';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   const exploreLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Why Choose Us', href: '/why-choose-us' },
-    { name: 'Quality Systems', href: '/quality' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: t('footer.explore.home'), href: '/' },
+    { name: t('footer.explore.about'), href: '/about' },
+    { name: t('footer.explore.whyChooseUs'), href: '/why-choose-us' },
+    { name: t('footer.explore.quality'), href: '/quality' },
+    { name: t('footer.explore.contact'), href: '/contact' },
   ];
 
   const aboutLinks = [
-    { name: 'Company Profile', href: '/about' }
+    { name: t('footer.about.company'), href: '/about' }
   ];
 
   const servicesLinks = [
@@ -42,12 +45,12 @@ const Footer = () => {
                 src={logo}
               />
               <div className="inline-block mb-4">
-                <span className="text-white font-bold text-xl tracking-wide">SHARDUL-GE</span>
-                <p className="block text-[#d4a853] text-xs tracking-widest">TECHNOLOGIES</p>
+                <span className="text-white font-bold text-xl tracking-wide">{t('footer.companyName')}</span>
+                <p className="block text-[#d4a853] text-xs tracking-widest">{t('footer.technologies')}</p>
               </div>
             </div>
             <p className="text-gray-400 text-[15px] leading-relaxed mb-8 font-normal">
-              Your trusted sourcing office in India, backed by experienced professionals delivering quality industrial solutions.
+              {t('footer.description')}
             </p>
             {/* Social Links */}
             <div className="flex gap-4 mt-auto">
@@ -70,7 +73,7 @@ const Footer = () => {
           {/* Explore */}
           <div className="lg:col-span-2">
             <h3 className="text-white font-bold text-2xl mb-6 relative">
-              Explore
+              {t('footer.sections.explore')}
               <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#d4a853] -mb-2"></span>
             </h3>
             <ul className="space-y-3">
@@ -91,7 +94,7 @@ const Footer = () => {
           {/* About Us & Services */}
           <div className="lg:col-span-3">
             <h3 className="text-white font-bold text-2xl mb-6 relative">
-              About Us
+              {t('footer.sections.aboutUs')}
               <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#d4a853] -mb-2"></span>
             </h3>
             <ul className="space-y-3 mb-8">
@@ -130,7 +133,7 @@ const Footer = () => {
           {/* Get in Touch */}
           <div className="lg:col-span-3">
             <h3 className="text-white font-bold text-2xl mb-6 relative">
-              Get in Touch
+              {t('footer.sections.getInTouch')}
               <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#d4a853] -mb-2"></span>
             </h3>
             <ul className="space-y-3">
@@ -178,20 +181,20 @@ const Footer = () => {
         <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-[14px] font-normal">
-              © 2026 SHARDUL-GE Technologies. All rights reserved.
+              © 2026 {t('footer.companyName')} {t('footer.technologies')}. {t('footer.copyright')}
             </p>
             <div className="flex gap-8">
               <a
                 href="/privacy"
                 className="text-gray-400 hover:text-gold-primary text-[14px] font-normal transition-all duration-300 hover:underline underline-offset-4"
               >
-                Privacy Policy
+                {t('footer.privacy')}
               </a>
               <a
                 href="/terms"
                 className="text-gray-400 hover:text-gold-primary text-[14px] font-normal transition-all duration-300 hover:underline underline-offset-4"
               >
-                Terms of Service
+                {t('footer.terms')}
               </a>
             </div>
           </div>

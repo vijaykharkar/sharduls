@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 
 const CTASection = () => {
   const sectionRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,23 +67,22 @@ const CTASection = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Section Label */}
         <p className="scroll-animate text-[#d4a853] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3 md:mb-4">
-          ENQUIRY NOW
+          {t('cta.label')}
         </p>
 
         {/* Main Heading */}
         <h2 className="scroll-animate delay-100 text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 italic">
-          Let Us Help You
+          {t('cta.title')}
         </h2>
 
         {/* Subheading */}
         <h3 className="scroll-animate delay-200 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#d4a853] mb-4 md:mb-6 italic">
-          Interested in Our Expertise and Services? Let's Connect
+          {t('cta.subtitle')}
         </h3>
 
         {/* Description */}
         <p className="scroll-animate delay-300 text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-4">
-          To read and listen to our experts is a shortcut to improve your sourcing, quality
-          control and logistics for your supply chain of C-parts.
+          {t('cta.description')}
         </p>
 
         {/* CTA Buttons */}
@@ -90,7 +91,7 @@ const CTASection = () => {
             href="/contact"
             className="inline-flex items-center gap-2 bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-md font-bold text-base sm:text-lg transition-all duration-300 hover:-translate-y-1 shadow-lg w-full sm:w-auto"
           >
-            Contact Us Today
+            {t('cta.contactButton')}
             <ArrowRight size={18} />
           </a>
           <a
@@ -98,7 +99,7 @@ const CTASection = () => {
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-md font-bold text-base sm:text-lg transition-all duration-300 border-2 border-white/50 hover:-translate-y-1 w-full sm:w-auto"
           >
             <Phone size={18} />
-            Call Now
+            {t('cta.callButton')}
           </a>
         </div>
 
@@ -109,14 +110,14 @@ const CTASection = () => {
             className="flex items-center gap-2 hover:text-[#d4a853] transition-colors"
           >
             <Phone size={18} />
-            <span>+91 9175582622</span>
+            <span>{t('cta.phone')}</span>
           </a>
           <a
             href="mailto:Director@shardulge.com"
             className="flex items-center gap-2 hover:text-[#d4a853] transition-colors"
           >
             <Mail size={18} />
-            <span>Director@shardulge.com</span>
+            <span>{t('cta.email')}</span>
           </a>
         </div>
       </div>

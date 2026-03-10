@@ -125,7 +125,7 @@ const Contact = () => {
     {
       region: 'Europe',
       icon: '🇪🇺',
-      location: 'Paris, France',
+      location: 'Lyon, France',
       businessHours: 'SALES & MARKETING REPRESENTATIVE',
       phone: '+33',
       email: 'export@shardulge.com',

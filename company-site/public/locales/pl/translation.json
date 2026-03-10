@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Zapytaj Teraz",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Strona Główna",
+      "aboutUs": "O Nas",
+      "productsServices": "Nasze Produkty i Usługi",
+      "whyChooseUs": "Dlaczego My",
+      "qualitySystem": "System Jakości",
+      "contactUs": "Kontakt"
+    },
+    "b2b": {
+      "title": "Dla Business to Business",
+      "highPrecision": "Precyzyjne Części Toczone",
+      "cnc": "Komponenty CNC",
+      "fixings": "Elementy Mocujące",
+      "switchboard": "Komponenty Rozdzielnic",
+      "cable": "Zarządzanie Kablami",
+      "earthing": "Akcesoria Uziemiające",
+      "lugs": "Końcówki Kablowe i Złącza",
+      "thermo": "Części Termoplastyczne",
+      "subAssembly": "Części Podzespołów",
+      "kitting": "Części Kitting",
+      "3dPrinting": "Druk 3D"
+    },
+    "b2c": {
+      "title": "Dla Business to Distributor",
+      "comingSoon": "Wkrótce......"
+    }
+  },
+  "hero": {
+    "title": "Budujemy Jutro",
+    "subtitle": "Centrum Zakupowe z Indii",
+    "companyName": "SHARDUL-GE",
+    "description": "Profesjonalnie zarządzana organizacja dostarczająca wysokiej jakości produkty i niezawodne rozwiązania w wielu sektorach przemysłowych."
+  },
+  "whatWeOffer": {
+    "label": "CO OFERUJEMY",
+    "title": "Bezproblemowy Łańcuch Dostaw",
+    "subtitle": "Ułatwiamy Twoje zakupy z Indii",
+    "description": "Oferujemy niezwykle szeroki asortyment standardowych elementów mocujących na magazynie i specjalizujemy się w handlu wszelkimi możliwymi częściami C zgodnie z Twoimi unikalnymi potrzebami. Może to być toczone, wtryskiwane, wytłaczane, tłoczone, kute, frezowane, formowane lub nawet montowane. Wszystkie części naszej oferty opierają się na wieloletnim doświadczeniu w robieniu różnicy dla Ciebie.",
+    "features": {
+      "range": "Szeroki Asortyment Standardowych Elementów Mocujących",
+      "unique": "Części C Dostosowane do Klienta",
+      "sourcing": "Globalna Sieć Zaopatrzenia",
+      "quality": "Kontrola Jakości i Testowanie",
+      "logistics": "Efektywny Przepływ Logistyczny",
+      "sustainable": "Zrównoważone Dostawy"
+    },
+    "button": "Dowiedz Się Więcej o Nas"
+  },
+  "processFlow": {
+    "label": "JAK PRACUJEMY",
+    "title": "Nasz Proces Produkcji Kontraktowej",
+    "subtitle": "Od zaopatrzenia do dostawy - kompleksowy przepływ pracy zapewniający doskonałość na każdym etapie",
+    "steps": {
+      "supplierEvaluation": "Ocena Dostawców",
+      "vendorRegistration": "Rejestracja Dostawców",
+      "purchase": "Zakup",
+      "production": "Produkcja",
+      "qualityInspection": "Kontrola Jakości",
+      "storage": "Magazynowanie",
+      "preDispatch": "Kontrola Przed Wysyłką i Pakowanie",
+      "delivery": "Dostawa i Logistyka"
+    },
+    "quality": {
+      "title": "Nasze Podejście do Jakości..."
+    }
+  },
+  "ourExpertise": {
+    "label": "NASZA EKSPERTYZA",
+    "title": "Materiały, z Którymi Pracujemy",
+    "description": "Specjalizujemy się w produkcji kontraktowej komponentów precyzyjnych z szerokiej gamy materiałów, zapewniając doskonałość w każdym komponencie.",
+    "materials": {
+      "steel": "Stal Nierdzewna",
+      "copper": "Miedź",
+      "aluminium": "Aluminium",
+      "brass": "Mosiądz",
+      "plastic": "Plastik"
+    }
+  },
+  "sectors": {
+    "label": "SEKTORY, KTÓRE OBSŁUGUJEMY...",
+    "title": "Obsługujemy Branże od Mebli po Lotnictwo",
+    "description": "Pracujemy z klientami z różnych branż. Nasze precyzyjne komponenty obsługują rynki globalne, zapewniając jakość i niezawodność w różnych sektorach.",
+    "list": {
+      "automotive": {
+        "name": "Motoryzacja",
+        "description": "Oprócz silnych powiązań w przemyśle sportów motorowych SKY GROUP jest również zaangażowany w dostarczanie komponentów do wysokiej klasy 'rynków niszowych' w przemyśle motoryzacyjnym."
+      },
+      "electrical": {
+        "name": "Elektryczny",
+        "description": "Dostarczanie wysokiej jakości komponentów elektrycznych i rozwiązań dla różnych zastosowań w sektorach przemysłowych i komercyjnych."
+      },
+      "hydraulic": {
+        "name": "Hydraulika i Pneumatyka",
+        "description": "Precyzyjne komponenty hydrauliczne i pneumatyczne zapewniające niezawodną wydajność w wymagających zastosowaniach."
+      },
+      "plastics": {
+        "name": "Tworzywa Sztuczne i Guma",
+        "description": "Zaawansowane komponenty z tworzyw sztucznych i gumy produkowane zgodnie z dokładnymi specyfikacjami dla różnych potrzeb przemysłowych."
+      },
+      "communication": {
+        "name": "Komunikacja",
+        "description": "Wyspecjalizowane komponenty dla systemów komunikacyjnych zapewniające bezproblemową łączność i niezawodność."
+      },
+      "solar": {
+        "name": "Przemysł Solarny",
+        "description": "Wysokoprecyzyjne komponenty solarne spełniające rygorystyczne standardy jakości i bezpieczeństwa."
+      },
+      "furniture": {
+        "name": "Meble",
+        "description": "Zaawansowane komponenty meblowe i rozwiązania dla precyzyjnych instrumentów i systemów."
+      },
+      "gasOil": {
+        "name": "Przemysł Gazowy i Naftowy",
+        "description": "Wytrzymałe komponenty zaprojektowane dla trudnych środowisk w eksploatacji i produkcji ropy naftowej i gazu."
+      }
+    }
+  },
+  "cta": {
+    "label": "ZAPYTAJ TERAZ",
+    "title": "Pozwól Nam Ci Pomóc",
+    "subtitle": "Zainteresowany Naszą Ekspertyzą i Usługami? Połączmy Się",
+    "description": "Czytanie i słuchanie naszych ekspertów to skrót do poprawy Twojego zaopatrzenia, kontroli jakości i logistyki dla Twojego łańcucha dostaw części C.",
+    "contactButton": "Skontaktuj Się Dzisiaj",
+    "callButton": "Zadzwoń Teraz",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Twoje zaufane biuro zakupowe w Indiach, wspierane przez doświadczonych profesjonalistów dostarczających wysokiej jakości rozwiązania przemysłowe.",
+    "sections": {
+      "explore": "Odkryj",
+      "aboutUs": "O Nas",
+      "services": "Usługi",
+      "getInTouch": "Skontaktuj Się"
+    },
+    "explore": {
+      "home": "Strona Główna",
+      "about": "O Nas",
+      "whyChooseUs": "Dlaczego My",
+      "quality": "Systemy Jakości",
+      "contact": "Kontakt"
+    },
+    "about": {
+      "company": "Profil Firmy"
+    },
+    "address": "Pune, Maharashtra, Indie",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Wszelkie prawa zastrzeżone.",
+    "privacy": "Polityka Prywatności",
+    "terms": "Warunki Usługi"
+  },
+  "about": {
+    "label": "O NAS",
+    "hero": {
+      "title": "Rozwiązania Przemysłowe...",
+      "description": "Twoje zaufane biuro zakupowe w Indiach wspierane przez doświadczonych profesjonalistów dostarczających wysokiej jakości rozwiązania przemysłowe."
+    },
+    "whoWeAre": {
+      "label": "NASZA HISTORIA",
+      "title": "Kim Jesteśmy",
+      "paragraph1": "Jesteśmy Twoim zaufanym partnerem zakupowym w Indiach, wspieranym przez zespół doświadczonych profesjonalistów Global Supply Chain Management (SCM) zaangażowanych w uproszczenie zakupów i zapewnienie stałej jakości.",
+      "paragraph2": "Nasze możliwości obejmują szeroki zakres produktów, w tym elementy mocujące, tworzywa sztuczne, komponenty z blachy, części toczone, podzespoły i wiele więcej. Wspieramy klientów od rozwoju prototypu do produkcji masowej, oferując elastyczność na każdym etapie.",
+      "paragraph3": "Współpracujemy wyłącznie z starannie sprawdzonymi, najlepszymi w swojej klasie dostawcami, którzy przestrzegają międzynarodowych standardów biznesowych i ścisłych wymogów dotyczących poufności. Poprzez rygorystyczne oceny dostawców i ciągłe audyty zapewniamy niezawodną jakość i dostawę.",
+      "paragraph4": "Przejmując pełną odpowiedzialność za jakość, koszty i terminy, zapewniamy ekonomiczne rozwiązania zakupowe i długoterminowe opcje kontraktów cenowych, pomagając naszym klientom osiągnąć stabilność, oszczędności i zrównoważony wzrost."
+    },
+    "leadership": {
+      "label": "PRZYWÓDZTWO",
+      "title": "Poznaj Nasz",
+      "titleHighlight": "Zespół Przywództwa",
+      "description": "Doświadczeni profesjonaliści napędzający doskonałość i innowacje w SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Pan Bhanudas Ramdas Shardul",
+        "position": "Założyciel i Dyrektor, STPL",
+        "experienceTitle": "Doświadczenie i Osiągnięcia",
+        "experience": "Były właściciel Guruprasad Engineering Works. Ponad 30 lat doświadczenia w obsłudze narzędziowni, produkcji przemysłowej i produktach stolarskich komercyjnych.",
+        "quote": "Jakość to nie czyn, to nawyk. Doskonałość w produkcji pochodzi z zaangażowania, precyzji i zaangażowania wobec klientów."
+      },
+      "director": {
+        "name": "Pani Rupali Sachin Shardul",
+        "position": "Dyrektor - HR i Finanse",
+        "description": "Przewodzenie Doskonałości HR i Finansowej ze strategiczną wizją i wiedzą operacyjną"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "SKONTAKTUJ SIĘ",
+      "title": "Skontaktuj Się z Nami",
+      "description": "Masz pytanie lub chcesz współpracować? Chcielibyśmy Cię usłyszeć."
+    },
+    "form": {
+      "name": "Imię i Nazwisko",
+      "email": "Adres E-mail",
+      "phone": "Numer Telefonu",
+      "company": "Nazwa Firmy",
+      "message": "Twoja Wiadomość",
+      "submit": "Wyślij Wiadomość",
+      "sending": "Wysyłanie..."
+    },
+    "info": {
+      "title": "Informacje Kontaktowe",
+      "address": "Adres",
+      "addressValue": "Pune, Maharashtra, Indie",
+      "phone": "Telefon",
+      "email": "E-mail",
+      "hours": "Godziny Pracy",
+      "hoursValue": "Pon - Sob: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Czytaj Więcej",
+    "learnMore": "Dowiedz Się Więcej",
+    "viewAll": "Zobacz Wszystko",
+    "getStarted": "Zacznij",
+    "contactUs": "Skontaktuj Się",
+    "requestQuote": "Zapytaj o Wycenę",
+    "downloadCatalog": "Pobierz Katalog",
+    "home": "Strona Główna"
+  }
+}

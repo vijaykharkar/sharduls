@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Car,
   Zap,
@@ -26,6 +27,7 @@ import solar from '../../assets/images/solar.jpg';
 
 const Sectors = () => {
   const sectionRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,52 +49,52 @@ const Sectors = () => {
 
   const sectors = [
     { 
-      name: 'Automotive', 
+      name: t('sectors.list.automotive.name'), 
       icon: Car, 
       img: automotive,
-      description: 'As well as strong links in the Motorsport industry SKY GROUP is also involved in supplying components to the High End \'Niche Markets\' within the Automotive Industry.'
+      description: t('sectors.list.automotive.description')
     },
     { 
-      name: 'Electrical', 
+      name: t('sectors.list.electrical.name'), 
       icon: Zap, 
       img: mscb,
-      description: 'Providing high-quality electrical components and solutions for diverse applications across industrial and commercial sectors.'
+      description: t('sectors.list.electrical.description')
     },
     { 
-      name: 'Hydraulic & Pneumatic', 
+      name: t('sectors.list.hydraulic.name'), 
       icon: Waves, 
       img: hydraulic,
-      description: 'Precision hydraulic and pneumatic components ensuring reliable performance in demanding applications.'
+      description: t('sectors.list.hydraulic.description')
     },
     { 
-      name: 'Plastics & Rubber', 
+      name: t('sectors.list.plastics.name'), 
       icon: Circle, 
       img: plasticrubber,
-      description: 'Advanced plastic and rubber components manufactured to exact specifications for various industrial needs.'
+      description: t('sectors.list.plastics.description')
     },
     { 
-      name: 'Communication', 
+      name: t('sectors.list.communication.name'), 
       icon: Radio, 
       img: electrical,
-      description: 'Specialized components for communication systems ensuring seamless connectivity and reliability.'
+      description: t('sectors.list.communication.description')
     },
     { 
-      name: 'Solar Industries', 
+      name: t('sectors.list.solar.name'), 
       icon: Sun, 
       img: solar,
-      description: 'High-precision solar components meeting stringent quality and safety standards.'
+      description: t('sectors.list.solar.description')
     },
     { 
-      name: 'Furniture', 
+      name: t('sectors.list.furniture.name'), 
       icon: Eye, 
       img: furniture,
-      description: 'Advanced furniture components and solutions for precision instruments and systems.'
+      description: t('sectors.list.furniture.description')
     },
     { 
-      name: 'Gas & Oil Industries', 
+      name: t('sectors.list.gasOil.name'), 
       icon: Flame, 
       img: gasandoil,
-      description: 'Robust components designed for harsh environments in oil and gas exploration and production.'
+      description: t('sectors.list.gasOil.description')
     }
   ];
 
@@ -102,14 +104,13 @@ const Sectors = () => {
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-10 lg:mb-12">
           <p className="scroll-animate text-[#d4a853] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3 md:mb-4">
-            SECTORS WE CATER...
+            {t('sectors.label')}
           </p>
           <h2 className="scroll-animate delay-100 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#1a3a5c] mb-4 md:mb-6">
-            Serving Industries from Furniture to Aerospace
+            {t('sectors.title')}
           </h2>
           <p className="scroll-animate delay-200 text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-            We work with customers across diverse industries. Our precision components serve
-            global markets, delivering quality and reliability across sectors.
+            {t('sectors.description')}
           </p>
         </div>
 

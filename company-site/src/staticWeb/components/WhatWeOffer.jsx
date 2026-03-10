@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import worldimg from '../../assets/images/worldimg.jpg';
 
 const WhatWeOffer = () => {
   const sectionRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,12 +26,12 @@ const WhatWeOffer = () => {
   }, []);
 
   const features = [
-    'Wide Range of Standard Fasteners',
-    'Customer-Unique C-Parts',
-    'Global Sourcing Network',
-    'Quality Control & Testing',
-    'Efficient Logistics Flow',
-    'Sustainable Deliveries',
+    t('whatWeOffer.features.range'),
+    t('whatWeOffer.features.unique'),
+    t('whatWeOffer.features.sourcing'),
+    t('whatWeOffer.features.quality'),
+    t('whatWeOffer.features.logistics'),
+    t('whatWeOffer.features.sustainable'),
   ];
 
   return (
@@ -43,19 +45,15 @@ const WhatWeOffer = () => {
             </p> */}
             
             <h2 className="scroll-animate-left delay-100 text-2xl sm:text-3xl md:text-4xl font-bold text-[#1a3a5c] mb-2">
-              A Seamless Supply Chain
+              {t('whatWeOffer.title')}
             </h2>
             
             <h3 className="scroll-animate-left delay-200 text-xl sm:text-2xl md:text-3xl font-bold text-[#d4a853] mb-4 md:mb-6">
-              We can ease your procurement from India
+              {t('whatWeOffer.subtitle')}
             </h3>
             
             <p className="scroll-animate-left delay-300 text-gray-600 text-base sm:text-lg leading-relaxed mb-6 md:mb-8">
-              We offer an extremely wide range of stocked standard fasteners, and we 
-              specialize in trading with any imaginable C-parts according to your unique 
-              needs. It could be turned, injected, extruded, stamped, forged, milled, 
-              molded, or even assembled. All parts of our offer are based on years of 
-              experience in making a difference for you.
+              {t('whatWeOffer.description')}
             </p>
             
             {/* Features Grid */}
@@ -73,7 +71,7 @@ const WhatWeOffer = () => {
               href="/about"
               className="scroll-animate-left delay-500 inline-flex items-center gap-2 bg-[#d4a853] hover:bg-[#ff8c00] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-md font-bold text-sm sm:text-base transition-all duration-300 hover:-translate-y-1"
             >
-              Learn More About Us
+              {t('whatWeOffer.button')}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </div>

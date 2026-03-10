@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Užklausa Dabar",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Pradžia",
+      "aboutUs": "Apie Mus",
+      "productsServices": "Mūsų Produktai ir Paslaugos",
+      "whyChooseUs": "Kodėl Pasirinkti Mus",
+      "qualitySystem": "Kokybės Sistema",
+      "contactUs": "Susisiekite"
+    },
+    "b2b": {
+      "title": "Verslui su Verslu",
+      "highPrecision": "Aukšto Tikslumo Tekintos Dalys",
+      "cnc": "CNC Komponentai",
+      "fixings": "Tvirtinimai ir Tvirtinimo Elementai",
+      "switchboard": "Skydų Komponentai",
+      "cable": "Kabelių Valdymas",
+      "earthing": "Įžeminimo Priedai",
+      "lugs": "Kabelių Antgaliai ir Jungtys",
+      "thermo": "Termoplastinės Dalys",
+      "subAssembly": "Submontavimo Dalys",
+      "kitting": "Kitting Dalys",
+      "3dPrinting": "3D Spausdinimas"
+    },
+    "b2c": {
+      "title": "Verslui su Platintoju",
+      "comingSoon": "Netrukus......"
+    }
+  },
+  "hero": {
+    "title": "Kuriant Rytojų",
+    "subtitle": "Pirkimo Centras iš Indijos",
+    "companyName": "SHARDUL-GE",
+    "description": "Profesionaliai valdoma organizacija, teikianti aukštos kokybės produktus ir patikimus sprendimus keliuose pramonės sektoriuose."
+  },
+  "whatWeOffer": {
+    "label": "KĄ SIŪLOME",
+    "title": "Nepriekaištinga Tiekimo Grandinė",
+    "subtitle": "Mes galime palengvinti jūsų pirkimus iš Indijos",
+    "description": "Siūlome itin platų standartinių tvirtinimo elementų asortimentą sandėlyje ir esame specializuoti prekyboje bet kokiomis įsivaizduojamomis C dalimis pagal jūsų unikalius poreikius. Tai gali būti tekintos, liejamos, ekstruduotos, štampuotos, kaltos, frezuotos, formuotos ar net surinktos. Visos mūsų pasiūlymo dalys yra pagrįstos daugelio metų patirtimi keičiant padėtį jums.",
+    "features": {
+      "range": "Platus Standartinių Tvirtinimo Elementų Asortimentas",
+      "unique": "Klientui Unikalios C Dalys",
+      "sourcing": "Pasaulinis Tiekimo Tinklas",
+      "quality": "Kokybės Kontrolė ir Testavimas",
+      "logistics": "Efektyvus Logistikos Srautas",
+      "sustainable": "Tvarus Pristatymas"
+    },
+    "button": "Sužinokite Daugiau Apie Mus"
+  },
+  "processFlow": {
+    "label": "KAIP DIRBAME",
+    "title": "Mūsų Sutartinės Gamybos Proceso Eiga",
+    "subtitle": "Nuo tiekimo iki pristatymo - išsamus darbo srautas, užtikrinantis puikumą kiekviename etape",
+    "steps": {
+      "supplierEvaluation": "Tiekėjų Vertinimas",
+      "vendorRegistration": "Tiekėjų Registracija",
+      "purchase": "Pirkimas",
+      "production": "Gamyba",
+      "qualityInspection": "Kokybės Patikra",
+      "storage": "Saugojimas ir Sandėliavimas",
+      "preDispatch": "Pristatymo Išankstinė Patikra ir Pakavimas",
+      "delivery": "Pristatymas ir Logistika"
+    },
+    "quality": {
+      "title": "Mūsų Kokybės Požiūris..."
+    }
+  },
+  "ourExpertise": {
+    "label": "MŪSŲ EKSPERTIZĖ",
+    "title": "Medžiagos, su Kuriomis Dirbame",
+    "description": "Specializuojamės sutartinės precizinių komponentų gamybos srityje iš plataus medžiagų spektro, užtikrindami puikumą kiekviename komponente.",
+    "materials": {
+      "steel": "Nerūdijantis Plienas",
+      "copper": "Varis",
+      "aluminium": "Aliuminis",
+      "brass": "Žalvaris",
+      "plastic": "Plastikas"
+    }
+  },
+  "sectors": {
+    "label": "SEKTORIAI, KURIUOS APTARNAUJAME...",
+    "title": "Aptarnaujame Pramonės Šakas nuo Baldų iki Aviacijos",
+    "description": "Dirbame su klientais įvairiose pramonės šakose. Mūsų tikslumo komponentai aptarnauja pasaulines rinkas, užtikrindami kokybę ir patikimumą visose srityse.",
+    "list": {
+      "automotive": {
+        "name": "Automobilių",
+        "description": "Be stiprių ryšių su Motorsport pramone, SKY GROUP taip pat dalyvauja tiekdama komponentus aukštojo lygio 'nišinėms rinkoms' automobilių pramonėje."
+      },
+      "electrical": {
+        "name": "Elektrinis",
+        "description": "Aukštos kokybės elektrinių komponentų ir sprendimų teikimas įvairioms programoms pramonės ir komerciniuose sektoriuose."
+      },
+      "hydraulic": {
+        "name": "Hidraulika ir Pneumatika",
+        "description": "Tikslumo hidrauliniai ir pneumatiniai komponentai, užtikrinantys patikimą veikimą reikliose programose."
+      },
+      "plastics": {
+        "name": "Plastikai ir Guma",
+        "description": "Pažangūs plastiko ir gumos komponentai, pagaminti pagal tikslias specifikacijas įvairiems pramonės poreikiams."
+      },
+      "communication": {
+        "name": "Komunikacija",
+        "description": "Specializuoti komponentai komunikacijos sistemoms, užtikrinantys sklandų ryšį ir patikimumą."
+      },
+      "solar": {
+        "name": "Saulės Pramonė",
+        "description": "Aukšto tikslumo saulės komponentai, atitinkantys griežtus kokybės ir saugos standartus."
+      },
+      "furniture": {
+        "name": "Baldai",
+        "description": "Pažangūs baldų komponentai ir sprendimai tiksliems instrumentams ir sistemoms."
+      },
+      "gasOil": {
+        "name": "Dujų ir Naftos Pramonė",
+        "description": "Tvirti komponentai, sukurti sunkioms aplinkoms naftos ir dujų tyrinėjime ir gamyboje."
+      }
+    }
+  },
+  "cta": {
+    "label": "UŽKLAUSA DABAR",
+    "title": "Leiskite Mums Jums Padėti",
+    "subtitle": "Domitės Mūsų Ekspertize ir Paslaugomis? Susisiekime",
+    "description": "Skaityti ir klausytis mūsų ekspertų yra trumpesnis kelias pagerinti jūsų tiekimą, kokybės kontrolę ir logistiką jūsų C dalių tiekimo grandinei.",
+    "contactButton": "Susisiekite Šiandien",
+    "callButton": "Skambinkite Dabar",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Jūsų patikimas tiekimo biuras Indijoje, remiamas patyrusių profesionalų, teikiančių kokybės pramonės sprendimus.",
+    "sections": {
+      "explore": "Tyrinėti",
+      "aboutUs": "Apie Mus",
+      "services": "Paslaugos",
+      "getInTouch": "Susisiekite"
+    },
+    "explore": {
+      "home": "Pradžia",
+      "about": "Apie Mus",
+      "whyChooseUs": "Kodėl Pasirinkti Mus",
+      "quality": "Kokybės Sistemos",
+      "contact": "Susisiekite"
+    },
+    "about": {
+      "company": "Įmonės Profilis"
+    },
+    "address": "Pune, Maharashtra, Indija",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Visos teisės saugomos.",
+    "privacy": "Privatumo Politika",
+    "terms": "Paslaugų Teikimo Sąlygos"
+  },
+  "about": {
+    "label": "APIE MUS",
+    "hero": {
+      "title": "Pramonės Sprendimų Teikėjas...",
+      "description": "Jūsų patikimas tiekimo biuras Indijoje, remiamas patyrusių profesionalų, teikiančių kokybės pramonės sprendimus."
+    },
+    "whoWeAre": {
+      "label": "MŪSŲ ISTORIJA",
+      "title": "Kas Mes Esame",
+      "paragraph1": "Esame jūsų patikimas tiekimo partneris Indijoje, remiamas patyrusių pasaulinės tiekimo grandinės valdymo (SCM) profesionalų komandos, įsipareigojusios supaprastinti pirkimus ir užtikrinti nuoseklią kokybę.",
+      "paragraph2": "Mūsų galimybės apima platų produktų spektrą, įskaitant tvirtinimo elementus, plastikus, lakštinio metalo komponentus, tekintas dalis, submontažus ir kt. Remiame klientus nuo prototipo kūrimo iki masinės gamybos, siūlydami lankstumą kiekviename etape.",
+      "paragraph3": "Bendradarbiaujame išimtinai su kruopščiai patikrintais, savo srities geriausiais tiekėjais, kurie atitinka tarptautinius verslo standartus ir griežtus konfidencialumo reikalavimus. Taikydami griežtą tiekėjų vertinimą ir nuolatinius auditus, užtikriname patikimą kokybę ir pristatymą.",
+      "paragraph4": "Prisiėmę visą atsakomybę už kokybę, kaštus ir terminus, teikiame ekonomiškai efektyvius tiekimo sprendimus ir ilgalaikių kainų sutarčių galimybes, padėdami mūsų klientams pasiekti stabilumą, santaupas ir tvarų augimą."
+    },
+    "leadership": {
+      "label": "VADOVYBĖ",
+      "title": "Susipažinkite su Mūsų",
+      "titleHighlight": "Vadovybės Komanda",
+      "description": "Patyrę profesionalai, skatinantys puikumą ir inovacijas SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Ponas Bhanudas Ramdas Shardul",
+        "position": "Įkūrėjas ir Direktorius, STPL",
+        "experienceTitle": "Patirtis ir Pasiekimai",
+        "experience": "Buvęs Guruprasad Engineering Works savininkas. Daugiau nei 30 metų patirtis įrankių kambarių operacijose, pramoninėje gamyboje ir komercinėse dailidystės prekėse.",
+        "quote": "Kokybė nėra veiksmas, tai įprotis. Puikumas gamyboje ateina iš atsidavimo, tikslumo ir įsipareigojimo klientams."
+      },
+      "director": {
+        "name": "Ponia Rupali Sachin Shardul",
+        "position": "Direktorė - Personalo ir Finansai",
+        "description": "Vadovaujant Personalo ir Finansų Puikumui su strategine vizija ir operatyvine patirtimi"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "SUSISIEKITE",
+      "title": "Susisiekite su Mumis",
+      "description": "Turite klausimą ar norite bendradarbiauti? Mielai išgirsime iš jūsų."
+    },
+    "form": {
+      "name": "Pilnas Vardas",
+      "email": "El. Pašto Adresas",
+      "phone": "Telefono Numeris",
+      "company": "Įmonės Pavadinimas",
+      "message": "Jūsų Žinutė",
+      "submit": "Siųsti Žinutę",
+      "sending": "Siunčiama..."
+    },
+    "info": {
+      "title": "Kontaktinė Informacija",
+      "address": "Adresas",
+      "addressValue": "Pune, Maharashtra, Indija",
+      "phone": "Telefonas",
+      "email": "El. Paštas",
+      "hours": "Darbo Laikas",
+      "hoursValue": "Pir - Šeš: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Skaityti Daugiau",
+    "learnMore": "Sužinoti Daugiau",
+    "viewAll": "Žiūrėti Visus",
+    "getStarted": "Pradėti",
+    "contactUs": "Susisiekite",
+    "requestQuote": "Prašyti Pasiūlymo",
+    "downloadCatalog": "Atsisiųsti Katalogą",
+    "home": "Pradžia"
+  }
+}

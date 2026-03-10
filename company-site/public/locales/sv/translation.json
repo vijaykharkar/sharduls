@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Förfrågan Nu",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Hem",
+      "aboutUs": "Om Oss",
+      "productsServices": "Våra Produkter och Tjänster",
+      "whyChooseUs": "Varför Välja Oss",
+      "qualitySystem": "Kvalitetssystem",
+      "contactUs": "Kontakta Oss"
+    },
+    "b2b": {
+      "title": "För Business to Business",
+      "highPrecision": "Högprecisionssvarvade Delar",
+      "cnc": "CNC-komponenter",
+      "fixings": "Fästen och Fästdon",
+      "switchboard": "Kopplingsskåpskomponenter",
+      "cable": "Kabelhantering",
+      "earthing": "Jordningstillbehör",
+      "lugs": "Kabelsko och Kontakter",
+      "thermo": "Termoplastiska Delar",
+      "subAssembly": "Delmonteringsdelar",
+      "kitting": "Kitting Delar",
+      "3dPrinting": "3D-utskrift"
+    },
+    "b2c": {
+      "title": "För Business to Distributor",
+      "comingSoon": "Kommer Snart......"
+    }
+  },
+  "hero": {
+    "title": "Bygga Morgondagens",
+    "subtitle": "Inköpshubb Från Indien",
+    "companyName": "SHARDUL-GE",
+    "description": "En professionellt hanterad organisation som levererar högkvalitativa produkter och pålitliga lösningar inom flera industrisektorer."
+  },
+  "whatWeOffer": {
+    "label": "VAD VI ERBJUDER",
+    "title": "En Sömlös Leveranskedja",
+    "subtitle": "Vi kan underlätta din upphandling från Indien",
+    "description": "Vi erbjuder ett extremt brett utbud av lagerförda standardfästen och vi är specialiserade på handel med alla tänkbara C-delar enligt dina unika behov. Det kan vara svarvat, insprutat, extruderat, stämplat, smitt, fräst, format eller till och med monterat. Alla delar av vårt erbjudande bygger på många års erfarenhet av att göra skillnad för dig.",
+    "features": {
+      "range": "Brett Utbud av Standardfästen",
+      "unique": "Kundunika C-delar",
+      "sourcing": "Globalt Inköpsnätverk",
+      "quality": "Kvalitetskontroll och Testning",
+      "logistics": "Effektivt Logistikflöde",
+      "sustainable": "Hållbara Leveranser"
+    },
+    "button": "Lär Dig Mer Om Oss"
+  },
+  "processFlow": {
+    "label": "HUR VI ARBETAR",
+    "title": "Vårt Kontraktstillverkningsprocessflöde",
+    "subtitle": "Från inköp till leverans - ett omfattande arbetsflöde som säkerställer excellens i varje steg",
+    "steps": {
+      "supplierEvaluation": "Leverantörsutvärdering",
+      "vendorRegistration": "Leverantörsregistrering",
+      "purchase": "Inköp",
+      "production": "Produktion",
+      "qualityInspection": "Kvalitetsinspektion",
+      "storage": "Lagring och Lagerhantering",
+      "preDispatch": "För-leveransinspektion och Förpackning",
+      "delivery": "Leverans och Logistik"
+    },
+    "quality": {
+      "title": "Vår Kvalitetsansats..."
+    }
+  },
+  "ourExpertise": {
+    "label": "VÅR EXPERTIS",
+    "title": "Material Vi Arbetar Med",
+    "description": "Vi är specialiserade på kontraktstillverkning av precisionskomponenter i ett brett utbud av material och levererar excellens i varje komponent.",
+    "materials": {
+      "steel": "Rostfritt Stål",
+      "copper": "Koppar",
+      "aluminium": "Aluminium",
+      "brass": "Mässing",
+      "plastic": "Plast"
+    }
+  },
+  "sectors": {
+    "label": "SEKTORER VI BETJÄNAR...",
+    "title": "Betjänar Industrier från Möbler till Flyg",
+    "description": "Vi arbetar med kunder inom olika branscher. Våra precisionskomponenter betjänar globala marknader och levererar kvalitet och tillförlitlighet över sektorer.",
+    "list": {
+      "automotive": {
+        "name": "Fordon",
+        "description": "Förutom starka band inom motorsportindustrin är SKY GROUP också involverad i att leverera komponenter till high-end 'nischmarknader' inom fordonsindustrin."
+      },
+      "electrical": {
+        "name": "Elektrisk",
+        "description": "Tillhandahåller högkvalitativa elektriska komponenter och lösningar för olika tillämpningar inom industriella och kommersiella sektorer."
+      },
+      "hydraulic": {
+        "name": "Hydraulik och Pneumatik",
+        "description": "Precisionshydrauliska och pneumatiska komponenter som säkerställer tillförlitlig prestanda i krävande tillämpningar."
+      },
+      "plastics": {
+        "name": "Plast och Gummi",
+        "description": "Avancerade plast- och gummikomponenter tillverkade enligt exakta specifikationer för olika industriella behov."
+      },
+      "communication": {
+        "name": "Kommunikation",
+        "description": "Specialiserade komponenter för kommunikationssystem som säkerställer sömlös anslutning och tillförlitlighet."
+      },
+      "solar": {
+        "name": "Solenergibranschen",
+        "description": "Högprecisionssolkomponenter som uppfyller stränga kvalitets- och säkerhetsstandarder."
+      },
+      "furniture": {
+        "name": "Möbler",
+        "description": "Avancerade möbelkomponenter och lösningar för precisionsinstrument och system."
+      },
+      "gasOil": {
+        "name": "Gas- och Oljeindustrier",
+        "description": "Robusta komponenter designade för hårda miljöer inom olje- och gasutforskning och produktion."
+      }
+    }
+  },
+  "cta": {
+    "label": "FÖRFRÅGAN NU",
+    "title": "Låt Oss Hjälpa Dig",
+    "subtitle": "Intresserad av Vår Expertis och Tjänster? Låt Oss Ansluta",
+    "description": "Att läsa och lyssna på våra experter är en genväg för att förbättra din inköp, kvalitetskontroll och logistik för din leveranskedja av C-delar.",
+    "contactButton": "Kontakta Oss Idag",
+    "callButton": "Ring Nu",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Ditt pålitliga inköpskontor i Indien, stödd av erfarna proffs som levererar kvalitetsindustriella lösningar.",
+    "sections": {
+      "explore": "Utforska",
+      "aboutUs": "Om Oss",
+      "services": "Tjänster",
+      "getInTouch": "Kontakta Oss"
+    },
+    "explore": {
+      "home": "Hem",
+      "about": "Om Oss",
+      "whyChooseUs": "Varför Välja Oss",
+      "quality": "Kvalitetssystem",
+      "contact": "Kontakta Oss"
+    },
+    "about": {
+      "company": "Företagsprofil"
+    },
+    "address": "Pune, Maharashtra, Indien",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Alla rättigheter förbehållna.",
+    "privacy": "Integritetspolicy",
+    "terms": "Användarvillkor"
+  },
+  "about": {
+    "label": "OM OSS",
+    "hero": {
+      "title": "Industriell Problemlösare...",
+      "description": "Ditt pålitliga inköpskontor i Indien stödd av erfarna proffs som levererar kvalitetsindustriella lösningar."
+    },
+    "whoWeAre": {
+      "label": "VÅR HISTORIA",
+      "title": "Vilka Vi Är",
+      "paragraph1": "Vi är din pålitliga inköpspartner i Indien, stödd av ett team av erfarna Global Supply Chain Management (SCM) proffs engagerade i att förenkla upphandling och säkerställa konsekvent kvalitet.",
+      "paragraph2": "Våra kapaciteter täcker ett brett utbud av produkter inklusive fästen, plaster, plåtkomponenter, svarvade delar, delmontage och mer. Vi stödjer kunder från prototyputveckling till bulkproduktion och erbjuder flexibilitet i varje steg.",
+      "paragraph3": "Vi samarbetar uteslutande med noggrant granskade, förstklassiga leverantörer som följer internationella affärsstandarder och stränga sekretesskrav. Genom rigorösa leverantörsutvärderingar och pågående revisioner säkerställer vi pålitlig kvalitet och leverans.",
+      "paragraph4": "Genom att ta fullt ansvar för kvalitet, kostnad och tidslinjer tillhandahåller vi kostnadseffektiva inköpslösningar och långsiktiga prisavtalsalternativ, vilket hjälper våra kunder att uppnå stabilitet, besparingar och hållbar tillväxt."
+    },
+    "leadership": {
+      "label": "LEDARSKAP",
+      "title": "Möt Vårt",
+      "titleHighlight": "Ledarskapsteam",
+      "description": "Erfarna proffs som driver excellens och innovation på SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Herr Bhanudas Ramdas Shardul",
+        "position": "Grundare och Direktör, STPL",
+        "experienceTitle": "Erfarenhet och Prestationer",
+        "experience": "Tidigare ägare av Guruprasad Engineering Works. Över 30 års erfarenhet av verktygsrumsoperationer, industriell tillverkning och kommersiella snickerprodukter.",
+        "quote": "Kvalitet är inte en handling, det är en vana. Excellens i tillverkning kommer från engagemang, precision och åtagande gentemot kunder."
+      },
+      "director": {
+        "name": "Fru Rupali Sachin Shardul",
+        "position": "Direktör - HR och Ekonomi",
+        "description": "Leda HR och Finansiell Excellens med strategisk vision och operativ expertis"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "KONTAKTA OSS",
+      "title": "Kontakta Oss",
+      "description": "Har du en fråga eller vill du arbeta tillsammans? Vi skulle älska att höra från dig."
+    },
+    "form": {
+      "name": "Fullständigt Namn",
+      "email": "E-postadress",
+      "phone": "Telefonnummer",
+      "company": "Företagsnamn",
+      "message": "Ditt Meddelande",
+      "submit": "Skicka Meddelande",
+      "sending": "Skickar..."
+    },
+    "info": {
+      "title": "Kontaktinformation",
+      "address": "Adress",
+      "addressValue": "Pune, Maharashtra, Indien",
+      "phone": "Telefon",
+      "email": "E-post",
+      "hours": "Öppettider",
+      "hoursValue": "Mån - Lör: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Läs Mer",
+    "learnMore": "Lär Dig Mer",
+    "viewAll": "Visa Alla",
+    "getStarted": "Kom Igång",
+    "contactUs": "Kontakta Oss",
+    "requestQuote": "Begär Offert",
+    "downloadCatalog": "Ladda Ner Katalog",
+    "home": "Hem"
+  }
+}

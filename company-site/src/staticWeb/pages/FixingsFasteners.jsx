@@ -155,14 +155,12 @@ const FixingsFasteners = () => {
             Quality certified fixings and fasteners for reliable and long-lasting installations.
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             {products.map((product, index) => (
-              <div key={index} className="scroll-animate bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden card-hover">
-                <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {product.image ? <img src={product.image} alt={product.name} className="w-80 h-48 object-contain" /> : null}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a3a5c] to-transparent p-4">
+              <div key={index} className="scroll-animate bg-white rounded-xl shadow-lg overflow-hidden card-hover group">
+                <div className="aspect-square relative overflow-hidden">
+                  {product.image ? <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" /> : <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200"></div>}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a3a5c]/90 to-transparent p-4">
                     <h3 className="text-white font-bold text-lg">{product.name}</h3>
                   </div>
                 </div>

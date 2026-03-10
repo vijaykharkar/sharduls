@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { CheckCircle, Package, ArrowRight, Phone, Mail } from 'lucide-react';
 import kitpouch from "../../assets/productImages/kitpouch.jpg"
+import kittingproducts from "../../assets/productImages/kittingproducts.jpeg"
 
 const KittingParts = () => {
   const pageRef = useRef(null);
@@ -144,7 +145,7 @@ const KittingParts = () => {
                   </div>
 
                   <p className="text-gray-700 text-lg leading-relaxed">
-                    Our custom kitting services provide <span className="font-semibold text-[#1a3a5c]">organized component sets</span> tailored to your specific 
+                    Our custom kitting services provide <span className="font-semibold text-[#1a3a5c]">organized component sets</span> tailored to your specific
                     project requirements, reducing handling time and improving operational efficiency.
                   </p>
 
@@ -181,7 +182,7 @@ const KittingParts = () => {
                 </div>
 
                 {/* Image */}
-                <div className="relative overflow-hidden rounded-xl">
+                <div className="relative overflow-hidden rounded-2xl">
                   <div className="aspect-[4/3] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <img src={kitpouch} alt="Kitting Parts" className="w-full h-full object-contain" />
                   </div>
@@ -193,15 +194,9 @@ const KittingParts = () => {
             <div className="scroll-animate">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Image */}
-                <div className="relative overflow-hidden order-2 lg:order-1">
+                <div className="relative overflow-hidden rounded-2xl">
                   <div className="aspect-[4/3] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <div className="w-32 h-32 bg-[#1a3a5c] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Package className="text-[#d4a853]" size={64} />
-                      </div>
-                      <p className="text-[#1a3a5c] font-bold text-lg">Customize Specialized Kits</p>
-                      <p className="text-gray-600 text-sm mt-2">Application Ready</p>
-                    </div>
+                    <img src={kittingproducts} alt="Kitting Parts" className="w-full h-full object-contain" />
                   </div>
                 </div>
 
@@ -215,7 +210,7 @@ const KittingParts = () => {
                   </div>
 
                   <p className="text-gray-700 text-lg leading-relaxed">
-                    Pre-configured kits for <span className="font-semibold text-[#1a3a5c]">maintenance, installation, and repair</span> applications, 
+                    Pre-configured kits for <span className="font-semibold text-[#1a3a5c]">maintenance, installation, and repair</span> applications,
                     with all necessary components organized for immediate deployment.
                   </p>
 

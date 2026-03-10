@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Solicitare Acum",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Acasă",
+      "aboutUs": "Despre Noi",
+      "productsServices": "Produsele și Serviciile Noastre",
+      "whyChooseUs": "De Ce Să Ne Alegeți",
+      "qualitySystem": "Sistemul de Calitate",
+      "contactUs": "Contactați-ne"
+    },
+    "b2b": {
+      "title": "Pentru Business to Business",
+      "highPrecision": "Piese Strunjite de Înaltă Precizie",
+      "cnc": "Componente CNC",
+      "fixings": "Fixări și Elemente de Fixare",
+      "switchboard": "Componente pentru Tablouri Electrice",
+      "cable": "Managementul Cablurilor",
+      "earthing": "Accesorii de Împământare",
+      "lugs": "Papuci și Conectori",
+      "thermo": "Piese din Termoplastic",
+      "subAssembly": "Piese de Sub-Asamblare",
+      "kitting": "Piese de Kitting",
+      "3dPrinting": "Imprimare 3D"
+    },
+    "b2c": {
+      "title": "Pentru Business to Distributor",
+      "comingSoon": "În Curând......"
+    }
+  },
+  "hero": {
+    "title": "Construind Viitorul",
+    "subtitle": "HUB de Aprovizionare din India",
+    "companyName": "SHARDUL-GE",
+    "description": "O organizație gestionată profesional care livrează produse de înaltă calitate și soluții fiabile în multiple sectoare industriale."
+  },
+  "whatWeOffer": {
+    "label": "CE OFERIM",
+    "title": "Un Lanț de Aprovizionare Fără Probleme",
+    "subtitle": "Putem facilita aprovizionarea dvs. din India",
+    "description": "Oferim o gamă extrem de largă de elemente de fixare standard pe stoc și suntem specializați în comercializarea cu orice piese C imaginabile în funcție de nevoile dvs. unice. Poate fi strunjit, injectat, extrudat, ștanțat, forjat, frezat, modelat sau chiar asamblat. Toate părțile ofertei noastre se bazează pe ani de experiență în a face diferența pentru dvs.",
+    "features": {
+      "range": "Gamă Largă de Elemente de Fixare Standard",
+      "unique": "Piese C Personalizate pentru Clienți",
+      "sourcing": "Rețea Globală de Aprovizionare",
+      "quality": "Control de Calitate și Testare",
+      "logistics": "Flux Logistic Eficient",
+      "sustainable": "Livrări Durabile"
+    },
+    "button": "Aflați Mai Multe Despre Noi"
+  },
+  "processFlow": {
+    "label": "CUM LUCRĂM",
+    "title": "Fluxul Nostru de Proces de Producție la Contract",
+    "subtitle": "De la aprovizionare la livrare - un flux de lucru complet care asigură excelența în fiecare etapă",
+    "steps": {
+      "supplierEvaluation": "Evaluarea Furnizorilor",
+      "vendorRegistration": "Înregistrarea Furnizorilor",
+      "purchase": "Achiziție",
+      "production": "Producție",
+      "qualityInspection": "Inspecția Calității",
+      "storage": "Depozitare și Magazinare",
+      "preDispatch": "Inspecție Înainte de Expediere și Ambalare",
+      "delivery": "Livrare și Logistică"
+    },
+    "quality": {
+      "title": "Abordarea Noastră în Materie de Calitate..."
+    }
+  },
+  "ourExpertise": {
+    "label": "EXPERTIZA NOASTRĂ",
+    "title": "Materiale cu Care Lucrăm",
+    "description": "Suntem specializați în producția la contract de componente de precizie dintr-o gamă largă de materiale, oferind excelență în fiecare componentă.",
+    "materials": {
+      "steel": "Oțel Inoxidabil",
+      "copper": "Cupru",
+      "aluminium": "Aluminiu",
+      "brass": "Alamă",
+      "plastic": "Plastic"
+    }
+  },
+  "sectors": {
+    "label": "SECTOARELE PE CARE LE DESERVIM...",
+    "title": "Servim Industrii de la Mobilier la Aerospațial",
+    "description": "Lucrăm cu clienți din diverse industrii. Componentele noastre de precizie deservesc piețe globale, oferind calitate și fiabilitate în toate sectoarele.",
+    "list": {
+      "automotive": {
+        "name": "Automotive",
+        "description": "Pe lângă legăturile puternice din industria Motorsport, SKY GROUP este, de asemenea, implicat în furnizarea de componente către 'piețele de nișă' de înaltă clasă din industria auto."
+      },
+      "electrical": {
+        "name": "Electric",
+        "description": "Furnizarea de componente electrice de înaltă calitate și soluții pentru diverse aplicații în sectoarele industriale și comerciale."
+      },
+      "hydraulic": {
+        "name": "Hidraulic și Pneumatic",
+        "description": "Componente hidraulice și pneumatice de precizie care asigură performanțe fiabile în aplicații solicitante."
+      },
+      "plastics": {
+        "name": "Plastic și Cauciuc",
+        "description": "Componente avansate din plastic și cauciuc fabricate conform specificațiilor exacte pentru diverse necesități industriale."
+      },
+      "communication": {
+        "name": "Comunicații",
+        "description": "Componente specializate pentru sisteme de comunicații care asigură conectivitate și fiabilitate fără probleme."
+      },
+      "solar": {
+        "name": "Industrii Solare",
+        "description": "Componente solare de înaltă precizie care îndeplinesc standarde stricte de calitate și siguranță."
+      },
+      "furniture": {
+        "name": "Mobilier",
+        "description": "Componente și soluții avansate de mobilier pentru instrumente și sisteme de precizie."
+      },
+      "gasOil": {
+        "name": "Industrii de Gaz și Petrol",
+        "description": "Componente robuste proiectate pentru medii dure în explorarea și producția de petrol și gaze."
+      }
+    }
+  },
+  "cta": {
+    "label": "SOLICITARE ACUM",
+    "title": "Lăsați-ne să Vă Ajutăm",
+    "subtitle": "Interesat de Expertiza și Serviciile Noastre? Să Ne Conectăm",
+    "description": "A citi și a asculta experții noștri este o scurtătură pentru a vă îmbunătăți aprovizionarea, controlul calității și logistica pentru lanțul de aprovizionare al pieselor C.",
+    "contactButton": "Contactați-ne Astăzi",
+    "callButton": "Sunați Acum",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Biroul dvs. de aprovizionare de încredere din India, susținut de profesioniști experimentați care oferă soluții industriale de calitate.",
+    "sections": {
+      "explore": "Explorează",
+      "aboutUs": "Despre Noi",
+      "services": "Servicii",
+      "getInTouch": "Contactați-ne"
+    },
+    "explore": {
+      "home": "Acasă",
+      "about": "Despre Noi",
+      "whyChooseUs": "De Ce Să Ne Alegeți",
+      "quality": "Sisteme de Calitate",
+      "contact": "Contactați-ne"
+    },
+    "about": {
+      "company": "Profil Companie"
+    },
+    "address": "Pune, Maharashtra, India",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Toate drepturile rezervate.",
+    "privacy": "Politica de Confidențialitate",
+    "terms": "Termeni de Serviciu"
+  },
+  "about": {
+    "label": "DESPRE NOI",
+    "hero": {
+      "title": "Soluționist Industrial...",
+      "description": "Biroul dvs. de aprovizionare de încredere din India susținut de profesioniști experimentați care oferă soluții industriale de calitate."
+    },
+    "whoWeAre": {
+      "label": "POVESTEA NOASTRĂ",
+      "title": "Cine Suntem",
+      "paragraph1": "Suntem partenerul dvs. de aprovizionare de încredere din India, susținut de o echipă de profesioniști experimentați în Global Supply Chain Management (SCM) angajați să simplifice aprovizionarea și să asigure calitate constantă.",
+      "paragraph2": "Capacitățile noastre acoperă o gamă largă de produse, inclusiv elemente de fixare, materiale plastice, componente din tablă, piese strunjite, sub-ansambluri și multe altele. Susținem clienții de la dezvoltarea prototipului până la producția în masă, oferind flexibilitate în fiecare etapă.",
+      "paragraph3": "Colaborăm exclusiv cu furnizori verificați cu atenție, cei mai buni din clasă, care respectă standardele de afaceri internaționale și cerințe stricte de confidențialitate. Prin evaluări riguroase ale furnizorilor și audituri continue, asigurăm calitate și livrare fiabile.",
+      "paragraph4": "Asumându-ne responsabilitatea completă pentru calitate, costuri și termene, oferim soluții de aprovizionare rentabile și opțiuni de contract de preț pe termen lung, ajutând clienții noștri să obțină stabilitate, economii și creștere durabilă."
+    },
+    "leadership": {
+      "label": "CONDUCERE",
+      "title": "Cunoașteți",
+      "titleHighlight": "Echipa Noastră de Conducere",
+      "description": "Profesioniști experimentați care conduc excelența și inovația la SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Dl. Bhanudas Ramdas Shardul",
+        "position": "Fondator și Director, STPL",
+        "experienceTitle": "Experiență și Realizări",
+        "experience": "Fost proprietar al Guruprasad Engineering Works. Peste 30 de ani de experiență în operațiuni de atelier de scule, fabricație industrială și produse de tâmplărie comercială.",
+        "quote": "Calitatea nu este un act, este un obicei. Excelența în producție provine din dedicare, precizie și angajament față de clienți."
+      },
+      "director": {
+        "name": "Dna. Rupali Sachin Shardul",
+        "position": "Director - HR și Finanțe",
+        "description": "Conducerea Excelenței în HR și Finanțe cu viziune strategică și expertiză operațională"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "CONTACTAȚI-NE",
+      "title": "Contactați-ne",
+      "description": "Aveți o întrebare sau doriți să colaborați? Ne-ar plăcea să auzim de la dvs."
+    },
+    "form": {
+      "name": "Nume Complet",
+      "email": "Adresa de Email",
+      "phone": "Număr de Telefon",
+      "company": "Numele Companiei",
+      "message": "Mesajul Dvs.",
+      "submit": "Trimite Mesaj",
+      "sending": "Se trimite..."
+    },
+    "info": {
+      "title": "Informații de Contact",
+      "address": "Adresă",
+      "addressValue": "Pune, Maharashtra, India",
+      "phone": "Telefon",
+      "email": "Email",
+      "hours": "Program de Lucru",
+      "hoursValue": "Lun - Sâm: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Citește Mai Mult",
+    "learnMore": "Aflați Mai Multe",
+    "viewAll": "Vezi Toate",
+    "getStarted": "Începe",
+    "contactUs": "Contactați-ne",
+    "requestQuote": "Solicitați Ofertă",
+    "downloadCatalog": "Descărcați Catalogul",
+    "home": "Acasă"
+  }
+}

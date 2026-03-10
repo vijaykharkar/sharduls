@@ -1,0 +1,217 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Consulta Ahora",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECNOLOGÍAS",
+    "menu": {
+      "home": "Inicio",
+      "aboutUs": "Acerca de Nosotros",
+      "productsServices": "Nuestros Productos y Servicios",
+      "whyChooseUs": "Por Qué Elegirnos",
+      "qualitySystem": "Sistema de Calidad",
+      "contactUs": "Contáctenos"
+    },
+    "b2b": {
+      "title": "Para Empresas",
+      "highPrecision": "Piezas de Torneado de Alta Precisión",
+      "cnc": "Componentes CNC",
+      "fixings": "Fijaciones y Sujetadores",
+      "switchboard": "Componentes de Cuadro Eléctrico",
+      "cable": "Gestión de Cables",
+      "earthing": "Accesorios de Puesta a Tierra",
+      "lugs": "Terminales y Conectores",
+      "thermo": "Piezas Termoplásticas",
+      "subAssembly": "Piezas de Subensamblaje",
+      "kitting": "Piezas de Kit",
+      "3dPrinting": "Impresión 3D"
+    },
+    "b2c": {
+      "title": "Para Distribuidores",
+      "comingSoon": "Próximamente......"
+    }
+  },
+  "hero": {
+    "title": "Construyendo el Futuro",
+    "subtitle": "Centro de Abastecimiento desde India",
+    "companyName": "SHARDUL-GE",
+    "description": "Una organización gestionada profesionalmente que ofrece productos de alta calidad y soluciones confiables en múltiples sectores industriales."
+  },
+  "whatWeOffer": {
+    "label": "LO QUE OFRECEMOS",
+    "title": "Una Cadena de Suministro Sin Problemas",
+    "subtitle": "Podemos facilitar sus compras desde India",
+    "description": "Ofrecemos una gama extremadamente amplia de sujetadores estándar en stock, y nos especializamos en comerciar con cualquier pieza C imaginable según sus necesidades únicas. Pueden ser torneadas, inyectadas, extruidas, estampadas, forjadas, fresadas, moldeadas o incluso ensambladas. Todas las partes de nuestra oferta se basan en años de experiencia en hacer la diferencia para usted.",
+    "features": {
+      "range": "Amplia Gama de Sujetadores Estándar",
+      "unique": "Piezas C Únicas del Cliente",
+      "sourcing": "Red de Abastecimiento Global",
+      "quality": "Control y Pruebas de Calidad",
+      "logistics": "Flujo Logístico Eficiente",
+      "sustainable": "Entregas Sostenibles"
+    },
+    "button": "Más Información Sobre Nosotros"
+  },
+  "processFlow": {
+    "label": "NUESTRO PROCESO",
+    "title": "Cómo Trabajamos",
+    "subtitle": "Desde la Consulta hasta la Entrega",
+    "steps": {
+      "inquiry": {
+        "title": "Consulta",
+        "description": "Comparta sus requisitos"
+      },
+      "quote": {
+        "title": "Cotización",
+        "description": "Reciba precios competitivos"
+      },
+      "order": {
+        "title": "Pedido",
+        "description": "Confirmar y procesar"
+      },
+      "production": {
+        "title": "Producción",
+        "description": "Comienza la fabricación"
+      },
+      "quality": {
+        "title": "Control de Calidad",
+        "description": "Inspección rigurosa"
+      },
+      "delivery": {
+        "title": "Entrega",
+        "description": "Envío puntual"
+      }
+    }
+  },
+  "ourExpertise": {
+    "label": "NUESTRA EXPERIENCIA",
+    "title": "Materiales en los que Trabajamos",
+    "description": "Nos especializamos en la fabricación por contrato de componentes de precisión en una amplia gama de materiales, ofreciendo excelencia en cada componente.",
+    "materials": {
+      "steel": "Acero Inoxidable",
+      "copper": "Cobre",
+      "aluminium": "Aluminio",
+      "brass": "Latón",
+      "plastic": "Plástico"
+    }
+  },
+  "sectors": {
+    "label": "INDUSTRIAS QUE ATENDEMOS",
+    "title": "Sectores con los que Trabajamos",
+    "description": "Entregando componentes y soluciones de precisión en diversas industrias",
+    "list": {
+      "automotive": "Automotriz",
+      "electronics": "Electrónica",
+      "medical": "Equipo Médico",
+      "aerospace": "Aeroespacial",
+      "industrial": "Maquinaria Industrial",
+      "energy": "Energía y Electricidad"
+    }
+  },
+  "cta": {
+    "label": "CONSULTA AHORA",
+    "title": "Permítanos Ayudarle",
+    "subtitle": "¿Interesado en Nuestra Experiencia y Servicios? Conectémonos",
+    "description": "Leer y escuchar a nuestros expertos es un atajo para mejorar su abastecimiento, control de calidad y logística para su cadena de suministro de piezas C.",
+    "contactButton": "Contáctenos Hoy",
+    "callButton": "Llamar Ahora",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECNOLOGÍAS",
+    "description": "Su oficina de abastecimiento de confianza en India, respaldada por profesionales experimentados que ofrecen soluciones industriales de calidad.",
+    "sections": {
+      "explore": "Explorar",
+      "aboutUs": "Acerca de Nosotros",
+      "services": "Servicios",
+      "getInTouch": "Ponerse en Contacto"
+    },
+    "explore": {
+      "home": "Inicio",
+      "about": "Acerca de Nosotros",
+      "whyChooseUs": "Por Qué Elegirnos",
+      "quality": "Sistemas de Calidad",
+      "contact": "Contáctenos"
+    },
+    "about": {
+      "company": "Perfil de la Empresa"
+    },
+    "address": "Pune, Maharashtra, India",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
+  },
+  "about": {
+    "label": "ACERCA DE NOSOTROS",
+    "hero": {
+      "title": "Solucionista Industrial...",
+      "description": "Su oficina de abastecimiento de confianza en India respaldada por profesionales experimentados que ofrecen soluciones industriales de calidad."
+    },
+    "whoWeAre": {
+      "label": "NUESTRA HISTORIA",
+      "title": "Quiénes Somos",
+      "paragraph1": "Somos su socio de abastecimiento de confianza en India, respaldados por un equipo de profesionales experimentados en Gestión de la Cadena de Suministro Global comprometidos con simplificar la adquisición y garantizar una calidad constante.",
+      "paragraph2": "Nuestras capacidades cubren una amplia gama de productos que incluyen sujetadores, plásticos, componentes de chapa metálica, piezas torneadas, subensamblajes y más. Apoyamos a los clientes desde el desarrollo de prototipos hasta la producción en masa, ofreciendo flexibilidad en cada etapa.",
+      "paragraph3": "Colaboramos exclusivamente con proveedores cuidadosamente auditados y de primera clase que cumplen con los estándares comerciales internacionales y requisitos estrictos de confidencialidad. A través de evaluaciones rigurosas de proveedores y auditorías continuas, garantizamos calidad y entrega confiables.",
+      "paragraph4": "Al asumir la responsabilidad total de la calidad, los costos y los plazos, proporcionamos soluciones de abastecimiento rentables y opciones de contratos de precios a largo plazo, ayudando a nuestros clientes a lograr estabilidad, ahorros y crecimiento sostenible."
+    },
+    "leadership": {
+      "label": "LIDERAZGO",
+      "title": "Conozca a Nuestro",
+      "titleHighlight": "Equipo de Liderazgo",
+      "description": "Profesionales experimentados que impulsan la excelencia y la innovación en SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Sr. Bhanudas Ramdas Shardul",
+        "position": "Fundador y Director, STPL",
+        "experienceTitle": "Experiencia y Logros",
+        "experience": "Ex propietario de Guruprasad Engineering Works. Más de 30 años de experiencia en operaciones de sala de herramientas, fabricación industrial y productos de carpintería comercial.",
+        "quote": "La calidad no es un acto, es un hábito. La excelencia en la fabricación proviene de la dedicación, la precisión y el compromiso con los clientes."
+      },
+      "director": {
+        "name": "Sra. Rupali Sachin Shardul",
+        "position": "Directora - RR.HH. y Finanzas",
+        "description": "Liderando la Excelencia en RR.HH. y Finanzas con visión estratégica y experiencia operativa"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "PÓNGASE EN CONTACTO",
+      "title": "Contáctenos",
+      "description": "¿Tiene una pregunta o quiere trabajar juntos? Nos encantaría saber de usted."
+    },
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Dirección de Correo Electrónico",
+      "phone": "Número de Teléfono",
+      "company": "Nombre de la Empresa",
+      "message": "Su Mensaje",
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando..."
+    },
+    "info": {
+      "title": "Información de Contacto",
+      "address": "Dirección",
+      "addressValue": "Pune, Maharashtra, India",
+      "phone": "Teléfono",
+      "email": "Correo Electrónico",
+      "hours": "Horario Comercial",
+      "hoursValue": "Lun - Sáb: 9:00 AM - 6:00 PM"
+    }
+  },
+  "common": {
+    "readMore": "Leer Más",
+    "learnMore": "Más Información",
+    "viewAll": "Ver Todo",
+    "getStarted": "Comenzar",
+    "contactUs": "Contáctenos",
+    "requestQuote": "Solicitar Cotización",
+    "downloadCatalog": "Descargar Catálogo",
+    "home": "Inicio"
+  }
+}

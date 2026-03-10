@@ -95,7 +95,7 @@ const WhyChooseUs = () => {
       icon: <Lightbulb className="w-6 h-6" />
     },
     {
-      title: 'Sustainability',
+      title: 'sustainability & CBAM',
       description: 'In addition to our financial targets, we are committed to environmental responsibility and sustainable practices in all our operations till 2030 following UN Sustainable Development Goals.',
       icon: <Lightbulb className="w-6 h-6" />
     }

@@ -1,0 +1,217 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Demande de Renseignements",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Accueil",
+      "aboutUs": "À Propos",
+      "productsServices": "Nos Produits et Services",
+      "whyChooseUs": "Pourquoi Nous Choisir",
+      "qualitySystem": "Système de Qualité",
+      "contactUs": "Contactez-nous"
+    },
+    "b2b": {
+      "title": "Pour les Entreprises",
+      "highPrecision": "Pièces de Tournage de Haute Précision",
+      "cnc": "Composants CNC",
+      "fixings": "Fixations et Attaches",
+      "switchboard": "Composants de Tableau Électrique",
+      "cable": "Gestion des Câbles",
+      "earthing": "Accessoires de Mise à la Terre",
+      "lugs": "Cosses et Connecteurs",
+      "thermo": "Pièces Thermoplastiques",
+      "subAssembly": "Pièces de Sous-Assemblage",
+      "kitting": "Pièces de Kit",
+      "3dPrinting": "Impression 3D"
+    },
+    "b2c": {
+      "title": "Pour les Distributeurs",
+      "comingSoon": "Bientôt Disponible......"
+    }
+  },
+  "hero": {
+    "title": "Construire l'Avenir",
+    "subtitle": "Centre d'Approvisionnement depuis l'Inde",
+    "companyName": "SHARDUL-GE",
+    "description": "Une organisation gérée professionnellement fournissant des produits de haute qualité et des solutions fiables dans de multiples secteurs industriels."
+  },
+  "whatWeOffer": {
+    "label": "CE QUE NOUS OFFRONS",
+    "title": "Une Chaîne d'Approvisionnement Transparente",
+    "subtitle": "Nous pouvons faciliter vos achats depuis l'Inde",
+    "description": "Nous offrons une gamme extrêmement large de fixations standard en stock, et nous nous spécialisons dans le commerce de toutes pièces C imaginables selon vos besoins uniques. Elles peuvent être tournées, injectées, extrudées, estampées, forgées, fraisées, moulées ou même assemblées. Toutes les parties de notre offre sont basées sur des années d'expérience pour faire la différence pour vous.",
+    "features": {
+      "range": "Large Gamme de Fixations Standard",
+      "unique": "Pièces C Uniques au Client",
+      "sourcing": "Réseau d'Approvisionnement Mondial",
+      "quality": "Contrôle et Tests de Qualité",
+      "logistics": "Flux Logistique Efficace",
+      "sustainable": "Livraisons Durables"
+    },
+    "button": "En Savoir Plus Sur Nous"
+  },
+  "processFlow": {
+    "label": "NOTRE PROCESSUS",
+    "title": "Comment Nous Travaillons",
+    "subtitle": "De la Demande à la Livraison",
+    "steps": {
+      "inquiry": {
+        "title": "Demande",
+        "description": "Partagez vos besoins"
+      },
+      "quote": {
+        "title": "Devis",
+        "description": "Recevez des prix compétitifs"
+      },
+      "order": {
+        "title": "Commande",
+        "description": "Confirmation et traitement"
+      },
+      "production": {
+        "title": "Production",
+        "description": "La fabrication commence"
+      },
+      "quality": {
+        "title": "Contrôle Qualité",
+        "description": "Inspection rigoureuse"
+      },
+      "delivery": {
+        "title": "Livraison",
+        "description": "Expédition à temps"
+      }
+    }
+  },
+  "ourExpertise": {
+    "label": "NOTRE EXPERTISE",
+    "title": "Matériaux Dans Lesquels Nous Travaillons",
+    "description": "Nous sommes spécialisés dans la fabrication sous contrat de composants de précision dans une large gamme de matériaux, offrant l'excellence dans chaque composant.",
+    "materials": {
+      "steel": "Acier Inoxydable",
+      "copper": "Cuivre",
+      "aluminium": "Aluminium",
+      "brass": "Laiton",
+      "plastic": "Plastique"
+    }
+  },
+  "sectors": {
+    "label": "INDUSTRIES QUE NOUS SERVONS",
+    "title": "Secteurs Avec Lesquels Nous Travaillons",
+    "description": "Fournir des composants et des solutions de précision dans diverses industries",
+    "list": {
+      "automotive": "Automobile",
+      "electronics": "Électronique",
+      "medical": "Équipement Médical",
+      "aerospace": "Aérospatial",
+      "industrial": "Machines Industrielles",
+      "energy": "Énergie et Électricité"
+    }
+  },
+  "cta": {
+    "label": "DEMANDE MAINTENANT",
+    "title": "Laissez-nous Vous Aider",
+    "subtitle": "Intéressé par Notre Expertise et Nos Services? Connectons-nous",
+    "description": "Lire et écouter nos experts est un raccourci pour améliorer votre approvisionnement, le contrôle qualité et la logistique pour votre chaîne d'approvisionnement de pièces C.",
+    "contactButton": "Contactez-nous Aujourd'hui",
+    "callButton": "Appelez Maintenant",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Votre bureau d'approvisionnement de confiance en Inde, soutenu par des professionnels expérimentés fournissant des solutions industrielles de qualité.",
+    "sections": {
+      "explore": "Explorer",
+      "aboutUs": "À Propos",
+      "services": "Services",
+      "getInTouch": "Entrer en Contact"
+    },
+    "explore": {
+      "home": "Accueil",
+      "about": "À Propos",
+      "whyChooseUs": "Pourquoi Nous Choisir",
+      "quality": "Systèmes de Qualité",
+      "contact": "Contactez-nous"
+    },
+    "about": {
+      "company": "Profil de l'Entreprise"
+    },
+    "address": "Pune, Maharashtra, Inde",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Tous droits réservés.",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions de Service"
+  },
+  "about": {
+    "label": "À PROPOS",
+    "hero": {
+      "title": "Solutionniste Industriel...",
+      "description": "Votre bureau d'approvisionnement de confiance en Inde soutenu par des professionnels expérimentés fournissant des solutions industrielles de qualité."
+    },
+    "whoWeAre": {
+      "label": "NOTRE HISTOIRE",
+      "title": "Qui Sommes-Nous",
+      "paragraph1": "Nous sommes votre partenaire d'approvisionnement de confiance en Inde, soutenu par une équipe de professionnels expérimentés en gestion de la chaîne d'approvisionnement mondiale engagés à simplifier les achats et à assurer une qualité constante.",
+      "paragraph2": "Nos capacités couvrent une large gamme de produits, y compris les fixations, les plastiques, les composants en tôle, les pièces tournées, les sous-ensembles et plus encore. Nous soutenons les clients du développement de prototypes à la production en vrac, offrant une flexibilité à chaque étape.",
+      "paragraph3": "Nous collaborons exclusivement avec des fournisseurs soigneusement audités et de premier ordre qui respectent les normes commerciales internationales et les exigences strictes de confidentialité. Grâce à des évaluations rigoureuses des fournisseurs et des audits continus, nous assurons une qualité et une livraison fiables.",
+      "paragraph4": "En prenant pleinement en charge la qualité, les coûts et les délais, nous fournissons des solutions d'approvisionnement rentables et des options de contrats de prix à long terme, aidant nos clients à atteindre la stabilité, les économies et la croissance durable."
+    },
+    "leadership": {
+      "label": "DIRECTION",
+      "title": "Rencontrez Notre",
+      "titleHighlight": "Équipe de Direction",
+      "description": "Des professionnels expérimentés qui dirigent l'excellence et l'innovation chez SHARDUL-GE Technologies",
+      "founder": {
+        "name": "M. Bhanudas Ramdas Shardul",
+        "position": "Fondateur et Directeur, STPL",
+        "experienceTitle": "Expérience et Réalisations",
+        "experience": "Ancien propriétaire de Guruprasad Engineering Works. Plus de 30 ans d'expérience dans les opérations de salle d'outils, la fabrication industrielle et les produits de menuiserie commerciale.",
+        "quote": "La qualité n'est pas un acte, c'est une habitude. L'excellence dans la fabrication vient du dévouement, de la précision et de l'engagement envers les clients."
+      },
+      "director": {
+        "name": "Mme Rupali Sachin Shardul",
+        "position": "Directrice - RH et Finance",
+        "description": "Diriger l'Excellence RH et Finance avec une vision stratégique et une expertise opérationnelle"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "ENTRER EN CONTACT",
+      "title": "Contactez-nous",
+      "description": "Vous avez une question ou voulez travailler ensemble? Nous aimerions vous entendre."
+    },
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse E-mail",
+      "phone": "Numéro de Téléphone",
+      "company": "Nom de l'Entreprise",
+      "message": "Votre Message",
+      "submit": "Envoyer le Message",
+      "sending": "Envoi en cours..."
+    },
+    "info": {
+      "title": "Informations de Contact",
+      "address": "Adresse",
+      "addressValue": "Pune, Maharashtra, Inde",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "hours": "Heures d'Ouverture",
+      "hoursValue": "Lun - Sam: 9h00 - 18h00"
+    }
+  },
+  "common": {
+    "readMore": "Lire Plus",
+    "learnMore": "En Savoir Plus",
+    "viewAll": "Voir Tout",
+    "getStarted": "Commencer",
+    "contactUs": "Contactez-nous",
+    "requestQuote": "Demander un Devis",
+    "downloadCatalog": "Télécharger le Catalogue",
+    "home": "Accueil"
+  }
+}

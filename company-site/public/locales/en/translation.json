@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Enquiry Now",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Home",
+      "aboutUs": "About Us",
+      "productsServices": "Our Products & Services",
+      "whyChooseUs": "Why Choose Us",
+      "qualitySystem": "Quality System",
+      "contactUs": "Contact Us"
+    },
+    "b2b": {
+      "title": "For Business to Business",
+      "highPrecision": "High Precision Turning Parts",
+      "cnc": "CNC Components",
+      "fixings": "Fixings & Fasteners",
+      "switchboard": "Switchboard Components",
+      "cable": "Cable Management",
+      "earthing": "Earthing Accessories",
+      "lugs": "Lugs & Connectors",
+      "thermo": "Thermo Plastic Parts",
+      "subAssembly": "Sub-Assembly Parts",
+      "kitting": "Kitting Parts",
+      "3dPrinting": "3D Printing"
+    },
+    "b2c": {
+      "title": "For Business to Distributor",
+      "comingSoon": "Coming Soon......"
+    }
+  },
+  "hero": {
+    "title": "Building Tomorrow's",
+    "subtitle": "Sourcing HUB From India",
+    "companyName": "SHARDUL-GE",
+    "description": "A professionally managed organization delivering high-quality products and reliable solutions across multiple industrial sectors."
+  },
+  "whatWeOffer": {
+    "label": "WHAT WE OFFER",
+    "title": "A Seamless Supply Chain",
+    "subtitle": "We can ease your procurement from India",
+    "description": "We offer an extremely wide range of stocked standard fasteners, and we specialize in trading with any imaginable C-parts according to your unique needs. It could be turned, injected, extruded, stamped, forged, milled, molded, or even assembled. All parts of our offer are based on years of experience in making a difference for you.",
+    "features": {
+      "range": "Wide Range of Standard Fasteners",
+      "unique": "Customer-Unique C-Parts",
+      "sourcing": "Global Sourcing Network",
+      "quality": "Quality Control & Testing",
+      "logistics": "Efficient Logistics Flow",
+      "sustainable": "Sustainable Deliveries"
+    },
+    "button": "Learn More About Us"
+  },
+  "processFlow": {
+    "label": "HOW WE WORK",
+    "title": "Our Contract Manufacturing Process Flow",
+    "subtitle": "From sourcing to delivery - a comprehensive workflow ensuring excellence at every stage",
+    "steps": {
+      "supplierEvaluation": "Supplier Evaluation",
+      "vendorRegistration": "Vendor Registration",
+      "purchase": "Purchase",
+      "production": "Production",
+      "qualityInspection": "Quality Inspection",
+      "storage": "Storage & Warehousing",
+      "preDispatch": "Pre-Dispatch Inspection & Packaging",
+      "delivery": "Delivery & Logistics"
+    },
+    "quality": {
+      "title": "Our Quality Approach..."
+    }
+  },
+  "ourExpertise": {
+    "label": "OUR EXPERTISE",
+    "title": "Material In Which We Work",
+    "description": "We specialize in contract manufacturing of precision components across a wide range of materials, delivering excellence in every component.",
+    "materials": {
+      "steel": "Stainless Steel",
+      "copper": "Copper",
+      "aluminium": "Aluminium",
+      "brass": "Brass",
+      "plastic": "Plastic"
+    }
+  },
+  "sectors": {
+    "label": "SECTORS WE CATER...",
+    "title": "Serving Industries from Furniture to Aerospace",
+    "description": "We work with customers across diverse industries. Our precision components serve global markets, delivering quality and reliability across sectors.",
+    "list": {
+      "automotive": {
+        "name": "Automotive",
+        "description": "As well as strong links in the Motorsport industry SKY GROUP is also involved in supplying components to the High End 'Niche Markets' within the Automotive Industry."
+      },
+      "electrical": {
+        "name": "Electrical",
+        "description": "Providing high-quality electrical components and solutions for diverse applications across industrial and commercial sectors."
+      },
+      "hydraulic": {
+        "name": "Hydraulic & Pneumatic",
+        "description": "Precision hydraulic and pneumatic components ensuring reliable performance in demanding applications."
+      },
+      "plastics": {
+        "name": "Plastics & Rubber",
+        "description": "Advanced plastic and rubber components manufactured to exact specifications for various industrial needs."
+      },
+      "communication": {
+        "name": "Communication",
+        "description": "Specialized components for communication systems ensuring seamless connectivity and reliability."
+      },
+      "solar": {
+        "name": "Solar Industries",
+        "description": "High-precision solar components meeting stringent quality and safety standards."
+      },
+      "furniture": {
+        "name": "Furniture",
+        "description": "Advanced furniture components and solutions for precision instruments and systems."
+      },
+      "gasOil": {
+        "name": "Gas & Oil Industries",
+        "description": "Robust components designed for harsh environments in oil and gas exploration and production."
+      }
+    }
+  },
+  "cta": {
+    "label": "ENQUIRY NOW",
+    "title": "Let Us Help You",
+    "subtitle": "Interested in Our Expertise and Services? Let's Connect",
+    "description": "To read and listen to our experts is a shortcut to improve your sourcing, quality control and logistics for your supply chain of C-parts.",
+    "contactButton": "Contact Us Today",
+    "callButton": "Call Now",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Your trusted sourcing office in India, backed by experienced professionals delivering quality industrial solutions.",
+    "sections": {
+      "explore": "Explore",
+      "aboutUs": "About Us",
+      "services": "Services",
+      "getInTouch": "Get in Touch"
+    },
+    "explore": {
+      "home": "Home",
+      "about": "About Us",
+      "whyChooseUs": "Why Choose Us",
+      "quality": "Quality Systems",
+      "contact": "Contact Us"
+    },
+    "about": {
+      "company": "Company Profile"
+    },
+    "address": "Pune, Maharashtra, India",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "about": {
+    "label": "ABOUT US",
+    "hero": {
+      "title": "Industrial Solutionist...",
+      "description": "Your trusted sourcing office in India backed with experienced professionals delivering quality industrial solutions."
+    },
+    "whoWeAre": {
+      "label": "OUR STORY",
+      "title": "Who We Are",
+      "paragraph1": "We are your trusted sourcing partner in India, supported by a team of experienced Global Supply Chain Management (SCM) professionals committed to simplifying procurement and ensuring consistent quality.",
+      "paragraph2": "Our capabilities cover a wide range of products including fasteners, plastics, sheet metal components, turned parts, sub-assemblies, and more. We support customers from prototype development to bulk production, offering flexibility at every stage.",
+      "paragraph3": "We collaborate exclusively with carefully audited, best-in-class suppliers who comply with international business standards and strict confidentiality requirements. Through rigorous supplier evaluations and ongoing audits, we ensure dependable quality and delivery.",
+      "paragraph4": "By taking full ownership of quality, cost, and timelines, we provide cost-effective sourcing solutions and long-term price contract options, helping our customers achieve stability, savings, and sustainable growth."
+    },
+    "leadership": {
+      "label": "LEADERSHIP",
+      "title": "Meet Our",
+      "titleHighlight": "Leadership Team",
+      "description": "Experienced professionals driving excellence and innovation at SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Mr. Bhanudas Ramdas Shardul",
+        "position": "Founder & Director, STPL",
+        "experienceTitle": "Experience & Achievements",
+        "experience": "Former owner of Guruprasad Engineering Works. Over 30 years of experience in tool room operations, industrial fabrication, and commercial carpentry products.",
+        "quote": "Quality is not an act, it is a habit. Excellence in manufacturing comes from dedication, precision, and commitment to customers."
+      },
+      "director": {
+        "name": "Mrs. Rupali Sachin Shardul",
+        "position": "Director, STPL",
+        "description": "Leading HR & Finance Excellence with strategic vision and operational expertise"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "GET IN TOUCH",
+      "title": "Contact Us",
+      "description": "Have a question or want to work together? We'd love to hear from you."
+    },
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "company": "Company Name",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending..."
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Address",
+      "addressValue": "Pune, Maharashtra, India",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Business Hours",
+      "hoursValue": "Mon - Sat: 9:00 AM - 6:00 PM"
+    }
+  },
+  "common": {
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "requestQuote": "Request Quote",
+    "downloadCatalog": "Download Catalog",
+    "home": "Home"
+  }
+}

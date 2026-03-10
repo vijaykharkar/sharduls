@@ -175,21 +175,21 @@ const CableManagement = () => {
           </p>
           
           {/* Products Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map((product, index) => (
               <div 
                 key={index}
-                className="scroll-animate bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden card-hover"
+                className="scroll-animate bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden card-hover group"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Product Image */}
-                <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                <div className="aspect-square relative overflow-hidden">
                   <img 
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a3a5c] to-transparent p-4">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a3a5c]/90 to-transparent p-4">
                     <h3 className="text-white font-bold text-lg">{product.name}</h3>
                   </div>
                 </div>

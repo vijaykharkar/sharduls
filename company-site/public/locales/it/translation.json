@@ -1,0 +1,230 @@
+{
+  "header": {
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "enquiryNow": "Richiedi Ora",
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "menu": {
+      "home": "Home",
+      "aboutUs": "Chi Siamo",
+      "productsServices": "I Nostri Prodotti e Servizi",
+      "whyChooseUs": "Perché Sceglierci",
+      "qualitySystem": "Sistema Qualità",
+      "contactUs": "Contattaci"
+    },
+    "b2b": {
+      "title": "Per Business to Business",
+      "highPrecision": "Parti di Tornitura ad Alta Precisione",
+      "cnc": "Componenti CNC",
+      "fixings": "Fissaggi e Elementi di Fissaggio",
+      "switchboard": "Componenti per Quadri Elettrici",
+      "cable": "Gestione Cavi",
+      "earthing": "Accessori di Messa a Terra",
+      "lugs": "Capicorda e Connettori",
+      "thermo": "Parti in Termoplastica",
+      "subAssembly": "Parti di Sub-Assemblaggio",
+      "kitting": "Parti di Kitting",
+      "3dPrinting": "Stampa 3D"
+    },
+    "b2c": {
+      "title": "Per Business to Distributor",
+      "comingSoon": "Prossimamente......"
+    }
+  },
+  "hero": {
+    "title": "Costruire il Domani",
+    "subtitle": "Hub di Approvvigionamento dall'India",
+    "companyName": "SHARDUL-GE",
+    "description": "Un'organizzazione gestita professionalmente che fornisce prodotti di alta qualità e soluzioni affidabili in molteplici settori industriali."
+  },
+  "whatWeOffer": {
+    "label": "COSA OFFRIAMO",
+    "title": "Una Catena di Fornitura Senza Soluzione di Continuità",
+    "subtitle": "Possiamo facilitare il tuo approvvigionamento dall'India",
+    "description": "Offriamo una gamma estremamente ampia di elementi di fissaggio standard in stock e siamo specializzati nel commercio di qualsiasi tipo di parti C secondo le tue esigenze specifiche. Può essere tornito, iniettato, estruso, stampato, forgiato, fresato, modellato o persino assemblato. Tutte le parti della nostra offerta si basano su anni di esperienza nel fare la differenza per te.",
+    "features": {
+      "range": "Ampia Gamma di Elementi di Fissaggio Standard",
+      "unique": "Parti C Personalizzate per il Cliente",
+      "sourcing": "Rete di Approvvigionamento Globale",
+      "quality": "Controllo Qualità e Test",
+      "logistics": "Flusso Logistico Efficiente",
+      "sustainable": "Consegne Sostenibili"
+    },
+    "button": "Scopri di Più su di Noi"
+  },
+  "processFlow": {
+    "label": "COME LAVORIAMO",
+    "title": "Il Nostro Flusso di Processo di Produzione a Contratto",
+    "subtitle": "Dall'approvvigionamento alla consegna - un flusso di lavoro completo che garantisce l'eccellenza in ogni fase",
+    "steps": {
+      "supplierEvaluation": "Valutazione Fornitori",
+      "vendorRegistration": "Registrazione Venditori",
+      "purchase": "Acquisto",
+      "production": "Produzione",
+      "qualityInspection": "Ispezione Qualità",
+      "storage": "Stoccaggio e Magazzinaggio",
+      "preDispatch": "Ispezione Pre-Spedizione e Imballaggio",
+      "delivery": "Consegna e Logistica"
+    },
+    "quality": {
+      "title": "Il Nostro Approccio alla Qualità..."
+    }
+  },
+  "ourExpertise": {
+    "label": "LA NOSTRA COMPETENZA",
+    "title": "Materiali con cui Lavoriamo",
+    "description": "Siamo specializzati nella produzione a contratto di componenti di precisione in una vasta gamma di materiali, garantendo l'eccellenza in ogni componente.",
+    "materials": {
+      "steel": "Acciaio Inossidabile",
+      "copper": "Rame",
+      "aluminium": "Alluminio",
+      "brass": "Ottone",
+      "plastic": "Plastica"
+    }
+  },
+  "sectors": {
+    "label": "SETTORI CHE SERVIAMO...",
+    "title": "Serviamo Industrie dal Mobilio all'Aerospaziale",
+    "description": "Lavoriamo con clienti in diverse industrie. I nostri componenti di precisione servono mercati globali, fornendo qualità e affidabilità in tutti i settori.",
+    "list": {
+      "automotive": {
+        "name": "Automotive",
+        "description": "Oltre ai forti legami nell'industria del Motorsport, SKY GROUP è anche coinvolto nella fornitura di componenti ai mercati di nicchia di fascia alta all'interno dell'industria automobilistica."
+      },
+      "electrical": {
+        "name": "Elettrico",
+        "description": "Forniamo componenti elettrici di alta qualità e soluzioni per diverse applicazioni nei settori industriali e commerciali."
+      },
+      "hydraulic": {
+        "name": "Idraulico e Pneumatico",
+        "description": "Componenti idraulici e pneumatici di precisione che garantiscono prestazioni affidabili in applicazioni impegnative."
+      },
+      "plastics": {
+        "name": "Plastica e Gomma",
+        "description": "Componenti avanzati in plastica e gomma prodotti secondo specifiche esatte per varie esigenze industriali."
+      },
+      "communication": {
+        "name": "Comunicazione",
+        "description": "Componenti specializzati per sistemi di comunicazione che garantiscono connettività e affidabilità senza soluzione di continuità."
+      },
+      "solar": {
+        "name": "Industrie Solari",
+        "description": "Componenti solari ad alta precisione che soddisfano rigorosi standard di qualità e sicurezza."
+      },
+      "furniture": {
+        "name": "Mobilio",
+        "description": "Componenti e soluzioni avanzati per il mobilio per strumenti e sistemi di precisione."
+      },
+      "gasOil": {
+        "name": "Industrie Gas e Petrolio",
+        "description": "Componenti robusti progettati per ambienti difficili nell'esplorazione e produzione di petrolio e gas."
+      }
+    }
+  },
+  "cta": {
+    "label": "RICHIEDI ORA",
+    "title": "Lascia che Ti Aiutiamo",
+    "subtitle": "Interessato alla Nostra Competenza e Servizi? Connettiamoci",
+    "description": "Leggere e ascoltare i nostri esperti è una scorciatoia per migliorare il tuo approvvigionamento, controllo qualità e logistica per la tua catena di fornitura di parti C.",
+    "contactButton": "Contattaci Oggi",
+    "callButton": "Chiama Ora",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com"
+  },
+  "footer": {
+    "companyName": "SHARDUL-GE",
+    "technologies": "TECHNOLOGIES",
+    "description": "Il tuo ufficio di approvvigionamento di fiducia in India, supportato da professionisti esperti che forniscono soluzioni industriali di qualità.",
+    "sections": {
+      "explore": "Esplora",
+      "aboutUs": "Chi Siamo",
+      "services": "Servizi",
+      "getInTouch": "Contattaci"
+    },
+    "explore": {
+      "home": "Home",
+      "about": "Chi Siamo",
+      "whyChooseUs": "Perché Sceglierci",
+      "quality": "Sistemi Qualità",
+      "contact": "Contattaci"
+    },
+    "about": {
+      "company": "Profilo Aziendale"
+    },
+    "address": "Pune, Maharashtra, India",
+    "phone": "+91 9175582622",
+    "email": "Director@shardulge.com",
+    "copyright": "Tutti i diritti riservati.",
+    "privacy": "Informativa sulla Privacy",
+    "terms": "Termini di Servizio"
+  },
+  "about": {
+    "label": "CHI SIAMO",
+    "hero": {
+      "title": "Solutore Industriale...",
+      "description": "Il tuo ufficio di approvvigionamento di fiducia in India supportato da professionisti esperti che forniscono soluzioni industriali di qualità."
+    },
+    "whoWeAre": {
+      "label": "LA NOSTRA STORIA",
+      "title": "Chi Siamo",
+      "paragraph1": "Siamo il tuo partner di approvvigionamento di fiducia in India, supportato da un team di professionisti esperti nella gestione della catena di fornitura globale (SCM) impegnati a semplificare gli approvvigionamenti e garantire una qualità costante.",
+      "paragraph2": "Le nostre capacità coprono una vasta gamma di prodotti tra cui elementi di fissaggio, plastica, componenti in lamiera, parti tornite, sub-assemblaggi e altro ancora. Supportiamo i clienti dallo sviluppo del prototipo alla produzione in serie, offrendo flessibilità in ogni fase.",
+      "paragraph3": "Collaboriamo esclusivamente con fornitori accuratamente verificati e migliori della categoria che rispettano gli standard commerciali internazionali e rigorosi requisiti di riservatezza. Attraverso rigorose valutazioni dei fornitori e verifiche continue, garantiamo qualità e consegna affidabili.",
+      "paragraph4": "Assumendoci la piena responsabilità di qualità, costi e tempi, forniamo soluzioni di approvvigionamento convenienti e opzioni di contratto a prezzo a lungo termine, aiutando i nostri clienti a raggiungere stabilità, risparmi e crescita sostenibile."
+    },
+    "leadership": {
+      "label": "LEADERSHIP",
+      "title": "Incontra il Nostro",
+      "titleHighlight": "Team di Leadership",
+      "description": "Professionisti esperti che guidano l'eccellenza e l'innovazione presso SHARDUL-GE Technologies",
+      "founder": {
+        "name": "Sig. Bhanudas Ramdas Shardul",
+        "position": "Fondatore e Direttore, STPL",
+        "experienceTitle": "Esperienza e Risultati",
+        "experience": "Ex proprietario di Guruprasad Engineering Works. Oltre 30 anni di esperienza nelle operazioni di sala utensili, fabbricazione industriale e prodotti di falegnameria commerciale.",
+        "quote": "La qualità non è un atto, è un'abitudine. L'eccellenza nella produzione deriva dalla dedizione, precisione e impegno verso i clienti."
+      },
+      "director": {
+        "name": "Sig.ra Rupali Sachin Shardul",
+        "position": "Direttore - HR e Finanza",
+        "description": "Guidare l'eccellenza in HR e Finanza con visione strategica e competenza operativa"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "CONTATTACI",
+      "title": "Contattaci",
+      "description": "Hai una domanda o vuoi lavorare insieme? Ci piacerebbe sentirti."
+    },
+    "form": {
+      "name": "Nome Completo",
+      "email": "Indirizzo Email",
+      "phone": "Numero di Telefono",
+      "company": "Nome Azienda",
+      "message": "Il Tuo Messaggio",
+      "submit": "Invia Messaggio",
+      "sending": "Invio..."
+    },
+    "info": {
+      "title": "Informazioni di Contatto",
+      "address": "Indirizzo",
+      "addressValue": "Pune, Maharashtra, India",
+      "phone": "Telefono",
+      "email": "Email",
+      "hours": "Orari di Lavoro",
+      "hoursValue": "Lun - Sab: 9:00 - 18:00"
+    }
+  },
+  "common": {
+    "readMore": "Leggi di Più",
+    "learnMore": "Scopri di Più",
+    "viewAll": "Vedi Tutto",
+    "getStarted": "Inizia",
+    "contactUs": "Contattaci",
+    "requestQuote": "Richiedi Preventivo",
+    "downloadCatalog": "Scarica Catalogo",
+    "home": "Home"
+  }
+}
