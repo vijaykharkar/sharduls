@@ -7,7 +7,7 @@ import founder from '../../assets/images/founder.jpeg';
 import director from '../../assets/images/director.jpeg';
 import director1 from '../../assets/images/director1.png';
 import outsourcing from '../../assets/images/outsourcing.jpg';
-import homeimg from '../../assets/images/homeimg.jpg';
+import customfasteners from '../../assets/images/customfasteners.png';
 import {
   CheckCircle,
   Handshake,
@@ -108,11 +108,11 @@ const About = () => {
             {/* Right Image */}
             <div className="scroll-animate-right">
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#d4a853] to-[#1a3a5c] rounded-2xl opacity-20 blur-xl"></div>
+                <div className="absolute -inset-4 rounded-2xl opacity-20 blur-xl"></div>
                 <img
-                  src={homeimg}
-                  alt="Industrial Solutions"
-                  className="relative rounded-2xl shadow-2xl w-full h-auto object-cover"
+                  src={customfasteners}
+                  alt="Custom Fasteners"
+                  className="relative rounded-2xl w-full h-150 object-cover"
                 />
               </div>
             </div>

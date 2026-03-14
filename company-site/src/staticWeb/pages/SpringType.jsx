@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { CheckCircle, Package, Phone, Mail, Zap, Settings, Shield, Award } from 'lucide-react';
+import coppercoilmcb from '../../assets/images/coppercoilmcb.jpeg';
+import compressionsprings from '../../assets/images/compressionsprings.jpg';
+import springsreplacement from '../../assets/images/springsreplacement.jpg';
+import oilleveldipstick from '../../assets/images/oilleveldipstick.jpg';
 
 const SpringType = () => {
   const pageRef = useRef(null);
@@ -37,12 +41,12 @@ const SpringType = () => {
     {
       name: 'Compression Springs',
       description: 'Open-coil helical springs designed to resist compressive forces. Widely used in automotive, industrial machinery, and consumer electronics.',
-      image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80',
+      image: compressionsprings,
     },
     {
       name: 'Tension Springs',
       description: 'Closely wound coil springs that resist pulling forces. Ideal for garage doors, trampolines, farm machinery, and industrial applications.',
-      image: 'https://images.unsplash.com/photo-1567789884554-0b844b597180?w=600&q=80',
+      image: springsreplacement,
     },
     {
       name: 'Single & Double Torsion Springs',
@@ -52,7 +56,7 @@ const SpringType = () => {
     {
       name: 'Copper Coils for MCB',
       description: 'Precision copper coils engineered specifically for Miniature Circuit Breakers (MCB), ensuring reliable electrical performance and safety.',
-      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80',
+      image: coppercoilmcb,
     },
     {
       name: 'Wire Form Components',
@@ -62,7 +66,7 @@ const SpringType = () => {
     {
       name: 'Oil Level Check Gauge / Dipsticks',
       description: 'Precision-manufactured dipsticks and oil level gauges for engines, transformers, and industrial equipment monitoring.',
-      image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80',
+      image: oilleveldipstick,
     },
     {
       name: 'Links',
