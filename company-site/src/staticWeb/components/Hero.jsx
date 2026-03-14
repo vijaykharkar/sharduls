@@ -89,7 +89,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-12 md:py-16 lg:py-20">
-        <h1 className="hero-animate opacity-0 translate-y-8 transition-all duration-700 ease-out text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+        <h1 className="hero-animate opacity-0 translate-y-8 transition-all duration-700 ease-out text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
           <span className="text-white">{t('hero.title')}</span>
           <br />
           <span className="text-white">{t('hero.subtitle')}</span>
