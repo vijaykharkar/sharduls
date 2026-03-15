@@ -19,8 +19,8 @@ import KittingParts from './staticWeb/pages/KittingParts';
 import ThreeDPrinting from './staticWeb/pages/ThreeDPrinting';
 import Contact from './staticWeb/pages/Contact';
 import SpringType from './staticWeb/pages/SpringType';
-import  SilverPlating from './staticWeb/pages/SilverPlating'
 import  SustainabilityCBAM from './staticWeb/pages/SustainabilityCBAM'
+import OtherProducts from './staticWeb/pages/OtherProducts';
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
             <Route path="/kitting-parts" element={<KittingParts />} />
             <Route path="/3d-printing" element={<ThreeDPrinting />} />
             <Route path='/spring-type' element={<SpringType />} />
-            <Route path='/silver-plating' element={<SilverPlating />} />
+            <Route path='/other-products' element={<OtherProducts />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sustainability-cbam" element={<SustainabilityCBAM />} />
           

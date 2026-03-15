@@ -40,7 +40,7 @@ const Header = () => {
             { name: t('header.b2b.kitting'), href: '/kitting-parts' },
             { name: t('header.b2b.3dPrinting'), href: '/3d-printing' },
             {name:"All type of springs", href:"/spring-type"},
-            {name:"Silver plating" , href:"/silver-plating"}
+            { name: 'Other Products', href: '/other-products' }
           ]
         },
         {
