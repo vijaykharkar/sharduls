@@ -6,6 +6,8 @@ import coppercoilmcb from '../../assets/images/coppercoilmcb.jpeg';
 import compressionsprings from '../../assets/images/compressionsprings.jpg';
 import springsreplacement from '../../assets/images/springsreplacement.jpg';
 import oilleveldipstick from '../../assets/images/oilleveldipstick.jpg';
+import springstainless from '../../assets/images/springstainless.jpg';
+import clipmetalicovarilla from '../../assets/images/clipmetalicovarilla.jpg';
 
 const SpringType = () => {
   const pageRef = useRef(null);
@@ -51,7 +53,7 @@ const SpringType = () => {
     {
       name: 'Single & Double Torsion Springs',
       description: 'Springs that exert torque or rotary force. Used in clothespins, clipboards, hinges, counterbalance mechanisms, and door handles.',
-      image: 'https://images.unsplash.com/photo-1504222490345-c075b6008014?w=600&q=80',
+      image: springstainless,
     },
     {
       name: 'Copper Coils for MCB',
@@ -61,7 +63,7 @@ const SpringType = () => {
     {
       name: 'Wire Form Components',
       description: 'Custom-shaped wire forms for diverse industrial applications including clips, hooks, brackets, rings, and specialized connectors.',
-      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80',
+      image: clipmetalicovarilla,
     },
     {
       name: 'Oil Level Check Gauge / Dipsticks',
