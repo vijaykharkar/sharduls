@@ -7,14 +7,16 @@ import qualitycontrol from '../../assets/images/qualitycontrol.jpg';
 import accelerateinnovationcomponent from '../../assets/images/accelerateinnovationcomponent.jpg';
 import threadcivilization from '../../assets/images/threadcivilization.jpg';
 import cnclatheturning from '../../assets/images/cnclatheturning.jpg';
+import wholesaleprecisionpart from '../../assets/images/wholesaleprecisionpart.jpg';
 
 const heroSlides = [
-  { image: hydraulic, alt: 'Hydraulic & Industrial Parts' },
-  { image: qualitycontrol, alt: 'Quality Control & Inspection' },
+  { image: wholesaleprecisionpart, alt: 'Wholesale Precision Part' },
   { image: accelerateinnovationcomponent, alt: 'Accelerate Innovation Component' },
   { image: threadcivilization, alt: 'Thread Civilization' },
-  { image: worldimg, alt: 'Global Shipment & Logistics' },
   { image: cnclatheturning, alt: 'CNC Lathe Turning' },
+  { image: qualitycontrol, alt: 'Quality Control & Inspection' },
+  { image: hydraulic, alt: 'Hydraulic & Industrial Parts' },  
+  { image: worldimg, alt: 'Global Shipment & Logistics' },
 ];
 
 const Hero = () => {
