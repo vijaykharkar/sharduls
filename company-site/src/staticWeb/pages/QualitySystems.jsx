@@ -6,6 +6,7 @@ import CTASection from '../components/CTASection';
 import charts from '../../assets/images/charts.jpg';
 
 import measurementtools from '../../assets/images/measumentstool.jpg';
+import mannatechceoresponds from '../../assets/productImages/mannatechceoresponds.jpg';
 
 const QualitySystems = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -156,7 +157,7 @@ const QualitySystems = () => {
                 <div className="relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-[#d4a853]/20 to-[#1a3a5c]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-700"></div>
                   <img
-                    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80"
+                    src={mannatechceoresponds}
                     alt="Precision Calibration Equipment"
                     className="relative rounded-2xl shadow-2xl w-full h-[400px] object-cover transform group-hover:scale-105 transition-all duration-700"
                   />
@@ -218,54 +219,6 @@ const QualitySystems = () => {
             </div>
           </div>
         </section>
-
-        {/* Additional Processes Section */}
-        {/* <section
-          ref={el => sectionRefs.current[2] = el}
-          className={`py-20 bg-white transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-        >
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="max-w-5xl mx-auto"> */}
-        {/* <div className="text-center mb-16">
-                <p className="scroll-animate text-[#d4a853] font-semibold text-sm tracking-[0.2em] uppercase mb-4">
-                  QUALITY PROCESSES
-                </p>
-                <h2 className="scroll-animate delay-100 text-3xl lg:text-4xl font-bold text-[#1a3a5c] mb-4">
-                  Comprehensive Quality Management
-                </h2>
-                <p className="scroll-animate delay-200 text-gray-600 text-lg max-w-3xl mx-auto">
-                  End-to-end quality control ensuring excellence at every stage
-                </p>
-              </div> */}
-
-        {/* <div className="space-y-5">
-                {additionalProcesses.map((process, index) => (
-                  <div
-                    key={index}
-                    className="scroll-animate group bg-gradient-to-r from-gray-50 to-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-[#d4a853] hover:border-[#1a3a5c] transform hover:translate-x-3"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="flex items-start gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-gradient-to-br from-[#d4a853]/20 to-[#1a3a5c]/20 rounded-full flex items-center justify-center group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
-                          <CheckCircle2 className="w-6 h-6 text-[#d4a853]" />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-[#1a3a5c] mb-3 group-hover:text-[#d4a853] transition-colors duration-300">
-                          {process.title}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed text-base">
-                          {process.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div> */}
-        {/* </div>
-          </div>
-        </section> */}
 
         {/* Calibration Equipment Showcase */}
         <section

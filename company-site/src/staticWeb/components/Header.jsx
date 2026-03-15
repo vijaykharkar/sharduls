@@ -53,8 +53,8 @@ const Header = () => {
     },
     { name: t('header.menu.whyChooseUs'), href: '/why-choose-us' },
     { name: t('header.menu.qualitySystem'), href: '/quality' },
-    { name: t('header.menu.contactUs'), href: '/contact' },
-    {name : 'Sustainability & CBAM' , href:'/sustainability-cbam'}
+    {name : 'Sustainability & CBAM' , href:'/sustainability-cbam'},
+    { name: t('header.menu.contactUs'), href: '/contact' }
   ];
 
   return (
