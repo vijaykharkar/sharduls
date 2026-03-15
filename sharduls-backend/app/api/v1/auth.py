@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.security import get_current_user_token
-from app.services.auth_service import AuthService
-from app.services.otp_service import OTPService
+from app.services import auth_service, otp_service
 from app.schemas.user import (
     UserCreate, UserLogin, UserResponse, UserRole,
     EmailPasswordLogin, PhoneOTPLogin, EmailOTPLogin,
@@ -23,7 +22,7 @@ async def register(user_data: UserCreate, db: Session = Depends(get_db)):
     - For suppliers: role should be 'seller'
     - For customers: role should be 'customer' (default)
     """
-    result = AuthService.register(db, user_data)
+    result = auth_service.register(db, user_data)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -39,7 +38,7 @@ async def register_supplier(user_data: UserCreate, db: Session = Depends(get_db)
     This endpoint automatically sets the role to 'seller'.
     """
     user_data.role = UserRole.SELLER
-    result = AuthService.register(db, user_data)
+    result = auth_service.register(db, user_data)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -55,7 +54,7 @@ async def register_customer(user_data: UserCreate, db: Session = Depends(get_db)
     This endpoint automatically sets the role to 'customer'.
     """
     user_data.role = UserRole.CUSTOMER
-    result = AuthService.register(db, user_data)
+    result = auth_service.register(db, user_data)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -69,7 +68,7 @@ async def register_customer(user_data: UserCreate, db: Session = Depends(get_db)
 @router.post("/login", response_model=AuthResponse)
 async def login(credentials: UserLogin, db: Session = Depends(get_db)):
     """Login user with email and password (legacy endpoint)."""
-    result = AuthService.login(db, credentials)
+    result = auth_service.login(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -84,7 +83,7 @@ async def login_email_password(credentials: EmailPasswordLogin, db: Session = De
     Login user with email and password.
     Supports role-based login by specifying the role (optional).
     """
-    result = AuthService.login_email_password(db, credentials)
+    result = auth_service.login_email_password(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -100,7 +99,7 @@ async def supplier_login(credentials: EmailPasswordLogin, db: Session = Depends(
     Only allows login for users with 'seller' role.
     """
     credentials.role = UserRole.SELLER
-    result = AuthService.login_email_password(db, credentials)
+    result = auth_service.login_email_password(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -116,7 +115,7 @@ async def customer_login(credentials: EmailPasswordLogin, db: Session = Depends(
     Only allows login for users with 'customer' role.
     """
     credentials.role = UserRole.CUSTOMER
-    result = AuthService.login_email_password(db, credentials)
+    result = auth_service.login_email_password(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -133,7 +132,7 @@ async def send_phone_otp(data: SendPhoneOTP):
     Send OTP to phone number.
     OTP will be valid for configured time (default: 10 minutes).
     """
-    result = OTPService.send_phone_otp(data.phone)
+    result = otp_service.send_phone_otp(data.phone)
     return OTPResponse(**result)
 
 
@@ -143,7 +142,7 @@ async def send_email_otp(data: SendEmailOTP):
     Send OTP to email address.
     OTP will be valid for configured time (default: 10 minutes).
     """
-    result = OTPService.send_email_otp(data.email)
+    result = otp_service.send_email_otp(data.email)
     return OTPResponse(**result)
 
 
@@ -155,7 +154,7 @@ async def login_phone_otp(credentials: PhoneOTPLogin, db: Session = Depends(get_
     Login user with phone number and OTP.
     User must first request OTP using /otp/send/phone endpoint.
     """
-    result = AuthService.login_phone_otp(db, credentials)
+    result = auth_service.login_phone_otp(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -170,7 +169,7 @@ async def login_email_otp(credentials: EmailOTPLogin, db: Session = Depends(get_
     Login user with email and OTP.
     User must first request OTP using /otp/send/email endpoint.
     """
-    result = AuthService.login_email_otp(db, credentials)
+    result = auth_service.login_email_otp(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -186,7 +185,7 @@ async def customer_login_phone_otp(credentials: PhoneOTPLogin, db: Session = Dep
     Only allows login for users with 'customer' role.
     """
     credentials.role = UserRole.CUSTOMER
-    result = AuthService.login_phone_otp(db, credentials)
+    result = auth_service.login_phone_otp(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -202,7 +201,7 @@ async def customer_login_email_otp(credentials: EmailOTPLogin, db: Session = Dep
     Only allows login for users with 'customer' role.
     """
     credentials.role = UserRole.CUSTOMER
-    result = AuthService.login_email_otp(db, credentials)
+    result = auth_service.login_email_otp(db, credentials)
     return AuthResponse(
         access_token=result["access_token"],
         refresh_token=result["refresh_token"],
@@ -214,12 +213,12 @@ async def customer_login_email_otp(credentials: EmailOTPLogin, db: Session = Dep
 # ==================== TOKEN MANAGEMENT ====================
 
 @router.post("/refresh", response_model=TokenResponse)
-async def refresh_token(data: RefreshTokenRequest, db: Session = Depends(get_db)):
+async def refresh_token_endpoint(data: RefreshTokenRequest, db: Session = Depends(get_db)):
     """
     Refresh access token using refresh token.
     Returns new access and refresh tokens.
     """
-    result = AuthService.refresh_token(db, data.refresh_token)
+    result = auth_service.refresh_token(db, data.refresh_token)
     return TokenResponse(**result)
 
 
@@ -234,7 +233,7 @@ async def get_current_user(
     Get current authenticated user information.
     Requires valid JWT access token in Authorization header.
     """
-    user = AuthService.get_current_user(db, token_payload)
+    user = auth_service.get_current_user(db, token_payload)
     return UserResponse.from_orm(user)
 
 

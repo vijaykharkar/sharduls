@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { href, Link, useLocation } from 'react-router-dom';
-import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
+import { Phone, Mail, Menu, X, ChevronDown, LogIn, UserPlus, FileText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import logo from '../../assets/images/shardulslogo.png';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 
+const BUYER_PORTAL_URL = 'http://localhost:5174';
+const SUPPLIER_PORTAL_URL = 'http://localhost:5175';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isBusinessOpen, setIsBusinessOpen] = useState(false);
+  const businessDropdownRef = useRef(null);
   const location = useLocation();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (businessDropdownRef.current && !businessDropdownRef.current.contains(event.target)) {
+        setIsBusinessOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const isActive = (path) => location.pathname === path;
   const isProductActive = () => {
@@ -100,24 +115,24 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-4 xl:gap-5 flex-1 justify-end">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative group">
                   {link.hasDropdown ? (
                     <button
-                      className={`flex items-center hover:text-[#d4a853] transition-colors font-medium ${
+                      className={`flex items-center hover:text-[#d4a853] transition-colors font-medium text-[16px] whitespace-nowrap ${
                         isProductActive() ? 'text-[#d4a853] border-b-2 border-[#d4a853] pb-1' : 'text-gray-300'
                       }`}
                       onMouseEnter={() => setIsProductsOpen(true)}
                       onMouseLeave={() => setIsProductsOpen(false)}
                     >
                       {link.name}
-                      <ChevronDown size={16} />
+                      <ChevronDown size={14} />
                     </button>
                   ) : (
                     <Link
                       to={link.href}
-                      className={`hover:text-[#d4a853] transition-colors font-medium ${
+                      className={`hover:text-[#d4a853] transition-colors font-medium text-[16px] whitespace-nowrap ${
                         isActive(link.href) ? 'text-[#d4a853] border-b-2 border-[#d4a853] pb-1' : 'text-gray-300'
                       }`}
                     >
@@ -162,12 +177,53 @@ const Header = () => {
                 </div>
               ))}
 
-              <Link
+              {/* Business Dropdown */}
+              <div className="relative" ref={businessDropdownRef}>
+                <button
+                  onClick={() => setIsBusinessOpen(!isBusinessOpen)}
+                  className="flex items-center gap-1 text-gray-300 hover:text-[#d4a853] transition-colors font-medium text-[16px] whitespace-nowrap"
+                >
+                  <UserPlus size={14} />
+                  Business
+                  <ChevronDown size={12} className={`transition-transform ${isBusinessOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isBusinessOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-56 bg-white shadow-2xl rounded-xl overflow-hidden z-50 border border-gray-100">
+                    <a
+                      href={`${SUPPLIER_PORTAL_URL}/register`}
+                      className="flex items-center gap-3 px-4 py-3 text-[#1a3a5c] hover:bg-[#d4a853]/10 hover:text-[#d4a853] transition-colors text-[16px] font-medium border-b border-gray-100"
+                      onClick={() => setIsBusinessOpen(false)}
+                    >
+                      <UserPlus size={16} />
+                      Become a Supplier
+                    </a>
+                    {/* <Link
+                      to="/bulk-enquiry"
+                      className="flex items-center gap-3 px-4 py-3 text-[#1a3a5c] hover:bg-[#d4a853]/10 hover:text-[#d4a853] transition-colors text-sm font-medium"
+                      onClick={() => setIsBusinessOpen(false)}
+                    >
+                      <FileText size={16} />
+                      Bulk Enquiry
+                    </Link> */}
+                  </div>
+                )}
+              </div>
+
+              {/* Login Button */}
+              <a
+                href={`${BUYER_PORTAL_URL}/login`}
+                className="flex items-center gap-1.5 text-[#d4a853] hover:text-white px-3 py-1.5 rounded-md font-semibold transition-colors text-[16px] whitespace-nowrap"
+              >
+                <LogIn size={14} />
+                Login
+              </a>
+
+              {/* <Link
                 to="/contact"
                 className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors shadow-md"
               >
                 {t('header.enquiryNow')}
-              </Link>
+              </Link> */}
             </div>
 
             {/* Mobile Menu Button */}
@@ -221,9 +277,39 @@ const Header = () => {
                     )}
                   </div>
                 ))}
+                {/* Mobile Business Links */}
+                <div className="border-t border-white/20 pt-4 mt-2 space-y-2">
+                  <p className="text-[#d4a853] font-bold text-xs uppercase tracking-wider mb-2">Business</p>
+                  <a
+                    href={`${SUPPLIER_PORTAL_URL}/register`}
+                    className="flex items-center gap-2 text-gray-300 hover:text-[#d4a853] transition-colors py-1 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <UserPlus size={14} />
+                    Become a Supplier
+                  </a>
+                  <Link
+                    to="/bulk-enquiry"
+                    className="flex items-center gap-2 text-gray-300 hover:text-[#d4a853] transition-colors py-1 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <FileText size={14} />
+                    Bulk Enquiry
+                  </Link>
+                </div>
+
+                <a
+                  href={`${BUYER_PORTAL_URL}/login`}
+                  className="flex items-center justify-center gap-2 border-2 border-[#d4a853] text-[#d4a853] hover:bg-[#d4a853] hover:text-white px-6 py-2.5 rounded-md font-bold transition-colors text-center mt-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <LogIn size={16} />
+                  Login
+                </a>
+
                 <Link
-                  to="/contacts"
-                  className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors text-center mt-2"
+                  to="/contact"
+                  className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors text-center mt-2 block"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t('header.enquiryNow')}

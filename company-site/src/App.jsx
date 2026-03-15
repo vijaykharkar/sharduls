@@ -21,6 +21,7 @@ import Contact from './staticWeb/pages/Contact';
 import SpringType from './staticWeb/pages/SpringType';
 import  SilverPlating from './staticWeb/pages/SilverPlating'
 import  SustainabilityCBAM from './staticWeb/pages/SustainabilityCBAM'
+import BulkEnquiry from './staticWeb/pages/BulkEnquiry'
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             <Route path='/silver-plating' element={<SilverPlating />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sustainability-cbam" element={<SustainabilityCBAM />} />
+            <Route path="/bulk-enquiry" element={<BulkEnquiry />} />
           
           </Routes>
         </Router>

@@ -31,7 +31,7 @@ const LanguageSwitcher = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-[#d4a853] transition-colors"
+        className="flex items-center gap-2 px-3 py-2 text-[#d4a853] hover:text-white transition-colors"
       >
         <Globe size={20} />
         <span>{currentLanguage.name}</span>

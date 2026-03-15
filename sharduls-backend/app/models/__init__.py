@@ -3,6 +3,7 @@ from app.models.product import Product, Category, Brand, ProductImage
 from app.models.order import Order, OrderItem, OrderStatus
 from app.models.cart import CartItem
 from app.models.payment import Payment, PaymentMethod, PaymentStatus
+from app.models.enquiry import BulkEnquiry, EnquiryStatus
 
 __all__ = [
     "User",
@@ -25,4 +26,6 @@ __all__ = [
     "Payment",
     "PaymentMethod",
     "PaymentStatus",
+    "BulkEnquiry",
+    "EnquiryStatus",
 ]
