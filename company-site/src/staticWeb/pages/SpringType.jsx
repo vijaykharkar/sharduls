@@ -69,12 +69,7 @@ const SpringType = () => {
       name: 'Oil Level Check Gauge / Dipsticks',
       description: 'Precision-manufactured dipsticks and oil level gauges for engines, transformers, and industrial equipment monitoring.',
       image: oilleveldipstick,
-    },
-    {
-      name: 'Links',
-      description: 'High-strength metal links for chain assemblies, mechanical linkages, and connecting components in industrial and automotive systems.',
-      image: 'https://images.unsplash.com/photo-1530982011887-3cc11cc85693?w=600&q=80',
-    },
+    }
   ];
 
   const capabilities = [
