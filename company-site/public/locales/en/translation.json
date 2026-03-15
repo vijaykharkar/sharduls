@@ -34,7 +34,7 @@
   },
   "hero": {
     "title": "Building Tomorrow's",
-    "subtitle": "Sourcing HUB From India",
+    "subtitle": "Sourcing HUB from India",
     "companyName": "SHARDUL-GE",
     "description": "A professionally managed organization delivering high-quality products and reliable solutions across multiple industrial sectors."
   },
@@ -51,12 +51,12 @@
       "logistics": "Efficient Logistics Flow",
       "sustainable": "Sustainable Deliveries"
     },
-    "button": "Learn More About Us"
+    "button": "Learn More"
   },
   "processFlow": {
     "label": "HOW WE WORK",
     "title": "Our Contract Manufacturing Process Flow",
-    "subtitle": "From sourcing to delivery - a comprehensive workflow ensuring excellence at every stage",
+    "subtitle": "From sourcing to delivery-a comprehensive workflow",
     "steps": {
       "supplierEvaluation": "Supplier Evaluation",
       "vendorRegistration": "Vendor Registration",
@@ -73,7 +73,7 @@
   },
   "ourExpertise": {
     "label": "OUR EXPERTISE",
-    "title": "Material In Which We Work",
+    "title": "Materials We Work with",
     "description": "We specialize in contract manufacturing of precision components across a wide range of materials, delivering excellence in every component.",
     "materials": {
       "steel": "Stainless Steel",
@@ -109,7 +109,7 @@
         "description": "Specialized components for communication systems ensuring seamless connectivity and reliability."
       },
       "solar": {
-        "name": "Solar Industries",
+        "name": "Solar Industry",
         "description": "High-precision solar components meeting stringent quality and safety standards."
       },
       "furniture": {
@@ -117,7 +117,7 @@
         "description": "Advanced furniture components and solutions for precision instruments and systems."
       },
       "gasOil": {
-        "name": "Gas & Oil Industries",
+        "name": "Oil & Gas Industries",
         "description": "Robust components designed for harsh environments in oil and gas exploration and production."
       }
     }
@@ -134,8 +134,8 @@
   },
   "footer": {
     "companyName": "SHARDUL-GE",
-    "technologies": "TECHNOLOGIES",
-    "description": "Your trusted sourcing office in India, backed by experienced professionals delivering quality industrial solutions.",
+    "technologies": "Technologies",
+    "description": "Your trusted Sourcing Office in India, backed by experienced professionals delivering quality industrial solutions.",
     "sections": {
       "explore": "Explore",
       "aboutUs": "About Us",

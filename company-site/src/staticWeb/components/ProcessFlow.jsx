@@ -149,7 +149,7 @@ const ProcessFlow = () => {
 
         {/* Quality Process Section */}
 
-        
+
 
         <div className="mt-16">
           <div className="bg-gradient-to-br from-[#f8f9fa] to-white rounded-3xl shadow-xl p-8 md:p-12 lg:p-16">
@@ -163,7 +163,7 @@ const ProcessFlow = () => {
                 </h3>
                 <div className="space-y-2 text-gray-700">
                   <p className="scroll-animate delay-100 text-base md:text-md leading-relaxed">
-                    At SHARDUL-GE TECHNOLOGIES, quality is embedded into every stage of our operations — from initial design and sourcing to final delivery and after-sales support. Our unwavering focus on excellence in products, processes, and people enables us to consistently deliver reliable solutions that meet and exceed industry standards.
+                    At SHARDUL-GE Technologies Pvt. Ltd., quality is embedded in every stage of our operations — from initial design and sourcing to final delivery and after-sales support. Our unwavering focus on excellence in products, processes, and people enables us to consistently deliver reliable solutions that meet and exceed industry standards.
                   </p>
 
                   <p className="scroll-animate delay-200 text-base md:text-md leading-relaxed">
@@ -174,7 +174,7 @@ const ProcessFlow = () => {
                     Our dedicated quality team implements rigorous evaluation procedures across all operational phases. These standards are continuously strengthened through ongoing training, audits, and process improvements — ensuring continuous enhancement across manufacturing, procurement, and management levels.
                   </p>
                   <p className="scroll-animate delay-300 text-base md:text-md leading-relaxed">
-                    This commitment to continuous improvement allows SHARDUL-GE TECHNOLOGIES to deliver superior value, long-term reliability, and trusted partnerships to every client we serve.
+                    This commitment to continuous improvement allows SHARDUL-GE Technologies Pvt. Ltd. to deliver superior value, long-term reliability, and trusted partnerships to every client we serve.
                   </p>
                 </div>
               </div>

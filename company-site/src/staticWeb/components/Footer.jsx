@@ -46,7 +46,7 @@ const Footer = () => {
               />
               <div className="inline-block mb-4">
                 <span className="text-white font-bold text-xl tracking-wide">{t('footer.companyName')}</span>
-                <p className="block text-[#d4a853] text-xs tracking-widest">{t('footer.technologies')}</p>
+                <span className="block text-[#d4a853] text-lg tracking-widest">{t('footer.technologies')}</span>
               </div>
             </div>
             <p className="text-gray-400 text-[15px] leading-relaxed mb-8 font-normal">
@@ -110,24 +110,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-
-            {/* <h3 className="text-white font-bold text-2xl mb-6 mt-8 relative">
-              Services
-              <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#d4a853] -mb-2"></span>
-            </h3>
-            <ul className="space-y-3">
-              {servicesLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-[#d4a853] transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={14} />
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul> */}
           </div>
 
           {/* Get in Touch */}
@@ -136,17 +118,17 @@ const Footer = () => {
               {t('footer.sections.getInTouch')}
               <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#d4a853] -mb-2"></span>
             </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-4">
+            <ul className="space-y-1">
+              <li className="flex items-start gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-[#102a43] to-[#d4a853] rounded-xl flex items-center justify-center text-white mb-5 group-hover:scale-110 hover:rotate-14 transition-all duration-500 shadow-lg">
                   <MapPin className="text-gold-primary flex-shrink-0 mt-1" size={18} />
                 </div>
                 <div className="text-gray-400 text-sm leading-relaxed font-normal">
-                  <span className="text-white font-semibold block mb-1">Shardul-GE Technologies Pvt. Ltd.</span>
+                  <span className="text-white font-semibold block mb-1">SHARDUL-GE Technologies Pvt. Ltd.</span>
                   Office No. 16, Upper Ground Floor,<br />
                   A Wing, Jay Ganesh Samrajya,<br />
                   Spine Road, Bhosari,<br />
-                  Pune 411039
+                  Pune-411039
                 </div>
               </li>
               <li>

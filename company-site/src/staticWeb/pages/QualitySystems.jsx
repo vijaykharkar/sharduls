@@ -89,17 +89,7 @@ const QualitySystems = () => {
       icon: <Target className="w-6 h-6" />,
       title: "Single Point Responsibility",
       description: "SHARDUL-GE acts as a single point of responsibility, ensuring customer specifications are fully met across the complete supply chain."
-    },
-    // {
-    //   icon: <Shield className="w-6 h-6" />,
-    //   title: "Best-in-Class Supplier Base",
-    //   description: "SHARDUL-GE ensures all quality requirements are fulfilled through an identified, evaluated, and approved best-in-class supplier base."
-    // },
-    // {
-    //   icon: <Award className="w-6 h-6" />,
-    //   title: "International Standards Compliance",
-    //   description: "All suppliers are selected based on manufacturing capability, quality systems, past performance, and compliance with international standards."
-    // }
+    }
   ];
 
   const additionalProcesses = [
@@ -166,7 +156,7 @@ const QualitySystems = () => {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="scroll-animate delay-100 text-3xl lg:text-4xl font-bold text-[#1a3a5c] mb-6">
-                  Quality Systems
+                  Quality System
                 </h2>
                 <p className="scroll-animate delay-200 text-gray-600 text-base md:text-lg leading-relaxed mb-6">
                   As an innovative contract manufacturer, we are adept at developing custom inspection procedures that allow us to supply parts with a high degree of <span className="text-[#1a3a5c] font-semibold">complexity and precision</span> that is unmatched by our industry peers in India.
