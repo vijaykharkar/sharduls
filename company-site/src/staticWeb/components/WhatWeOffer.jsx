@@ -78,7 +78,7 @@ const WhatWeOffer = () => {
           
           {/* Right Image */}
           <div className="scroll-animate-right relative mt-8 lg:mt-0">
-            <div className="rounded-lg overflow-hidden shadow-xl img-zoom">
+            <div className="rounded-lg overflow-hidden img-zoom">
               <img 
                 src={machiningparts}
                 alt="Machining parts"

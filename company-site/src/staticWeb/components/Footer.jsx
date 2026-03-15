@@ -34,7 +34,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#0a1929] text-white font-sans">
       {/* Main Footer */}
-      <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-14">
+      <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 pt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Company Info */}
           <div className="lg:col-span-4 flex flex-col h-full">
