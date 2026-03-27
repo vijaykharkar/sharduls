@@ -158,6 +158,15 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Disclaimer */}
+      <div className="border-t border-gray-700/30 mt-4">
+        <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 py-5">
+          <p className="text-gray-400 text-sm leading-relaxed italic">
+            Disclaimer:- {t('footer.disclaimer')}
+          </p>
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="border-t border-gray-700/50">
         <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 py-6">
