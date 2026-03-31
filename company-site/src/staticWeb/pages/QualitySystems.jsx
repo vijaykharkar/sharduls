@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CheckCircle2, Award, Shield, FileCheck, Users, Target, Microscope, ClipboardCheck } from 'lucide-react';
+import { CheckCircle2, Award, Shield, FileCheck, Users, Target, Microscope, ClipboardCheck, FileText, BadgeCheck, Eye, X } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CTASection from '../components/CTASection';
@@ -7,10 +7,62 @@ import charts from '../../assets/images/charts.jpg';
 
 import measurementtools from '../../assets/images/measumentstool.jpg';
 import mannatechceoresponds from '../../assets/productImages/mannatechceoresponds.jpg';
+import isoCertificate from '../../assets/images/iso.jpeg';
 
 const QualitySystems = () => {
   const [isVisible, setIsVisible] = useState({});
+  const [isIsoModalOpen, setIsIsoModalOpen] = useState(false);
   const sectionRefs = useRef([]);
+
+  const certifications = [
+    {
+      id: 'iso',
+      title: 'ISO 9001:2015',
+      subtitle: 'Quality Management System',
+      description: 'Certified for Trading, Supply and Export of C-Class Industrial Items',
+      hasImage: true,
+      image: isoCertificate,
+      icon: <Award className="w-8 h-8" />,
+      certNo: 'QCC/6C4B/0326',
+      validity: 'Valid until March 2029',
+    },
+    {
+      id: 'incorporation',
+      title: 'Company Incorporation Certificate',
+      subtitle: 'Ministry of Corporate Affairs',
+      description: 'Registered under the Companies Act as a Private Limited Company',
+      hasImage: false,
+      icon: <FileText className="w-8 h-8" />,
+      color: 'from-[#1a3a5c] to-[#0f2540]',
+    },
+    {
+      id: 'gst',
+      title: 'GST Tax Certificate',
+      subtitle: 'Goods & Services Tax',
+      description: 'Registered under GST for inter-state and intra-state supply of goods',
+      hasImage: false,
+      icon: <FileCheck className="w-8 h-8" />,
+      color: 'from-[#2d6a4f] to-[#1b4332]',
+    },
+    {
+      id: 'msme',
+      title: 'MSME Certificate',
+      subtitle: 'Micro, Small & Medium Enterprises',
+      description: 'Registered under MSME Development Act for enterprise recognition',
+      hasImage: false,
+      icon: <Shield className="w-8 h-8" />,
+      color: 'from-[#7b2d8e] to-[#5a1d6b]',
+    },
+    {
+      id: 'import-export',
+      title: 'Import & Export Certificate',
+      subtitle: 'Directorate General of Foreign Trade',
+      description: 'Licensed for international trade and cross-border transactions',
+      hasImage: false,
+      icon: <BadgeCheck className="w-8 h-8" />,
+      color: 'from-[#c2410c] to-[#9a3412]',
+    },
+  ];
 
   useEffect(() => {
     const observers = sectionRefs.current.map((ref, index) => {
@@ -168,6 +220,135 @@ const QualitySystems = () => {
             </div>
           </div>
         </section>
+
+        {/* Certifications Section */}
+        <section
+          ref={el => sectionRefs.current[2] = el}
+          className={`py-20 bg-gradient-to-b from-white to-gray-50 transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="text-center mb-16">
+              <p className="scroll-animate text-[#d4a853] font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+                CERTIFICATIONS & ACCREDITATIONS
+              </p>
+              <h2 className="scroll-animate delay-100 text-3xl lg:text-4xl font-bold text-[#1a3a5c] mb-4">
+                Our Certifications
+              </h2>
+              <p className="scroll-animate delay-200 text-gray-600 text-lg max-w-3xl mx-auto mb-5">
+                Backed by internationally recognized certifications ensuring the highest standards of quality, compliance, and trust
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#d4a853] to-[#1a3a5c] mx-auto rounded-full"></div>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
+              {/* ISO Certificate - Featured Card (Clean White) */}
+              <div
+                className="scroll-animate lg:col-span-1 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 border border-gray-100 hover:border-[#d4a853]/50 group overflow-hidden"
+              >
+                <div className="px-6 pb-2 mt-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 bg-[#d4a853] rounded-lg flex items-center justify-center">
+                      <Award className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-[#1a3a5c]">ISO 9001:2015</h3>
+                      <p className="text-[#d4a853] text-xs font-semibold tracking-wide uppercase">Quality Management System</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="relative bg-white p-4 cursor-pointer" onClick={() => setIsIsoModalOpen(true)}>
+                  <img
+                    src={isoCertificate}
+                    alt="ISO 9001:2015 Certificate"
+                    className="w-full h-auto rounded-xl border border-gray-200 transform group-hover:scale-[1.02] transition-transform duration-700"
+                  />
+                  <div className="absolute top-6 right-6 w-10 h-10 bg-[#1a3a5c]/70 hover:bg-[#d4a853] backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md">
+                    <Eye className="w-5 h-5" />
+                  </div>
+                </div>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    Certified for Trading, Supply and Export of C-Class Industrial Items Including Fasteners, Threaded Components, Fabricated Items and Turned Parts.
+                  </p>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="bg-[#d4a853]/10 text-[#b8922e] px-3 py-1.5 rounded-full font-semibold">Cert: QCC/6C4B/0326</span>
+                    <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-full font-semibold flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Valid until 2029
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Other Certificates - Numbered Pill Cards */}
+              <div className="lg:col-span-2 flex flex-col gap-5 justify-center py-4">
+                {certifications.filter(cert => !cert.hasImage).map((cert, index) => (
+                  <div
+                    key={cert.id}
+                    className="scroll-animate flex items-center gap-0 group"
+                    style={{ paddingLeft: index % 2 === 0 ? '0px' : '28px', transitionDelay: `${index * 0.1}s` }}
+                  >
+                    {/* Numbered circle badge */}
+                    <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-br ${cert.color} rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10 group-hover:scale-110 transition-transform duration-400 border-4 border-white`}
+                      style={{ minWidth: '3.5rem' }}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+
+                    {/* Pill-shaped content */}
+                    <div
+                      className="flex-1 -ml-3 flex items-center justify-between bg-white border border-gray-200 group-hover:border-[#d4a853]/60 group-hover:shadow-lg shadow-sm transition-all duration-500 pl-7 pr-5 py-3.5"
+                      style={{ borderRadius: '0 50px 50px 0' }}
+                    >
+                      <div>
+                        <h3 className="text-sm font-bold text-[#1a3a5c] group-hover:text-[#d4a853] transition-colors duration-300 leading-snug">
+                          {cert.title}
+                        </h3>
+                        <p className="text-gray-400 text-xs mt-0.5">{cert.subtitle}</p>
+                      </div>
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 group-hover:text-[#d4a853] flex-shrink-0 ml-4 transition-colors duration-300" />
+                    </div>
+                  </div>
+                ))}
+
+                {/* Trust strip */}
+                <div className="mt-3 bg-gradient-to-r from-[#1a3a5c]/5 to-[#d4a853]/10 rounded-2xl p-4 flex items-center gap-3 border border-[#d4a853]/20">
+                  <div className="w-9 h-9 bg-[#1a3a5c] rounded-full flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-5 h-5 text-[#d4a853]" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-[#1a3a5c] uppercase tracking-wider">All Documents Government Verified</p>
+                    <p className="text-xs text-gray-500 mt-0.5">Registered & certified with relevant Indian authorities</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ISO Certificate Modal */}
+        {isIsoModalOpen && (
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+            onClick={() => setIsIsoModalOpen(false)}
+          >
+            <div
+              className="relative max-w-2xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl animate-[scaleIn_0.3s_ease-out]"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsIsoModalOpen(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-[#1a3a5c]/80 hover:bg-[#d4a853] text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <img
+                src={isoCertificate}
+                alt="ISO 9001:2015 Certificate - SHARDUL-GE Technologies"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+        )}
 
         {/* Quality Points Grid */}
         <section
