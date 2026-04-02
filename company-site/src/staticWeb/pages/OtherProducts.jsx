@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { CheckCircle, Package, Phone, Mail, Layers, Cog, Shield, Award } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import clampsandnuts from '../../assets/images/clampsandnuts.png'
 import hoseclipsclamps from '../../assets/images/hoseclipsclamps.png'
 import copperbraidstripconnector from '../../assets/images/copperbraidstripconnector.jpg'
@@ -58,29 +58,6 @@ const OtherProducts = () => {
       description: 'Custom sheet metal fabrication services including cutting, bending, welding, and finishing. Suitable for enclosures, panels, brackets, and structural components.',
       image: cableclips,
     }
-  ];
-
-  const capabilities = [
-    {
-      icon: <Cog className="w-12 h-12 text-[#d4a853]" />,
-      title: 'Advanced Manufacturing',
-      description: 'State-of-the-art manufacturing facilities with modern equipment and experienced technicians.',
-    },
-    {
-      icon: <Shield className="w-12 h-12 text-[#d4a853]" />,
-      title: 'Quality Assurance',
-      description: 'Rigorous quality control processes ensuring every product meets international standards.',
-    },
-    {
-      icon: <Award className="w-12 h-12 text-[#d4a853]" />,
-      title: 'ISO Certified',
-      description: 'ISO 9001:2015 certified manufacturing processes for consistent quality and reliability.',
-    },
-    {
-      icon: <Layers className="w-12 h-12 text-[#d4a853]" />,
-      title: 'Custom Solutions',
-      description: 'Tailored manufacturing solutions to meet your specific requirements and applications.',
-    },
   ];
 
   return (
@@ -144,13 +121,6 @@ const OtherProducts = () => {
       </div>
 
       <Footer />
-
-      <style jsx>{`
-        .scroll-animate.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
     </div>
   );
 };

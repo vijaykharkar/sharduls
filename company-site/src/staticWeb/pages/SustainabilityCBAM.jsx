@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Leaf, Globe, CheckCircle, Shield, Users, TrendingUp, Factory, BarChart3, FileCheck, Phone, Mail, Recycle, Heart, DollarSign, AlertTriangle } from 'lucide-react';
+import { Globe, CheckCircle, Shield, Users, TrendingUp, BarChart3, FileCheck, Phone, Mail, Recycle, Heart, DollarSign, AlertTriangle } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import sustainablegoal from '../../assets/productImages/sustainablegoal.jpg';

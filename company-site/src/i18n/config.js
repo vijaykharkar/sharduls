@@ -1,8 +1,3 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
-
 // Language definitions with metadata
 export const languages = {
   en: {
@@ -86,45 +81,3 @@ export const languages = {
     country: 'fi'
   }
 };
-
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    debug: process.env.NODE_ENV === 'development',
-    
-    interpolation: {
-      escapeValue: false,
-    },
-
-    // Language detection options
-    detection: {
-      order: ['localStorage', 'navigator'],
-      lookupLocalStorage: 'language',
-      caches: ['localStorage'],
-    },
-
-    // Backend configuration for loading translations
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
-    },
-
-    // Supported languages
-    supportedLngs: Object.keys(languages),
-  });
-
-// Helper function to set HTML dir attribute for RTL support
-export const setLanguageDirection = (lng) => {
-  const dir = languages[lng]?.dir || 'ltr';
-  document.documentElement.dir = dir;
-  document.documentElement.lang = lng;
-};
-
-// Listen for language changes
-i18n.on('languageChanged', (lng) => {
-  setLanguageDirection(lng);
-});
-
-export default i18n;

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.jpeg';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 
@@ -79,13 +80,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {exploreLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-gray-400 hover:text-[#d4a853] transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <ArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={14} />
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -100,13 +101,13 @@ const Footer = () => {
             <ul className="space-y-3 mb-8">
               {aboutLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-gray-400 hover:text-[#d4a853] transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <ArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={14} />
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -175,18 +176,18 @@ const Footer = () => {
               © 2026 {t('footer.companyName')} {t('footer.technologies')}. {t('footer.copyright')}
             </p>
             <div className="flex gap-8">
-              <a
-                href="/privacy"
+              <Link
+                to="#"
                 className="text-gray-400 hover:text-gold-primary text-[14px] font-normal transition-all duration-300 hover:underline underline-offset-4"
               >
                 {t('footer.privacy')}
-              </a>
-              <a
-                href="/terms"
+              </Link>
+              <Link
+                to="#"
                 className="text-gray-400 hover:text-gold-primary text-[14px] font-normal transition-all duration-300 hover:underline underline-offset-4"
               >
                 {t('footer.terms')}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

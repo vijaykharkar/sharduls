@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { CheckCircle, Lightbulb, ArrowRight, Phone, Mail } from 'lucide-react';
+import { CheckCircle, Lightbulb, Phone, Mail } from 'lucide-react';
 import circuitbreakers from '../../assets/productImages/electricalComponents/circuitbreakers.jpg'
 
 const ElectricalComponents = () => {

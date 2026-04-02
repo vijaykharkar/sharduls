@@ -21,6 +21,7 @@ import Contact from './staticWeb/pages/Contact';
 import SpringType from './staticWeb/pages/SpringType';
 import  SustainabilityCBAM from './staticWeb/pages/SustainabilityCBAM'
 import OtherProducts from './staticWeb/pages/OtherProducts';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     <Suspense fallback="Loading...">
       <div className="w-full overflow-x-hidden">
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
