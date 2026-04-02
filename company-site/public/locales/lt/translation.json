@@ -156,6 +156,7 @@
     "phone": "+91 9175582622",
     "email": "Director@shardulge.com",
     "copyright": "Visos teisės saugomos.",
+    "disclaimer": "SHARDUL-GE Technologies yra nepriklausomai valdoma, šeimos tvarkoma įmonė. \"SHARDUL\" reiškia įkūrėjų šeimos tapatybę, o \"GE\" gerbia Gauri ir Esha — simbolizuojant kartų tęstinumą ir viziją.",
     "privacy": "Privatumo Politika",
     "terms": "Paslaugų Teikimo Sąlygos"
   },
@@ -172,6 +173,14 @@
       "paragraph2": "Mūsų galimybės apima platų produktų spektrą, įskaitant tvirtinimo elementus, plastikus, lakštinio metalo komponentus, tekintas dalis, submontažus ir kt. Remiame klientus nuo prototipo kūrimo iki masinės gamybos, siūlydami lankstumą kiekviename etape.",
       "paragraph3": "Bendradarbiaujame išimtinai su kruopščiai patikrintais, savo srities geriausiais tiekėjais, kurie atitinka tarptautinius verslo standartus ir griežtus konfidencialumo reikalavimus. Taikydami griežtą tiekėjų vertinimą ir nuolatinius auditus, užtikriname patikimą kokybę ir pristatymą.",
       "paragraph4": "Prisiėmę visą atsakomybę už kokybę, kaštus ir terminus, teikiame ekonomiškai efektyvius tiekimo sprendimus ir ilgalaikių kainų sutarčių galimybes, padėdami mūsų klientams pasiekti stabilumą, santaupas ir tvarų augimą."
+    },
+    "ourName": {
+      "label": "VARDAS UŽ PREKĖS ŽENKLO",
+      "title": "Šeimos Palikimas,",
+      "titleHighlight": "Globali Vizija",
+      "paragraph1": "SHARDUL-GE Technologies buvo formuojama per ilgus nuoseklių pastangų metus, vadovaujantis principais, kurie pabrėžia sąžiningumą, atsakomybę ir ilgalaikę vertės kūrimą. Kaip šeimos valdomą įmonė, organizacija atspindi į palikimą orientuotą požiūrį, kuriame sprendimai grindžiami atskaitomybe, tęstinumu ir įsipareigojimu ilgalaikiam meistriškumui. Mes didžiuojamės, kad esame ISO 9001 sertifikuota įmonė, atspindinti mūsų laikymąsi pasauliniu mastu pripažintų kokybės valdymo standartų.",
+      "paragraph2": "SHARDUL-GE Technologies veikia kaip nepriklausomai valdoma ir šeimos tvarkoma verslo organizacija, be išorinių nuosavybės ar partnerystės struktūrų. Pavadinimas \"SHARDUL\" reiškia įkūrėjų šeimos tapatybę, o \"GE\" atspindi vidinę kartų nuorodą — kur \"G\" ir \"E\" reiškia Gauri ir Esha — simbolizuojant tęstinumą, orientaciją į ateitį ir vertybes, perduodamas per kartas. Jungtinė tapatybė yra savita ir originali organizacijos paveldo ir vizijos išraiška.",
+      "paragraph3": "Organizacijos požiūrį apibrėžia tikslumas, patikimumas ir ilgalaikis mąstymas. Nuo savo ištakų kaip glaudžiai laikoma šeimos iniciatyva iki evoliucijos į profesionaliai valdomą įmonę, aptarnaujančią pasaulinę klientūrą, SHARDUL-GE Technologies išlieka įsipareigojusi kokybe grindžiamam vykdymui, skaidriam įsipareigojimui ir tvariam vertės teikimui. Akcentas ir toliau teikiamas meistriškumui, nuoseklumui ir pasitikėjimu grįstų santykių kūrimui."
     },
     "leadership": {
       "label": "VADOVYBĖ",

@@ -121,6 +121,37 @@ const About = () => {
       </section>
 
 
+      {/* The Name Behind the Brand Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="scroll-animate text-[#d4a853] font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+              {t('about.ourName.label')}
+            </p>
+            <h2 className="scroll-animate delay-100 text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a3a5c] mb-4">
+              {t('about.ourName.title')} <span className="text-[#d4a853] italic">{t('about.ourName.titleHighlight')}</span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#d4a853] to-transparent mx-auto mb-10"></div>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="scroll-animate delay-200 bg-gradient-to-br from-[#1a3a5c]/5 to-[#d4a853]/5 rounded-2xl p-8 md:p-12 border border-[#d4a853]/10">
+              <div className="space-y-5">
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+                  {t('about.ourName.paragraph1')}
+                </p>
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+                  {t('about.ourName.paragraph2')}
+                </p>
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+                  {t('about.ourName.paragraph3')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Leadership Team Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4">

@@ -19,9 +19,10 @@ import KittingParts from './staticWeb/pages/KittingParts';
 import ThreeDPrinting from './staticWeb/pages/ThreeDPrinting';
 import Contact from './staticWeb/pages/Contact';
 import SpringType from './staticWeb/pages/SpringType';
-import  SilverPlating from './staticWeb/pages/SilverPlating'
 import  SustainabilityCBAM from './staticWeb/pages/SustainabilityCBAM'
 import BulkEnquiry from './staticWeb/pages/BulkEnquiry'
+import OtherProducts from './staticWeb/pages/OtherProducts';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <Suspense fallback="Loading...">
       <div className="w-full overflow-x-hidden">
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -47,7 +49,7 @@ function App() {
             <Route path="/kitting-parts" element={<KittingParts />} />
             <Route path="/3d-printing" element={<ThreeDPrinting />} />
             <Route path='/spring-type' element={<SpringType />} />
-            <Route path='/silver-plating' element={<SilverPlating />} />
+            <Route path='/other-products' element={<OtherProducts />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sustainability-cbam" element={<SustainabilityCBAM />} />
             <Route path="/bulk-enquiry" element={<BulkEnquiry />} />

@@ -114,7 +114,7 @@ const Contact = () => {
     {
       region: 'India (Asia)',
       icon: '🇮🇳',
-      address: 'Shardul-GE Technologies Pvt. Ltd., Office No. 16, Upper Ground Floor, A Wing, Jay Ganesh Samrajya, Spine Road, Bhosari, Pune 411039',
+      address: 'Shardul-GE Technologies Pvt. Ltd., Office No. 16, Upper Ground Floor, A Wing, Jay Ganesh Samrajya, Spine Road, Bhosari, Pune - 411039',
       phone: '+91 9175582622',
       email: 'director@shardulge.com',
       businessHours: 'FOR EXPORT BUSINESS',

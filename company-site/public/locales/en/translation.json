@@ -34,7 +34,7 @@
   },
   "hero": {
     "title": "Building Tomorrow's",
-    "subtitle": "Sourcing HUB From India",
+    "subtitle": "Sourcing HUB from India",
     "companyName": "SHARDUL-GE",
     "description": "A professionally managed organization delivering high-quality products and reliable solutions across multiple industrial sectors."
   },
@@ -51,12 +51,12 @@
       "logistics": "Efficient Logistics Flow",
       "sustainable": "Sustainable Deliveries"
     },
-    "button": "Learn More About Us"
+    "button": "Learn More"
   },
   "processFlow": {
     "label": "HOW WE WORK",
     "title": "Our Contract Manufacturing Process Flow",
-    "subtitle": "From sourcing to delivery - a comprehensive workflow ensuring excellence at every stage",
+    "subtitle": "From sourcing to delivery-a comprehensive workflow",
     "steps": {
       "supplierEvaluation": "Supplier Evaluation",
       "vendorRegistration": "Vendor Registration",
@@ -73,7 +73,7 @@
   },
   "ourExpertise": {
     "label": "OUR EXPERTISE",
-    "title": "Material In Which We Work",
+    "title": "Materials We Work with",
     "description": "We specialize in contract manufacturing of precision components across a wide range of materials, delivering excellence in every component.",
     "materials": {
       "steel": "Stainless Steel",
@@ -109,7 +109,7 @@
         "description": "Specialized components for communication systems ensuring seamless connectivity and reliability."
       },
       "solar": {
-        "name": "Solar Industries",
+        "name": "Solar Industry",
         "description": "High-precision solar components meeting stringent quality and safety standards."
       },
       "furniture": {
@@ -117,7 +117,7 @@
         "description": "Advanced furniture components and solutions for precision instruments and systems."
       },
       "gasOil": {
-        "name": "Gas & Oil Industries",
+        "name": "Oil & Gas Industries",
         "description": "Robust components designed for harsh environments in oil and gas exploration and production."
       }
     }
@@ -134,8 +134,8 @@
   },
   "footer": {
     "companyName": "SHARDUL-GE",
-    "technologies": "TECHNOLOGIES",
-    "description": "Your trusted sourcing office in India, backed by experienced professionals delivering quality industrial solutions.",
+    "technologies": "Technologies",
+    "description": "Your trusted Sourcing Office in India, backed by experienced professionals delivering quality industrial solutions.",
     "sections": {
       "explore": "Explore",
       "aboutUs": "About Us",
@@ -156,6 +156,7 @@
     "phone": "+91 9175582622",
     "email": "Director@shardulge.com",
     "copyright": "All rights reserved.",
+    "disclaimer": "SHARDUL-GE Technologies is an independently owned, family-managed enterprise. \"SHARDUL\" represents the founding family identity and \"GE\" honours Gouri & Esha — symbolising generational continuity and vision.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   },
@@ -172,6 +173,14 @@
       "paragraph2": "Our capabilities cover a wide range of products including fasteners, plastics, sheet metal components, turned parts, sub-assemblies, and more. We support customers from prototype development to bulk production, offering flexibility at every stage.",
       "paragraph3": "We collaborate exclusively with carefully audited, best-in-class suppliers who comply with international business standards and strict confidentiality requirements. Through rigorous supplier evaluations and ongoing audits, we ensure dependable quality and delivery.",
       "paragraph4": "By taking full ownership of quality, cost, and timelines, we provide cost-effective sourcing solutions and long-term price contract options, helping our customers achieve stability, savings, and sustainable growth."
+    },
+    "ourName": {
+      "label": "THE NAME BEHIND THE BRAND",
+      "title": "A Family Legacy,",
+      "titleHighlight": "A Global Vision",
+      "paragraph1": "SHARDUL-GE Technologies has been shaped through years of consistent effort, guided by principles that emphasize integrity, responsibility, and long-term value creation. As a family-driven enterprise, the organization reflects a legacy-oriented approach where decisions are rooted in accountability, continuity, and a commitment to enduring excellence. We are proud to be an ISO 9001 certified company, reflecting our adherence to globally recognized quality management standards.",
+      "paragraph2": "SHARDUL-GE Technologies operates as an independently owned and family-managed business, without external ownership or partnership structures. The name \"SHARDUL\" represents the founding family identity, while \"GE\" reflects an internal, generational reference—where \"G\" and \"E\" signify Gouri and Esha—symbolizing continuity, future orientation, and the values carried forward across generations. The combined identity represents a distinctive and original expression of the organization's heritage and vision.",
+      "paragraph3": "The organization's approach is defined by precision, reliability, and long-term thinking. From its origins as a closely held family initiative to its evolution into a professionally managed enterprise serving a global clientele, SHARDUL-GE Technologies remains committed to quality-driven execution, transparent engagement, and sustained value delivery. The emphasis continues to be on craftsmanship, consistency, and building relationships founded on trust."
     },
     "leadership": {
       "label": "LEADERSHIP",

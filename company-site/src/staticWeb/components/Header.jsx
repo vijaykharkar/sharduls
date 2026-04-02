@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { href, Link, useLocation } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, Menu, X, ChevronDown, LogIn, UserPlus, FileText } from 'lucide-react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import logo from '../../assets/images/shardulslogo.png';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
@@ -28,7 +29,7 @@ const Header = () => {
 
   const isActive = (path) => location.pathname === path;
   const isProductActive = () => {
-    const productPaths = ['/cable-management', '/earthing-accessories', '/lugs-connectors', '/switchboard-components', '/electrical-components', '/fixings-fasteners'];
+    const productPaths = ['/cable-management', '/earthing-accessories', '/lugs-connectors', '/switchboard-components', '/electrical-components', '/fixings-fasteners', '/high-precision-parts', '/cnc-components', '/thermo-plastic-parts', '/sub-assembly-parts', '/kitting-parts', '/3d-printing', '/spring-type', '/other-products'];
     return productPaths.includes(location.pathname);
   };
 
@@ -54,8 +55,8 @@ const Header = () => {
             { name: t('header.b2b.subAssembly'), href: '/sub-assembly-parts' },
             { name: t('header.b2b.kitting'), href: '/kitting-parts' },
             { name: t('header.b2b.3dPrinting'), href: '/3d-printing' },
-            {name:"All type of springs", href:"/spring-type"},
-            {name:"Silver plating" , href:"/silver-plating"}
+            {name: t('header.b2b.springs', 'All type of springs'), href:"/spring-type"},
+            { name: t('header.b2b.otherProducts', 'Other Products'), href: '/other-products' }
           ]
         },
         {
@@ -68,8 +69,8 @@ const Header = () => {
     },
     { name: t('header.menu.whyChooseUs'), href: '/why-choose-us' },
     { name: t('header.menu.qualitySystem'), href: '/quality' },
-    { name: t('header.menu.contactUs'), href: '/contact' },
-    {name : 'Sustainability & CBAM' , href:'/sustainability-cbam'}
+    {name : t('header.menu.sustainabilityCbam', 'Sustainability & CBAM') , href:'/sustainability-cbam'},
+    { name: t('header.menu.contactUs'), href: '/contact' }
   ];
 
   return (
@@ -309,7 +310,7 @@ const Header = () => {
 
                 <Link
                   to="/contact"
-                  className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors text-center mt-2 block"
+                  className="bg-[#d4a853] hover:bg-[#ff8c00] text-white px-6 py-2.5 rounded-md font-bold transition-colors text-center mt-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t('header.enquiryNow')}

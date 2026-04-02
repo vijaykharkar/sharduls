@@ -156,6 +156,7 @@
     "phone": "+91 9175582622",
     "email": "Director@shardulge.com",
     "copyright": "Alle rettigheder forbeholdes.",
+    "disclaimer": "SHARDUL-GE Technologies er en uafhængigt ejet, familiestyret virksomhed. \"SHARDUL\" repræsenterer den stiftende families identitet og \"GE\" ærer Gauri & Esha — og symboliserer generationskontinuitet og vision.",
     "privacy": "Fortrolighedspolitik",
     "terms": "Servicevilkår"
   },
@@ -172,6 +173,14 @@
       "paragraph2": "Vores kapaciteter dækker en bred vifte af produkter, herunder beslag, plastik, pladekomponenter, drejede dele, undermontager og mere. Vi støtter kunder fra prototypeudvikling til bulkproduktion og tilbyder fleksibilitet i hvert trin.",
       "paragraph3": "Vi samarbejder udelukkende med omhyggeligt reviderede, bedste i klassen leverandører, der overholder internationale forretningsstandarder og strenge fortrolighedskrav. Gennem grundige leverandørevalueringer og løbende revisioner sikrer vi pålidelig kvalitet og levering.",
       "paragraph4": "Ved at tage fuldt ansvar for kvalitet, omkostninger og tidslinjer leverer vi omkostningseffektive indkøbsløsninger og langsigtede priskontraktmuligheder, der hjælper vores kunder med at opnå stabilitet, besparelser og bæredygtig vækst."
+    },
+    "ourName": {
+      "label": "NAVNET BAG BRANDET",
+      "title": "En Familiearv,",
+      "titleHighlight": "En Global Vision",
+      "paragraph1": "SHARDUL-GE Technologies er blevet formet gennem mange års vedvarende indsats, styret af principper, der understreger integritet, ansvar og langsigtet værdiskabelse. Som en familiedrevet virksomhed afspejler organisationen en arv-orienteret tilgang, hvor beslutninger er rodfæstet i ansvarlighed, kontinuitet og en forpligtelse til vedvarende ekspertise. Vi er stolte af at være en ISO 9001-certificeret virksomhed, der afspejler vores overholdelse af globalt anerkendte kvalitetsstyringsstandarder.",
+      "paragraph2": "SHARDUL-GE Technologies drives som en uafhængigt ejet og familiestyret virksomhed uden eksterne ejerskabs- eller partnerskabsstrukturer. Navnet \"SHARDUL\" repræsenterer den stiftende families identitet, mens \"GE\" afspejler en intern, generationsreference — hvor \"G\" og \"E\" står for Gauri og Esha — og symboliserer kontinuitet, fremtidsorientering og de værdier, der bæres videre på tværs af generationer. Den kombinerede identitet repræsenterer et karakteristisk og originalt udtryk for organisationens arv og vision.",
+      "paragraph3": "Organisationens tilgang er defineret af præcision, pålidelighed og langsigtet tænkning. Fra sin oprindelse som et tæt holdt familieinitiativ til sin udvikling til en professionelt ledet virksomhed, der betjener et globalt klientel, forbliver SHARDUL-GE Technologies forpligtet til kvalitetsdrevet udførelse, gennemsigtig engagement og vedvarende værdiskabelse. Fokus forbliver på håndværk, konsistens og opbygning af relationer baseret på tillid."
     },
     "leadership": {
       "label": "LEDERSKAB",

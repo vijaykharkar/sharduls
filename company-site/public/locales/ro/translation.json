@@ -156,6 +156,7 @@
     "phone": "+91 9175582622",
     "email": "Director@shardulge.com",
     "copyright": "Toate drepturile rezervate.",
+    "disclaimer": "SHARDUL-GE Technologies este o întreprindere deținută independent și gestionată de familie. \"SHARDUL\" reprezintă identitatea familiei fondatoare, iar \"GE\" onorează pe Gauri și Esha — simbolizând continuitatea generațională și viziunea.",
     "privacy": "Politica de Confidențialitate",
     "terms": "Termeni de Serviciu"
   },
@@ -172,6 +173,14 @@
       "paragraph2": "Capacitățile noastre acoperă o gamă largă de produse, inclusiv elemente de fixare, materiale plastice, componente din tablă, piese strunjite, sub-ansambluri și multe altele. Susținem clienții de la dezvoltarea prototipului până la producția în masă, oferind flexibilitate în fiecare etapă.",
       "paragraph3": "Colaborăm exclusiv cu furnizori verificați cu atenție, cei mai buni din clasă, care respectă standardele de afaceri internaționale și cerințe stricte de confidențialitate. Prin evaluări riguroase ale furnizorilor și audituri continue, asigurăm calitate și livrare fiabile.",
       "paragraph4": "Asumându-ne responsabilitatea completă pentru calitate, costuri și termene, oferim soluții de aprovizionare rentabile și opțiuni de contract de preț pe termen lung, ajutând clienții noștri să obțină stabilitate, economii și creștere durabilă."
+    },
+    "ourName": {
+      "label": "NUMELE DIN SPATELE BRANDULUI",
+      "title": "O Moștenire de Familie,",
+      "titleHighlight": "O Viziune Globală",
+      "paragraph1": "SHARDUL-GE Technologies a fost modelată de-a lungul anilor de efort constant, ghidată de principii care pun accent pe integritate, responsabilitate și crearea de valoare pe termen lung. Ca întreprindere condusă de familie, organizația reflectă o abordare orientată spre moștenire în care deciziile sunt înrădăcinate în responsabilitate, continuitate și angajament pentru excelență durabilă. Suntem mândri că suntem o companie certificată ISO 9001, reflectând aderența noastră la standardele de management al calității recunoscute la nivel global.",
+      "paragraph2": "SHARDUL-GE Technologies funcționează ca o afacere deținută independent și gestionată de familie, fără structuri de proprietate sau parteneriat externe. Numele \"SHARDUL\" reprezintă identitatea familiei fondatoare, în timp ce \"GE\" reflectă o referință generațională internă — unde \"G\" și \"E\" semnifică Gauri și Esha — simbolizând continuitatea, orientarea spre viitor și valorile transmise din generație în generație. Identitatea combinată reprezintă o expresie distinctivă și originală a patrimoniului și viziunii organizației.",
+      "paragraph3": "Abordarea organizației este definită de precizie, fiabilitate și gândire pe termen lung. De la originile sale ca inițiativă de familie strâns deținută până la evoluția sa într-o întreprindere gestionată profesional care deservește o clientelă globală, SHARDUL-GE Technologies rămâne angajată în execuția orientată spre calitate, implicarea transparentă și livrarea de valoare durabilă. Accentul continuă să fie pe măiestrie, consistență și construirea de relații bazate pe încredere."
     },
     "leadership": {
       "label": "CONDUCERE",

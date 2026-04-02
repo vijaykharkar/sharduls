@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, ArrowRight } from 'lucide-react';
-import worldimg from '../../assets/images/worldimg.jpg';
+import machiningparts from '../../assets/images/machiningparts.png';
 
 const WhatWeOffer = () => {
   const sectionRef = useRef(null);
@@ -78,10 +78,10 @@ const WhatWeOffer = () => {
           
           {/* Right Image */}
           <div className="scroll-animate-right relative mt-8 lg:mt-0">
-            <div className="rounded-lg overflow-hidden shadow-xl img-zoom">
+            <div className="rounded-lg overflow-hidden img-zoom">
               <img 
-                src={worldimg}
-                alt="Warehouse with industrial supplies"
+                src={machiningparts}
+                alt="Machining parts"
                 className="w-full h-[300px] sm:h-[350px] md:h-[400px] object-cover rounded-lg shadow-2xl"
               />
             </div>

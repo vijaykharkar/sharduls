@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Leaf, Globe, CheckCircle, Shield, Users, TrendingUp, Factory, BarChart3, FileCheck, Phone, Mail, Recycle, Heart, DollarSign, AlertTriangle } from 'lucide-react';
+import { Globe, CheckCircle, Shield, Users, TrendingUp, BarChart3, FileCheck, Phone, Mail, Recycle, Heart, DollarSign, AlertTriangle } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import sustainablegoal from '../../assets/productImages/sustainablegoal.jpg';
+import cbam from '../../assets/productImages/cbam.jpg';
 
 const SustainabilityCBAM = () => {
   const pageRef = useRef(null);
@@ -100,28 +102,14 @@ const SustainabilityCBAM = () => {
       <Header />
 
       {/* Hero Section */}
-      <section
-        className="relative py-24 lg:py-32 overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #1a3a5c 0%, #102a43 100%)' }}
+      {/* <section
+        className="relative py-12 lg:py-16 overflow-hidden h-[100vh] w-[100vw]"
       >
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-            backgroundSize: '30px 30px'
-          }}></div>
-        </div>
-
+        <div className="absolute inset-0">
+          <img src={sustainablegoal} alt="Sustainable Goal" className="w-[100vw] h-[100vh] object-contain mt-10" />
+        </div> */}
+      {/* 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <div className="scroll-animate flex justify-center mb-6">
-            <div className="w-20 h-20 bg-[#d4a853] rounded-2xl flex items-center justify-center">
-              <Leaf className="text-[#1a3a5c]" size={40} />
-            </div>
-          </div>
-
-          <span className="scroll-animate inline-block bg-[#d4a853]/20 text-[#d4a853] px-5 py-2 rounded-full text-sm font-semibold tracking-wide mb-6 border border-[#d4a853]/30">
-            SUSTAINABILITY & CBAM
-          </span>
-
           <h1 className="scroll-animate text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Sustainability at the Heart of </span>
             <span className="text-[#d4a853]">Everything We Do</span>
@@ -139,11 +127,11 @@ const SustainabilityCBAM = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
 
       {/* SECTION 1: Sustainability */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white mt-5">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <p className="scroll-animate text-[#d4a853] font-semibold text-sm tracking-[0.2em] uppercase mb-4">
@@ -200,18 +188,32 @@ const SustainabilityCBAM = () => {
               <div className="w-16 h-1 bg-[#d4a853] mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {whySustainabilityMatters.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 bg-white/10 rounded-xl p-5 border border-white/10 hover:bg-white/15 transition-colors duration-300"
-                >
-                  <div className="w-12 h-12 bg-[#d4a853]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <div className="text-[#d4a853]">{item.icon}</div>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Right Side Content */}
+              <div className="grid md:grid-cols-1 gap-2">
+                {whySustainabilityMatters.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 bg-white/10 rounded-xl p-5 border border-white/10 hover:bg-white/15 transition-colors duration-300"
+                  >
+                    <div className="w-12 h-12 bg-[#d4a853]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="text-[#d4a853]">{item.icon}</div>
+                    </div>
+
+                    <p className="text-gray-200 text-base leading-relaxed">
+                      {item.text}
+                    </p>
                   </div>
-                  <p className="text-gray-200 text-base leading-relaxed">{item.text}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+              {/* Left Side Image */}
+              <div>
+                <img
+                  src={sustainablegoal}
+                  alt="Sustainability"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -253,29 +255,11 @@ const SustainabilityCBAM = () => {
             </div>
 
             <div className="scroll-animate">
-              <div className="bg-gradient-to-br from-[#1a3a5c] to-[#102a43] rounded-2xl p-8 md:p-10">
-                <div className="flex justify-center mb-6">
-                  <div className="w-20 h-20 bg-[#d4a853]/20 rounded-2xl flex items-center justify-center">
-                    <Globe className="text-[#d4a853]" size={40} />
-                  </div>
-                </div>
-                <h4 className="text-white text-xl font-bold text-center mb-2">EU Regulation</h4>
-                <p className="text-gray-300 text-center text-sm mb-6">Carbon Border Adjustment Mechanism</p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 bg-white/10 rounded-lg p-3">
-                    <Shield className="text-[#d4a853] flex-shrink-0" size={20} />
-                    <span className="text-gray-200 text-sm">Fair carbon pricing on imports</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-lg p-3">
-                    <Factory className="text-[#d4a853] flex-shrink-0" size={20} />
-                    <span className="text-gray-200 text-sm">Prevents carbon leakage</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-lg p-3">
-                    <TrendingUp className="text-[#d4a853] flex-shrink-0" size={20} />
-                    <span className="text-gray-200 text-sm">Supports EU climate goals</span>
-                  </div>
-                </div>
-              </div>
+              <img
+                src={cbam}
+                alt="CBAM"
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
             </div>
           </div>
 

@@ -156,6 +156,7 @@
     "phone": "+91 9175582622",
     "email": "Director@shardulge.com",
     "copyright": "Wszelkie prawa zastrzeżone.",
+    "disclaimer": "SHARDUL-GE Technologies jest niezależnie posiadanym, rodzinnie zarządzanym przedsiębiorstwem. \"SHARDUL\" reprezentuje tożsamość rodziny założycielskiej, a \"GE\" honoruje Gauri i Esha — symbolizując ciągłość pokoleniową i wizję.",
     "privacy": "Polityka Prywatności",
     "terms": "Warunki Usługi"
   },
@@ -172,6 +173,14 @@
       "paragraph2": "Nasze możliwości obejmują szeroki zakres produktów, w tym elementy mocujące, tworzywa sztuczne, komponenty z blachy, części toczone, podzespoły i wiele więcej. Wspieramy klientów od rozwoju prototypu do produkcji masowej, oferując elastyczność na każdym etapie.",
       "paragraph3": "Współpracujemy wyłącznie z starannie sprawdzonymi, najlepszymi w swojej klasie dostawcami, którzy przestrzegają międzynarodowych standardów biznesowych i ścisłych wymogów dotyczących poufności. Poprzez rygorystyczne oceny dostawców i ciągłe audyty zapewniamy niezawodną jakość i dostawę.",
       "paragraph4": "Przejmując pełną odpowiedzialność za jakość, koszty i terminy, zapewniamy ekonomiczne rozwiązania zakupowe i długoterminowe opcje kontraktów cenowych, pomagając naszym klientom osiągnąć stabilność, oszczędności i zrównoważony wzrost."
+    },
+    "ourName": {
+      "label": "NAZWA ZA MARKĄ",
+      "title": "Dziedzictwo Rodzinne,",
+      "titleHighlight": "Globalna Wizja",
+      "paragraph1": "SHARDUL-GE Technologies kształtowała się przez lata konsekwentnego wysiłku, kierując się zasadami podkreślającymi uczciwość, odpowiedzialność i długoterminowe tworzenie wartości. Jako przedsiębiorstwo rodzinne, organizacja odzwierciedla podejście zorientowane na dziedzictwo, w którym decyzje są zakorzenione w odpowiedzialności, ciągłości i zaangażowaniu w trwałą doskonałość. Z dumą jesteśmy firmą certyfikowaną ISO 9001, co odzwierciedla nasze przestrzeganie globalnie uznanych standardów zarządzania jakością.",
+      "paragraph2": "SHARDUL-GE Technologies działa jako niezależnie posiadane i rodzinnie zarządzane przedsiębiorstwo, bez zewnętrznych struktur własnościowych lub partnerskich. Nazwa \"SHARDUL\" reprezentuje tożsamość rodziny założycielskiej, podczas gdy \"GE\" odzwierciedla wewnętrzne odniesienie pokoleniowe — gdzie \"G\" i \"E\" oznaczają Gauri i Esha — symbolizując ciągłość, orientację na przyszłość i wartości przekazywane z pokolenia na pokolenie. Połączona tożsamość stanowi wyraźny i oryginalny wyraz dziedzictwa i wizji organizacji.",
+      "paragraph3": "Podejście organizacji jest definiowane przez precyzję, niezawodność i długoterminowe myślenie. Od swoich początków jako ściśle rodzinna inicjatywa, po ewolucję w profesjonalnie zarządzane przedsiębiorstwo obsługujące globalną klientelę, SHARDUL-GE Technologies pozostaje zaangażowana w realizację opartą na jakości, przejrzyste zaangażowanie i trwałe dostarczanie wartości. Nacisk nadal kładziony jest na rzemiosło, spójność i budowanie relacji opartych na zaufaniu."
     },
     "leadership": {
       "label": "PRZYWÓDZTWO",

@@ -53,12 +53,6 @@ const LugsConnectors = () => {
       features: ['Insulated/Non-insulated', 'Multiple Sizes', 'Color Coded', 'High Current']
     },
     {
-      name: 'Butt Connectors',
-      images: "",
-      description: 'Inline splice connectors for secure cable joining',
-      features: ['Insulated Types', 'Crimp Style', 'Various AWG', 'Heat Shrink Options']
-    },
-    {
       name: 'Spade Terminals',
       images: spadeTerminals,
       description: 'Fork type terminals for quick disconnect connections',

@@ -2,21 +2,21 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import worldimg from '../../assets/images/shipment.jpg';
-import electrical from '../../assets/images/electrical.jpg';
 import hydraulic from '../../assets/images/hydraulic.jpg';
 import qualitycontrol from '../../assets/images/qualitycontrol.jpg';
 import accelerateinnovationcomponent from '../../assets/images/accelerateinnovationcomponent.jpg';
 import threadcivilization from '../../assets/images/threadcivilization.jpg';
 import cnclatheturning from '../../assets/images/cnclatheturning.jpg';
+import wholesaleprecisionpart from '../../assets/images/wholesaleprecisionpart.jpg';
 
 const heroSlides = [
-  { image: worldimg, alt: 'Global Shipment & Logistics' },
-  // { image: electrical, alt: 'Electrical Components' },
-  { image: hydraulic, alt: 'Hydraulic & Industrial Parts' },
-  { image: qualitycontrol, alt: 'Quality Control & Inspection' },
+  { image: wholesaleprecisionpart, alt: 'Wholesale Precision Part' },
   { image: accelerateinnovationcomponent, alt: 'Accelerate Innovation Component' },
   { image: threadcivilization, alt: 'Thread Civilization' },
   { image: cnclatheturning, alt: 'CNC Lathe Turning' },
+  { image: qualitycontrol, alt: 'Quality Control & Inspection' },
+  { image: hydraulic, alt: 'Hydraulic & Industrial Parts' },  
+  { image: worldimg, alt: 'Global Shipment & Logistics' },
 ];
 
 const Hero = () => {
