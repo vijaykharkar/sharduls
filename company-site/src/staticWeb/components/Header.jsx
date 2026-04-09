@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import logo from '../../assets/images/shardulslogo.png';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 
-const BUYER_PORTAL_URL = 'http://localhost:5174';
-const SUPPLIER_PORTAL_URL = 'http://localhost:5175';
+const BUYER_PORTAL_URL = 'http://localhost:5175';
+const SUPPLIER_PORTAL_URL = 'http://localhost:5174';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
