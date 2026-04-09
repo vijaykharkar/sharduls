@@ -1,159 +1,186 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Search, ShoppingCart, User, Menu, X } from 'lucide-react';
+import {
+  Search, ShoppingCart, User, Menu, X, MapPin, Truck, ChevronDown,
+  LogOut, Package, Heart
+} from 'lucide-react';
 import LoginModal from '../auth/LoginModal';
 import { logoutUser } from '../../store/slices/authSlice';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const cartItems = useSelector((state) => state.cart.items);
 
   const handleLogout = async () => {
+    setProfileOpen(false);
     await dispatch(logoutUser());
     navigate('/');
   };
 
   return (
     <>
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+      {/* ═══ Main Header ═══ */}
+      <header className="bg-gradient-to-r from-navy-500 to-navy-700 sticky top-0 z-50">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-16 flex items-center gap-4">
+            {/* Mobile menu */}
+            <button onClick={() => setMobileMenu(true)} className="lg:hidden p-2 text-white/80 hover:text-white cursor-pointer">
+              <Menu size={22} />
+            </button>
+
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S</span>
+            <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+              <div className="w-9 h-9 bg-gradient-to-br from-gold-400 to-gold-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">S</span>
               </div>
-              <span className="text-xl font-bold text-gray-800">SHARDUL-GE</span>
+              <div className="hidden sm:block">
+                <p className="text-white font-bold text-sm leading-tight">SHARDUL-GE</p>
+                <p className="text-gold-400 text-[8px] tracking-widest">MARKETPLACE</p>
+              </div>
             </Link>
 
-            {/* Search Bar - Desktop */}
-            <div className="hidden md:flex flex-1 max-w-2xl mx-8">
-              <div className="relative w-full">
+            {/* Location */}
+            <button className="hidden md:flex items-center gap-1.5 text-white/80 hover:text-white text-xs cursor-pointer transition-colors flex-shrink-0">
+              <MapPin size={14} className="text-gold-400" />
+              <div className="text-left">
+                <p className="text-[9px] text-white/50">Delivery to</p>
+                <p className="font-semibold">Select Location</p>
+              </div>
+            </button>
+
+            {/* Search */}
+            <div className="flex-1 max-w-2xl">
+              <div className="flex items-center bg-white rounded-lg overflow-hidden">
                 <input
                   type="text"
-                  placeholder="Search for products..."
-                  className="w-full px-4 py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Search Product, Category, Brand..."
+                  className="flex-1 px-4 py-2.5 text-sm outline-none text-gray-700 placeholder-gray-400 min-w-0"
                 />
-                <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                <button className="bg-gold-400 hover:bg-gold-500 px-5 py-2.5 transition-colors cursor-pointer flex-shrink-0">
+                  <Search size={18} className="text-white" />
+                </button>
               </div>
             </div>
 
-            {/* Right Menu */}
-            <div className="flex items-center space-x-4">
-              {/* Cart */}
-              <Link
-                to="/cart"
-                className="relative p-2 text-gray-700 hover:text-blue-600 transition"
-              >
-                <ShoppingCart className="h-6 w-6" />
-                {cartItems.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {cartItems.length}
-                  </span>
-                )}
-              </Link>
-
-              {/* User Menu */}
+            {/* Right icons */}
+            <div className="flex items-center gap-1 sm:gap-3">
+              {/* User / Login */}
               {isAuthenticated ? (
-                <div className="relative group">
-                  <button className="flex items-center space-x-2 p-2 text-gray-700 hover:text-blue-600 transition">
-                    <User className="h-6 w-6" />
-                    <span className="hidden md:inline">{user?.full_name}</span>
+                <div className="relative">
+                  <button
+                    onClick={() => setProfileOpen(!profileOpen)}
+                    className="flex items-center gap-1.5 text-white/80 hover:text-white text-xs cursor-pointer transition-colors"
+                  >
+                    <User size={18} />
+                    <span className="hidden lg:block font-medium">{user?.full_name?.split(' ')[0] || 'Account'}</span>
+                    <ChevronDown size={12} className="hidden lg:block" />
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all">
-                    <Link
-                      to="/profile"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      My Profile
-                    </Link>
-                    <Link
-                      to="/orders"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      My Orders
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
+                  {profileOpen && (
+                    <>
+                      <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
+                      <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-strong border border-gray-100 py-1 z-50 animate-slideDown">
+                        <Link to="/profile" onClick={() => setProfileOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <User size={16} /> My Account
+                        </Link>
+                        <Link to="/orders" onClick={() => setProfileOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <Package size={16} /> My Orders
+                        </Link>
+                        <Link to="/wishlist" onClick={() => setProfileOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <Heart size={16} /> Wishlist
+                        </Link>
+                        <div className="h-px bg-gray-100 my-1" />
+                        <button onClick={handleLogout} className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 cursor-pointer">
+                          <LogOut size={16} /> Logout
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               ) : (
                 <button
                   onClick={() => setIsLoginModalOpen(true)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                  className="flex items-center gap-1.5 text-white/80 hover:text-white text-xs cursor-pointer transition-colors"
                 >
-                  Login
+                  <User size={18} />
+                  <span className="hidden lg:block font-medium">Login Now</span>
                 </button>
               )}
 
-              {/* Mobile Menu Toggle */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 text-gray-700"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
+              <div className="hidden sm:block h-6 w-px bg-white/20" />
+
+              <Link to="/track-order" className="flex items-center gap-1.5 text-white/80 hover:text-white text-xs cursor-pointer transition-colors">
+                <Truck size={18} />
+                <span className="hidden lg:block font-medium">Track Order</span>
+              </Link>
+
+              <div className="hidden sm:block h-6 w-px bg-white/20" />
+
+              <Link to="/cart" className="relative flex items-center gap-1.5 text-white/80 hover:text-white text-xs cursor-pointer transition-colors">
+                <ShoppingCart size={18} />
+                <span className="hidden lg:block font-medium">Cart</span>
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 lg:-top-1.5 lg:left-3 w-4 h-4 bg-gold-400 rounded-full text-[9px] text-white flex items-center justify-center font-bold">
+                    {cartItems.length}
+                  </span>
+                )}
+              </Link>
             </div>
           </div>
-
-          {/* Search Bar - Mobile */}
-          <div className="md:hidden py-3">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t">
-              <nav className="space-y-2">
-                <Link
-                  to="/"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  to="/bulk-enquiry"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Bulk Enquiry
-                </Link>
-                <Link
-                  to="/become-supplier"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Become a Supplier
-                </Link>
-              </nav>
-            </div>
-          )}
         </div>
       </header>
 
+      {/* ═══ Mobile Menu Overlay ═══ */}
+      {mobileMenu && (
+        <div className="fixed inset-0 z-[60] lg:hidden">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileMenu(false)} />
+          <aside className="absolute left-0 top-0 bottom-0 w-72 bg-white flex flex-col animate-slideRight shadow-2xl">
+            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gradient-to-r from-navy-500 to-navy-700">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-gold-400 to-gold-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">S</span>
+                </div>
+                <span className="font-bold text-white text-sm">
+                  {isAuthenticated ? `Hi ${user?.full_name?.split(' ')[0]}` : 'SHARDUL-GE'}
+                </span>
+              </div>
+              <button onClick={() => setMobileMenu(false)} className="text-white/60 hover:text-white cursor-pointer">
+                <X size={20} />
+              </button>
+            </div>
+            <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+              <Link to="/" onClick={() => setMobileMenu(false)} className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl font-medium">Home</Link>
+              <Link to="/bulk-enquiry" onClick={() => setMobileMenu(false)} className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl font-medium">Bulk Enquiry</Link>
+              <Link to="/become-supplier" onClick={() => setMobileMenu(false)} className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl font-medium">Become a Supplier</Link>
+              <Link to="/cart" onClick={() => setMobileMenu(false)} className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl font-medium">Cart</Link>
+              {!isAuthenticated && (
+                <button
+                  onClick={() => { setMobileMenu(false); setIsLoginModalOpen(true); }}
+                  className="w-full mt-2 py-3 bg-gold-400 hover:bg-gold-500 text-white rounded-xl font-semibold text-sm transition-colors cursor-pointer"
+                >
+                  Login / Register
+                </button>
+              )}
+            </nav>
+            {isAuthenticated && (
+              <div className="p-4 border-t border-gray-100">
+                <button onClick={() => { setMobileMenu(false); handleLogout(); }} className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-red-600 hover:bg-red-50 cursor-pointer">
+                  <LogOut size={18} /> Logout
+                </button>
+              </div>
+            )}
+          </aside>
+        </div>
+      )}
+
       {/* Login Modal */}
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
+      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </>
   );
 };

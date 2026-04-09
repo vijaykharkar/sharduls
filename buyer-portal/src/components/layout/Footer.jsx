@@ -1,113 +1,53 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
+    <footer className="bg-navy-500">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-white text-lg font-bold mb-4">SHARDUL-GE</h3>
-            <p className="text-sm mb-4">
-              Your trusted B2B marketplace for quality products and bulk orders.
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-sm">
-                <Phone className="h-4 w-4" />
-                <span>+91 1234567890</span>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-gold-400 to-gold-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">S</span>
               </div>
-              <div className="flex items-center space-x-2 text-sm">
-                <Mail className="h-4 w-4" />
-                <span>support@shardul-ge.com</span>
-              </div>
-              <div className="flex items-center space-x-2 text-sm">
-                <MapPin className="h-4 w-4" />
-                <span>Mumbai, India</span>
+              <div>
+                <p className="text-white font-bold text-xs">SHARDUL-GE</p>
+                <p className="text-gold-400 text-[7px] tracking-widest">MARKETPLACE</p>
               </div>
             </div>
+            <p className="text-gray-400 text-xs leading-relaxed">India's leading B2B marketplace for industrial supplies and components.</p>
           </div>
-
-          {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/" className="hover:text-white transition">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/bulk-enquiry" className="hover:text-white transition">
-                  Bulk Enquiry
-                </Link>
-              </li>
-              <li>
-                <Link to="/become-supplier" className="hover:text-white transition">
-                  Become a Supplier
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-white transition">
-                  About Us
-                </Link>
-              </li>
-            </ul>
+            <h4 className="text-white font-bold text-xs mb-3 uppercase tracking-wider">Company</h4>
+            <div className="space-y-2">
+              <Link to="/" className="block text-gray-400 text-xs hover:text-white transition-colors">Home</Link>
+              <Link to="/bulk-enquiry" className="block text-gray-400 text-xs hover:text-white transition-colors">Bulk Enquiry</Link>
+              <Link to="/become-supplier" className="block text-gray-400 text-xs hover:text-white transition-colors">Become a Supplier</Link>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">About Us</span>
+            </div>
           </div>
-
-          {/* Customer Service */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Customer Service</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/help" className="hover:text-white transition">
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link to="/track-order" className="hover:text-white transition">
-                  Track Order
-                </Link>
-              </li>
-              <li>
-                <Link to="/returns" className="hover:text-white transition">
-                  Returns & Refunds
-                </Link>
-              </li>
-              <li>
-                <Link to="/shipping" className="hover:text-white transition">
-                  Shipping Info
-                </Link>
-              </li>
-            </ul>
+            <h4 className="text-white font-bold text-xs mb-3 uppercase tracking-wider">Support</h4>
+            <div className="space-y-2">
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Help Center</span>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Contact Us</span>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Returns & Refunds</span>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Shipping Info</span>
+            </div>
           </div>
-
-          {/* Legal */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/privacy" className="hover:text-white transition">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="hover:text-white transition">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link to="/cookies" className="hover:text-white transition">
-                  Cookie Policy
-                </Link>
-              </li>
-            </ul>
+            <h4 className="text-white font-bold text-xs mb-3 uppercase tracking-wider">Policies</h4>
+            <div className="space-y-2">
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Terms of Use</span>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Cookie Policy</span>
+              <span className="block text-gray-400 text-xs hover:text-white transition-colors cursor-pointer">Shipping Policy</span>
+            </div>
           </div>
         </div>
-
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-          <p>&copy; 2026 SHARDUL-GE. All rights reserved.</p>
+        <div className="border-t border-white/10 pt-6 text-center">
+          <p className="text-gray-500 text-xs">&copy; 2026 SHARDUL-GE Technologies Pvt. Ltd. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

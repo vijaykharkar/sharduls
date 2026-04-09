@@ -1,17 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import store from './store'
+import { AuthProvider } from './context/AuthContext'
+import { CartProvider } from './context/CartContext'
+import { WishlistProvider } from './context/WishlistContext'
+import { ToastProvider } from './components/common/Toast'
 import App from './App.jsx'
-import './index.css'
+import './styles/globals.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <ToastProvider>
+              <App />
+            </ToastProvider>
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 )
