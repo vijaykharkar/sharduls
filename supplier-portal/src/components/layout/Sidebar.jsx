@@ -31,8 +31,8 @@ const SidebarContent = ({ onClose }) => {
   const handleLogout = () => { logout(); navigate('/login'); };
 
   return (
-    <div className="flex flex-col h-full bg-sidebar text-white">
-      <div className="p-5 flex items-center justify-between border-b border-border">
+    <div className="h-full flex flex-col sidebar-gradient rounded-r-3xl overflow-hidden text-white">
+      <div className="p-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
             <GearIcon className="w-8 h-8 text-primary animate-gearSpin" />
@@ -52,8 +52,7 @@ const SidebarContent = ({ onClose }) => {
             to={item.to}
             onClick={onClose}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${
-                isActive ? 'bg-accent/10 text-accent border-l-2 border-accent' : 'text-muted hover:text-primary hover:bg-white/5 hover:translate-x-1'
+              `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${isActive ? 'bg-accent/10 text-accent border-l-2 border-accent' : 'text-muted hover:text-primary hover:bg-white/5 hover:translate-x-1'
               }`
             }
           >
