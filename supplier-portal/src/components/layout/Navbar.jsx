@@ -20,13 +20,13 @@ const Navbar = () => {
   const title = pageTitles[pathname] || 'Dashboard';
 
   return (
-    <header className="h-16 bg-surface border-b border-border flex items-center px-6 gap-4 sticky top-0 z-30">
+    <header className="h-16 border-b border-border flex items-center justify-between px-6 gap-4 sticky top-0 z-30">
       <h1 className="text-lg font-bold text-highlight hidden sm:block">{title}</h1>
 
       <div className="flex-1 max-w-md ml-auto lg:ml-0">
         <div className="relative">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-          <input type="text" placeholder="Search orders, products…" className="w-full pl-10 pr-4 py-2 bg-[#0A0D14] rounded-xl text-sm text-highlight border border-border focus:ring-1 focus:ring-primary outline-none placeholder-muted transition-all" />
+          <input type="text" placeholder="Search orders, products…" className="w-full pl-10 pr-4 py-2 rounded-xl text-sm text-highlight border border-border focus:ring-1 focus:ring-primary outline-none placeholder-muted transition-all" />
         </div>
       </div>
 

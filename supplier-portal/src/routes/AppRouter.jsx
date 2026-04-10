@@ -22,24 +22,24 @@ const PageWrap = ({ children }) => (
 );
 
 const SupplierLayout = ({ children }) => (
-  <div className="flex h-screen bg-app">
+  <div className="flex h-screen">
 
     {/* Sidebar */}
-    <aside className="w-64 sidebar-inward rounded-r-3xl">
+    <aside className="w-64">
       <Sidebar />
     </aside>
 
     {/* Main */}
-    <div className="flex-1 m-4 bg-white rounded-3xl">
+    <div className="flex-1 bg-white rounded-3xl">
 
       {/* 🔥 Main Rounded Container */}
-      <div className="flex flex-col h-full bg-card rounded-3xl overflow-hidden">
+      <div className="flex flex-col overflow-hidden">
 
         {/* Navbar */}
         <Navbar />
 
         {/* Content */}
-        <main className="flex-1 p-6 bg-app">
+        <main className="flex-1 p-6">
           {children}
         </main>
 
