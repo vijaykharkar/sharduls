@@ -20,7 +20,7 @@ const Navbar = () => {
   const title = pageTitles[pathname] || 'Dashboard';
 
   return (
-    <header className="h-16 border-b border-border flex items-center justify-between px-6 gap-4 sticky top-0 z-30">
+    <header className="h-16 flex items-center justify-between px-6 gap-4 sticky top-0 z-30">
       <h1 className="text-lg font-bold text-highlight hidden sm:block">{title}</h1>
 
       <div className="flex-1 max-w-md ml-auto lg:ml-0">

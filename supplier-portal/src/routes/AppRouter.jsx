@@ -22,10 +22,10 @@ const PageWrap = ({ children }) => (
 );
 
 const SupplierLayout = ({ children }) => (
-  <div className="flex h-screen">
+  <div className="flex min-h-screen">
 
     {/* Sidebar */}
-    <aside className="w-64">
+    <aside className="w-64 min-h-screen">
       <Sidebar />
     </aside>
 

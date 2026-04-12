@@ -54,12 +54,7 @@ const DashboardPage = () => {
     { icon: Package, label: 'Products Listed', value: 8, display: null, color: 'bg-purple-500/10 text-purple-400' },
   ];
 
-  const quickActions = [
-    { icon: Plus, label: 'Add Product', to: '/products' },
-    { icon: Eye, label: 'View Orders', to: '/orders' },
-    { icon: Download, label: 'Reports', to: '/payments' },
-    { icon: Headphones, label: 'Support', to: '/support' },
-  ];
+  
 
   const alerts = [
     { msg: 'Upload GSTIN document', link: '/profile' },
@@ -118,15 +113,6 @@ const DashboardPage = () => {
           ))}
         </motion.div>
       )}
-
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {quickActions.map((a, i) => (
-          <Link key={i} to={a.to} className="flex flex-col items-center gap-2 p-4 bg-surface border border-border rounded-xl hover:border-primary hover:shadow-chrome transition-all group">
-            <a.icon size={22} className="text-muted group-hover:text-primary transition-colors" />
-            <span className="text-xs font-semibold text-muted group-hover:text-highlight">{a.label}</span>
-          </Link>
-        ))}
-      </div>
 
       <div className="bg-surface rounded-2xl border border-border overflow-hidden">
         <div className="flex items-center justify-between p-5 border-b border-border">
