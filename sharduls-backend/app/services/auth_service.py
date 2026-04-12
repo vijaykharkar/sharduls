@@ -1,8 +1,15 @@
+import json
 import random
 import string
+import time
 from datetime import datetime, timedelta, timezone
+from typing import Dict, Any
 
 from sqlalchemy.orm import Session
+
+# --------------- In-memory registration OTP store ---------------
+# {phone: {'otp': '123456', 'expires_at': unix_timestamp}}
+_registration_otps: Dict[str, Any] = {}
 
 from app.core.config import settings
 from app.core.security import (
@@ -31,7 +38,7 @@ def _generate_otp() -> str:
 
 
 def _issue_tokens(db: Session, user) -> dict:
-    token_data = {"sub": str(user.id), "role": user.role.value}
+    token_data = {"sub": str(user.id), "role": user.role}
     access = create_access_token(token_data)
     refresh = create_refresh_token(token_data)
     repo.set_user_refresh_token(db, user, hash_password(refresh))
@@ -58,6 +65,16 @@ def register(db: Session, payload: UserCreate) -> dict:
         password_hash=hash_password(payload.password),
         role=payload.role,
     )
+
+    # Create business profile for supplier registrations
+    if payload.role == "supplier" and (payload.business_model or payload.product_categories or payload.gstin):
+        repo.create_business_profile(
+            db,
+            user_id=user.id,
+            business_type=payload.business_model,
+            product_categories=json.dumps(payload.product_categories) if payload.product_categories else None,
+            gst_number=payload.gstin,
+        )
 
     tokens = _issue_tokens(db, user)
     return {
@@ -170,3 +187,37 @@ def refresh_token(db: Session, token: str) -> dict:
 def logout(db: Session, user) -> dict:
     repo.set_user_refresh_token(db, user, None)
     return {"message": "Logged out successfully"}
+
+
+# --------------- Registration OTP (no existing user required) ---------------
+
+def send_registration_otp(db: Session, phone: str) -> dict:
+    """Generate and store OTP for a new phone number during registration."""
+    if repo.phone_exists(db, phone):
+        raise_error('CONFLICT', 'Phone number already registered')
+
+    otp_code = _generate_otp()
+    print("Registration OTP generated:*****************", otp_code)
+    expires_at = time.time() + (settings.OTP_EXPIRE_MINUTES * 60)
+    _registration_otps[phone] = {'otp': otp_code, 'expires_at': expires_at}
+
+    # TODO: send via SMS provider in production
+    return {
+        "message": "OTP sent successfully",
+        "expires_in_minutes": settings.OTP_EXPIRE_MINUTES,
+        **({"otp": otp_code} if settings.DEBUG else {}),
+    }
+
+
+def verify_registration_otp(phone: str, otp: str) -> dict:
+    """Verify the registration OTP. Returns verified status; does NOT create the user."""
+    entry = _registration_otps.get(phone)
+    if not entry:
+        raise_error('BAD_REQUEST', 'No OTP found for this number. Please request a new one.')
+    if entry['otp'] != otp:
+        raise_error('BAD_REQUEST', 'Invalid OTP')
+    if time.time() > entry['expires_at']:
+        del _registration_otps[phone]
+        raise_error('BAD_REQUEST', 'OTP has expired. Please request a new one.')
+    del _registration_otps[phone]
+    return {"verified": True, "phone": phone}

@@ -1,6 +1,6 @@
 from app.models.user import (
     User, Address, Review, Wishlist,
-    UserBusinessProfile, BankDetails, UserDocument, Catalog, UserRole,
+    UserBusinessProfile, BankDetails, UserDocument, Catalog,
 )
 
 __all__ = [
@@ -11,6 +11,5 @@ __all__ = [
     "UserBusinessProfile",
     "BankDetails",
     "UserDocument",
-    "Catalog",
-    "UserRole",
+    "Catalog"
 ]

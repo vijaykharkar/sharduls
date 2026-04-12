@@ -23,7 +23,7 @@ class User(Base, TimestampMixin):
     email = Column(String(255), unique=True, index=True, nullable=False)
     phone = Column(String(20), unique=True, index=True, nullable=True)
     password_hash = Column(String(255), nullable=True)
-    role = Column(Enum(UserRole), nullable=False, default=UserRole.buyer)
+    role = Column(String(150), nullable=False, default="buyer")
     is_active = Column(Boolean, default=True, nullable=False)
     is_verified = Column(Boolean, default=False, nullable=False)
     avatar_url = Column(String(500), nullable=True)
@@ -89,10 +89,11 @@ class UserBusinessProfile(Base, TimestampMixin):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), unique=True, nullable=False)
-    company_name = Column(String(255), nullable=False)
+    company_name = Column(String(255), nullable=True)
     gst_number = Column(String(20), nullable=True)
     pan_number = Column(String(15), nullable=True)
     business_type = Column(String(100), nullable=True)
+    product_categories = Column(Text, nullable=True)  # JSON array of categories
     website = Column(String(255), nullable=True)
     description = Column(Text, nullable=True)
 

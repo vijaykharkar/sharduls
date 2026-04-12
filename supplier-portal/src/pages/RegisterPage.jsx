@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, ArrowRight, ChevronDown, X, Check } from 'lucide-react';
+import { Loader2, ArrowRight, ChevronDown, X, Check, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
@@ -165,9 +165,11 @@ const RegisterPage = () => {
   const [keepSigned, setKeepSigned] = useState(false);
 
   const [step1, setStep1] = useState({ phone: '', otp: '', email: '', fullName: '' });
-  const [step2, setStep2] = useState({ businessModel: '', products: [], gstin: '' });
+  const [step2, setStep2] = useState({ businessModel: '', products: [], gstin: '', password: '', confirmPassword: '' });
+  const [showPwd, setShowPwd] = useState(false);
+  const [showConfirmPwd, setShowConfirmPwd] = useState(false);
 
-  const { register, sendOtp, verifyOtp } = useAuth();
+  const { register, sendRegistrationOtp, verifyRegistrationOtp } = useAuth();
   const { addToast } = useToast();
   const navigate = useNavigate();
 
@@ -176,11 +178,11 @@ const RegisterPage = () => {
   const up1 = (k, v) => setStep1((p) => ({ ...p, [k]: v }));
   const up2 = (k, v) => setStep2((p) => ({ ...p, [k]: v }));
 
-  /* ── Step 1 validation ── */
-  const validateStep1 = () => {
+  /* ── Step 1 local field validation (before API call) ── */
+  const validateStep1Fields = () => {
     const e = {};
     if (!/^\d{10}$/.test(step1.phone)) e.phone = 'Enter a valid 10-digit phone number';
-    if (!otpSent) { e.otp = 'Please send and verify OTP first'; }
+    if (!otpSent) e.otp = 'Please send OTP first';
     else if (step1.otp.length !== 6) e.otp = 'Enter the 6-digit OTP';
     if (!step1.email.trim()) e.email = 'Email is required';
     else if (!/\S+@\S+\.\S+/.test(step1.email)) e.email = 'Enter a valid email address';
@@ -199,25 +201,41 @@ const RegisterPage = () => {
     if (!step2.gstin.trim()) e.gstin = 'GSTIN is required';
     else if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(step2.gstin.trim().toUpperCase()))
       e.gstin = 'Enter a valid GSTIN (e.g. 22AAAAA0000A1Z5)';
+    if (!step2.password) e.password = 'Password is required';
+    else if (step2.password.length < 8) e.password = 'Password must be at least 8 characters';
+    else if (!/[A-Z]/.test(step2.password)) e.password = 'Password must contain at least one uppercase letter';
+    else if (!/[0-9]/.test(step2.password)) e.password = 'Password must contain at least one digit';
+    if (!step2.confirmPassword) e.confirmPassword = 'Please confirm your password';
+    else if (step2.password !== step2.confirmPassword) e.confirmPassword = 'Passwords do not match';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
   const handleSendOtp = async () => {
-    const e = {};
-    if (!/^\d{10}$/.test(step1.phone)) { e.phone = 'Enter a valid 10-digit phone number'; setErrors(e); return; }
+    if (!/^\d{10}$/.test(step1.phone)) { setErrors({ phone: 'Enter a valid 10-digit phone number' }); return; }
     setLoading(true);
     try {
-      await sendOtp('+91' + step1.phone);
+      const res = await sendRegistrationOtp('+91' + step1.phone);
       setOtpSent(true); setTimer(30);
-      addToast('OTP sent to +91' + step1.phone, 'info');
+      // In DEBUG mode the backend returns the OTP — show it in the toast for testing
+      const hint = res?.otp ? ` (dev OTP: ${res.otp})` : '';
+      addToast('OTP sent to +91' + step1.phone + hint, 'info');
     } catch (err) {
       setErrors({ phone: err.message });
     } finally { setLoading(false); }
   };
 
-  const handleNext = () => {
-    if (validateStep1()) setStep(2);
+  /* ── Next: validate fields then verify OTP against backend ── */
+  const handleNext = async () => {
+    if (!validateStep1Fields()) return;
+    setLoading(true);
+    try {
+      await verifyRegistrationOtp('+91' + step1.phone, step1.otp);
+      setErrors({});
+      setStep(2);
+    } catch (err) {
+      setErrors({ otp: err.message });
+    } finally { setLoading(false); }
   };
 
   const handleSubmit = async () => {
@@ -228,11 +246,13 @@ const RegisterPage = () => {
         name: step1.fullName,
         email: step1.email,
         phone: '+91' + step1.phone,
-        password: 'Temp@' + Math.random().toString(36).slice(2, 10),
-        role: 'supplier',
+        password: step2.password,
+        businessModel: step2.businessModel,
+        productCategories: step2.products,
+        gstin: step2.gstin,
       });
       addToast(`Welcome, ${user.full_name || user.name}!`, 'success');
-      navigate('/dashboard');
+      navigate('/login');
     } catch (err) {
       setErrors({ submit: err.message });
     } finally { setLoading(false); }
@@ -362,9 +382,9 @@ const RegisterPage = () => {
                 </label>
 
                 {/* Next button */}
-                <button type="button" onClick={handleNext}
-                  className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md mt-2">
-                  Next <ArrowRight size={16} />
+                <button type="button" onClick={handleNext} disabled={loading}
+                  className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md mt-2 disabled:opacity-60">
+                  {loading ? <><Loader2 size={16} className="animate-spin" /> Verifying…</> : <>Next <ArrowRight size={16} /></>}
                 </button>
               </motion.div>
             ) : (
@@ -412,6 +432,48 @@ const RegisterPage = () => {
                     maxLength={15}
                   />
                   <FieldError name="gstin" />
+                </div>
+
+                {/* Create Password */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    Create Password <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPwd ? 'text' : 'password'}
+                      value={step2.password}
+                      onChange={(e) => up2('password', e.target.value)}
+                      className={ic + ' pr-10'}
+                      placeholder="Min 8 chars, 1 uppercase, 1 digit"
+                    />
+                    <button type="button" onClick={() => setShowPwd((p) => !p)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-violet-600">
+                      {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                  <FieldError name="password" />
+                </div>
+
+                {/* Confirm Password */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    Confirm Password <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showConfirmPwd ? 'text' : 'password'}
+                      value={step2.confirmPassword}
+                      onChange={(e) => up2('confirmPassword', e.target.value)}
+                      className={ic + ' pr-10'}
+                      placeholder="Re-enter your password"
+                    />
+                    <button type="button" onClick={() => setShowConfirmPwd((p) => !p)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-violet-600">
+                      {showConfirmPwd ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                  <FieldError name="confirmPassword" />
                 </div>
 
                 {/* Buttons */}

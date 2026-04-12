@@ -9,6 +9,7 @@ from app.schemas.user import (
     SendPhoneOTP,
     SendEmailOTP,
     VerifyOTP,
+    VerifyRegistrationOTP,
     RefreshTokenRequest,
     UserResponse,
 )
@@ -52,6 +53,20 @@ def verify_otp(payload: VerifyOTP, db: Session = Depends(get_db)):
 def refresh_token(payload: RefreshTokenRequest, db: Session = Depends(get_db)):
     result = auth_svc.refresh_token(db, payload.refresh_token)
     return success_response(data=result, message="Token refreshed")
+
+
+@router.post("/register-send-otp")
+def register_send_otp(payload: SendPhoneOTP, db: Session = Depends(get_db)):
+    result = auth_svc.send_registration_otp(db, payload.phone)
+    print("Registration OTP sent:*****************", result)
+    return success_response(data=result, message="OTP sent")
+
+
+@router.post("/register-verify-otp")
+def register_verify_otp(payload: VerifyRegistrationOTP):
+    result = auth_svc.verify_registration_otp(payload.phone, payload.otp)
+    print("Registration OTP verified:*****************", result)
+    return success_response(data=result, message="OTP verified")
 
 
 @router.post("/logout")

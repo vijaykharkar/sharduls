@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlalchemy.orm import Session
-from app.models.user import User
+from app.models.user import User, UserBusinessProfile
 
 
 def get_user_by_id(db: Session, user_id: int) -> Optional[User]:
@@ -68,3 +68,11 @@ def deactivate_user(db: Session, user: User) -> User:
     db.commit()
     db.refresh(user)
     return user
+
+
+def create_business_profile(db: Session, **kwargs) -> UserBusinessProfile:
+    profile = UserBusinessProfile(**kwargs)
+    db.add(profile)
+    db.commit()
+    db.refresh(profile)
+    return profile

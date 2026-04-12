@@ -8,6 +8,9 @@ const authService = {
       phone: data.phone || null,
       password: data.password,
       role: data.role || 'supplier',
+      business_model: data.businessModel || null,
+      product_categories: data.productCategories || null,
+      gstin: data.gstin || null,
     });
     return res.data;
   },
@@ -19,6 +22,18 @@ const authService = {
 
   sendPhoneOtp: async (phone) => {
     const res = await axiosInstance.post('/auth/login-otp', { phone });
+    return res.data;
+  },
+
+  sendRegistrationOtp: async (phone) => {
+    console.log('Sending registration OTP for phone:', phone);
+    const res = await axiosInstance.post('/auth/register-send-otp', { phone });
+    return res.data;
+  },
+
+  verifyRegistrationOtp: async (phone, otp) => {
+    console.log('Verifying registration OTP for phone:', phone, 'OTP:', otp);
+    const res = await axiosInstance.post('/auth/register-verify-otp', { phone, otp });
     return res.data;
   },
 

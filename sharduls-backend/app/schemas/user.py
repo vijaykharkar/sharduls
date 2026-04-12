@@ -14,6 +14,10 @@ class UserCreate(BaseModel):
     phone: Optional[str] = Field(None, max_length=20)
     password: str = Field(..., min_length=8, max_length=128)
     role: UserRole = UserRole.buyer
+    # Supplier-specific (optional, used when role == supplier)
+    business_model: Optional[str] = None
+    product_categories: Optional[List[str]] = None
+    gstin: Optional[str] = None
 
     @field_validator("phone")
     @classmethod
@@ -53,6 +57,11 @@ class SendEmailOTP(BaseModel):
 
 class VerifyOTP(BaseModel):
     identifier: str  # email or phone
+    otp: str = Field(..., min_length=4, max_length=10)
+
+
+class VerifyRegistrationOTP(BaseModel):
+    phone: str
     otp: str = Field(..., min_length=4, max_length=10)
 
 

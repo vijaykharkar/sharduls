@@ -80,12 +80,33 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async ({ name, email, phone, password }) => {
+  const register = async ({ name, email, phone, password, businessModel, productCategories, gstin }) => {
     try {
-      const apiRes = await authService.register({ name, email, phone, password, role: 'supplier' });
+      const apiRes = await authService.register({
+        name, email, phone, password, role: 'supplier',
+        businessModel, productCategories, gstin,
+      });
       const { user: userData, tokens } = apiRes.data;
       persist(userData, tokens);
       return userData;
+    } catch (err) {
+      throw new Error(extractError(err));
+    }
+  };
+
+  const sendRegistrationOtp = async (phone) => {
+    try {
+      const apiRes = await authService.sendRegistrationOtp(phone);
+      return apiRes.data;
+    } catch (err) {
+      throw new Error(extractError(err));
+    }
+  };
+
+  const verifyRegistrationOtp = async (phone, otp) => {
+    try {
+      const apiRes = await authService.verifyRegistrationOtp(phone, otp);
+      return apiRes.data;
     } catch (err) {
       throw new Error(extractError(err));
     }
@@ -111,7 +132,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, role, isAuthenticated, loading, login, sendOtp, verifyOtp, register, logout, updateUser }}>
+    <AuthContext.Provider value={{ user, token, role, isAuthenticated, loading, login, sendOtp, verifyOtp, register, sendRegistrationOtp, verifyRegistrationOtp, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
