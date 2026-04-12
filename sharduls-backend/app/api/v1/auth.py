@@ -1,254 +1,66 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+
 from app.core.database import get_db
-from app.core.security import get_current_user_token
-from app.services import auth_service, otp_service
+from app.core.security import get_current_user
 from app.schemas.user import (
-    UserCreate, UserLogin, UserResponse, UserRole,
-    EmailPasswordLogin, PhoneOTPLogin, EmailOTPLogin,
-    SendPhoneOTP, SendEmailOTP, RefreshTokenRequest,
-    AuthResponse, TokenResponse, OTPResponse
+    UserCreate,
+    EmailPasswordLogin,
+    SendPhoneOTP,
+    SendEmailOTP,
+    VerifyOTP,
+    RefreshTokenRequest,
+    UserResponse,
 )
+from app.schemas.response import success_response
+import app.services.auth_service as auth_svc
 
-router = APIRouter()
-
-
-# ==================== REGISTRATION ====================
-
-@router.post("/register", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
-async def register(user_data: UserCreate, db: Session = Depends(get_db)):
-    """
-    Register a new user with role-based registration.
-    - For suppliers: role should be 'seller'
-    - For customers: role should be 'customer' (default)
-    """
-    result = auth_service.register(db, user_data)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 
-@router.post("/supplier/register", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
-async def register_supplier(user_data: UserCreate, db: Session = Depends(get_db)):
-    """
-    Register a new supplier (seller).
-    This endpoint automatically sets the role to 'seller'.
-    """
-    user_data.role = UserRole.SELLER
-    result = auth_service.register(db, user_data)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+@router.post("/register")
+def register(payload: UserCreate, db: Session = Depends(get_db)):
+    result = auth_svc.register(db, payload)
+    return success_response(data=result, message="Registration successful")
 
 
-@router.post("/customer/register", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
-async def register_customer(user_data: UserCreate, db: Session = Depends(get_db)):
-    """
-    Register a new customer.
-    This endpoint automatically sets the role to 'customer'.
-    """
-    user_data.role = UserRole.CUSTOMER
-    result = auth_service.register(db, user_data)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+@router.post("/login")
+def login(payload: EmailPasswordLogin, db: Session = Depends(get_db)):
+    result = auth_svc.login_password(db, payload)
+    return success_response(data=result, message="Login successful")
 
 
-# ==================== LOGIN - EMAIL/PASSWORD ====================
-
-@router.post("/login", response_model=AuthResponse)
-async def login(credentials: UserLogin, db: Session = Depends(get_db)):
-    """Login user with email and password (legacy endpoint)."""
-    result = auth_service.login(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+@router.post("/login-otp")
+def login_otp_phone(payload: SendPhoneOTP, db: Session = Depends(get_db)):
+    result = auth_svc.send_otp(db, payload.phone)
+    return success_response(data=result, message="OTP sent")
 
 
-@router.post("/login/email-password", response_model=AuthResponse)
-async def login_email_password(credentials: EmailPasswordLogin, db: Session = Depends(get_db)):
-    """
-    Login user with email and password.
-    Supports role-based login by specifying the role (optional).
-    """
-    result = auth_service.login_email_password(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+@router.post("/send-email-otp")
+def login_otp_email(payload: SendEmailOTP, db: Session = Depends(get_db)):
+    result = auth_svc.send_otp(db, payload.email)
+    return success_response(data=result, message="OTP sent")
 
 
-@router.post("/supplier/login", response_model=AuthResponse)
-async def supplier_login(credentials: EmailPasswordLogin, db: Session = Depends(get_db)):
-    """
-    Supplier login with email and password.
-    Only allows login for users with 'seller' role.
-    """
-    credentials.role = UserRole.SELLER
-    result = auth_service.login_email_password(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+@router.post("/verify-otp")
+def verify_otp(payload: VerifyOTP, db: Session = Depends(get_db)):
+    result = auth_svc.verify_otp(db, payload)
+    return success_response(data=result, message="OTP verified")
 
 
-@router.post("/customer/login", response_model=AuthResponse)
-async def customer_login(credentials: EmailPasswordLogin, db: Session = Depends(get_db)):
-    """
-    Customer login with email and password.
-    Only allows login for users with 'customer' role.
-    """
-    credentials.role = UserRole.CUSTOMER
-    result = auth_service.login_email_password(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
+@router.post("/refresh-token")
+def refresh_token(payload: RefreshTokenRequest, db: Session = Depends(get_db)):
+    result = auth_svc.refresh_token(db, payload.refresh_token)
+    return success_response(data=result, message="Token refreshed")
 
-
-# ==================== OTP - SEND ====================
-
-@router.post("/otp/send/phone", response_model=OTPResponse)
-async def send_phone_otp(data: SendPhoneOTP):
-    """
-    Send OTP to phone number.
-    OTP will be valid for configured time (default: 10 minutes).
-    """
-    result = otp_service.send_phone_otp(data.phone)
-    return OTPResponse(**result)
-
-
-@router.post("/otp/send/email", response_model=OTPResponse)
-async def send_email_otp(data: SendEmailOTP):
-    """
-    Send OTP to email address.
-    OTP will be valid for configured time (default: 10 minutes).
-    """
-    result = otp_service.send_email_otp(data.email)
-    return OTPResponse(**result)
-
-
-# ==================== LOGIN - OTP ====================
-
-@router.post("/login/phone-otp", response_model=AuthResponse)
-async def login_phone_otp(credentials: PhoneOTPLogin, db: Session = Depends(get_db)):
-    """
-    Login user with phone number and OTP.
-    User must first request OTP using /otp/send/phone endpoint.
-    """
-    result = auth_service.login_phone_otp(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
-
-
-@router.post("/login/email-otp", response_model=AuthResponse)
-async def login_email_otp(credentials: EmailOTPLogin, db: Session = Depends(get_db)):
-    """
-    Login user with email and OTP.
-    User must first request OTP using /otp/send/email endpoint.
-    """
-    result = auth_service.login_email_otp(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
-
-
-@router.post("/customer/login/phone-otp", response_model=AuthResponse)
-async def customer_login_phone_otp(credentials: PhoneOTPLogin, db: Session = Depends(get_db)):
-    """
-    Customer login with phone number and OTP.
-    Only allows login for users with 'customer' role.
-    """
-    credentials.role = UserRole.CUSTOMER
-    result = auth_service.login_phone_otp(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
-
-
-@router.post("/customer/login/email-otp", response_model=AuthResponse)
-async def customer_login_email_otp(credentials: EmailOTPLogin, db: Session = Depends(get_db)):
-    """
-    Customer login with email and OTP.
-    Only allows login for users with 'customer' role.
-    """
-    credentials.role = UserRole.CUSTOMER
-    result = auth_service.login_email_otp(db, credentials)
-    return AuthResponse(
-        access_token=result["access_token"],
-        refresh_token=result["refresh_token"],
-        token_type=result["token_type"],
-        user=UserResponse.from_orm(result["user"])
-    )
-
-
-# ==================== TOKEN MANAGEMENT ====================
-
-@router.post("/refresh", response_model=TokenResponse)
-async def refresh_token_endpoint(data: RefreshTokenRequest, db: Session = Depends(get_db)):
-    """
-    Refresh access token using refresh token.
-    Returns new access and refresh tokens.
-    """
-    result = auth_service.refresh_token(db, data.refresh_token)
-    return TokenResponse(**result)
-
-
-# ==================== USER INFO ====================
-
-@router.get("/me", response_model=UserResponse)
-async def get_current_user(
-    token_payload: dict = Depends(get_current_user_token),
-    db: Session = Depends(get_db)
-):
-    """
-    Get current authenticated user information.
-    Requires valid JWT access token in Authorization header.
-    """
-    user = auth_service.get_current_user(db, token_payload)
-    return UserResponse.from_orm(user)
-
-
-# ==================== LOGOUT ====================
 
 @router.post("/logout")
-async def logout(
-    token_payload: dict = Depends(get_current_user_token)
-):
-    """
-    Logout user.
-    Client should remove tokens from storage.
-    Server-side token invalidation can be implemented with token blacklist.
-    """
-    return {
-        "message": "Successfully logged out",
-        "detail": "Please remove tokens from client storage"
-    }
+def logout(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    result = auth_svc.logout(db, current_user)
+    return success_response(data=result, message="Logged out")
+
+
+@router.get("/me")
+def get_me(current_user=Depends(get_current_user)):
+    user_data = UserResponse.model_validate(current_user).model_dump()
+    return success_response(data=user_data, message="User profile")

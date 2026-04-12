@@ -1,34 +1,137 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, EyeOff, Loader2, ArrowRight } from 'lucide-react';
+import { Loader2, ArrowRight, ChevronDown, X, Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
-const GearIcon = ({ className = '' }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
-  </svg>
-);
+const BG_IMAGE = 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=80';
 
-const FloatingBg = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(42,48,64,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(42,48,64,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-    {[...Array(8)].map((_, i) => (
-      <motion.div key={i} className="absolute text-primary/[0.04]"
-        initial={{ x: `${10 + i * 12}%`, y: '110%' }}
-        animate={{ y: '-10%' }}
-        transition={{ duration: 18 + i * 4, repeat: Infinity, ease: 'linear', delay: i * 2.5 }}
-      >
-        <svg width={40 + i * 10} height={40 + i * 10} viewBox="0 0 100 100" fill="currentColor">
-          {i % 3 === 0 ? <polygon points="50,3 97,25 97,75 50,97 3,75 3,25" /> : i % 3 === 1 ? <circle cx="50" cy="50" r="45" /> : <polygon points="50,5 95,50 50,95 5,50" />}
-        </svg>
-      </motion.div>
+const PRODUCT_CATEGORIES = [
+  'Electronics & Components', 'Textiles & Fabrics', 'Machinery & Equipment',
+  'Food & Beverages', 'Chemicals & Petrochemicals', 'Medical Devices & Pharma',
+  'Steel & Metal Products', 'Furniture & Fixtures', 'Plastics & Rubber',
+  'Automotive Parts', 'Agriculture & Organic', 'Packaging Materials',
+  'Jewellery & Gems', 'Leather Goods', 'Handicrafts & Artware',
+];
+
+const BUSINESS_MODELS = ['B2B', 'B2C', 'Both'];
+
+const ic = 'w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 placeholder-gray-400 transition-all';
+
+/* ── Stepper ── */
+const Stepper = ({ step }) => (
+  <div className="flex items-center justify-center mb-7">
+    {[1, 2].map((s, idx) => (
+      <React.Fragment key={s}>
+        <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all ${
+          step >= s ? 'bg-violet-600 border-violet-600 text-white' : 'bg-white border-gray-300 text-gray-400'
+        }`}>{step > s ? <Check size={16} /> : s}</div>
+        {idx === 0 && (
+          <div className="flex-1 mx-2 h-1 rounded-full overflow-hidden bg-gray-200 max-w-[80px]">
+            <div className={`h-full rounded-full transition-all duration-500 ${step > 1 ? 'w-full bg-violet-600' : 'w-0'}`} />
+          </div>
+        )}
+      </React.Fragment>
     ))}
   </div>
 );
 
+/* ── Multi-select dropdown ── */
+const MultiSelect = ({ options, value, onChange, placeholder, error }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const toggle = (opt) => {
+    onChange(value.includes(opt) ? value.filter((v) => v !== opt) : [...value, opt]);
+  };
+
+  return (
+    <div ref={ref} className="relative">
+      <button type="button" onClick={() => setOpen(!open)}
+        className={`w-full px-4 py-2.5 bg-white border rounded-xl text-sm text-left flex items-center justify-between transition-all ${
+          error ? 'border-red-400 focus:ring-red-200' : open ? 'border-violet-400 ring-2 ring-violet-200' : 'border-gray-200 hover:border-gray-300'
+        }`}>
+        <span className={value.length ? 'text-gray-800' : 'text-gray-400'}>
+          {value.length ? `${value.length} selected` : placeholder}
+        </span>
+        <ChevronDown size={16} className={`text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      {/* Selected tags */}
+      {value.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {value.map((v) => (
+            <span key={v} className="inline-flex items-center gap-1 px-2.5 py-1 bg-violet-50 text-violet-700 text-xs rounded-lg border border-violet-200 font-medium">
+              {v}
+              <button type="button" onClick={() => toggle(v)} className="hover:text-violet-900 cursor-pointer"><X size={12} /></button>
+            </span>
+          ))}
+        </div>
+      )}
+
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}
+            className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-52 overflow-y-auto">
+            {options.map((opt) => (
+              <button key={opt} type="button" onClick={() => toggle(opt)}
+                className={`w-full px-4 py-2.5 text-left text-sm flex items-center justify-between hover:bg-violet-50 transition-colors ${value.includes(opt) ? 'text-violet-700 font-medium bg-violet-50/60' : 'text-gray-700'}`}>
+                {opt}
+                {value.includes(opt) && <Check size={14} className="text-violet-600 flex-shrink-0" />}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+/* ── Single Select dropdown ── */
+const SingleSelect = ({ options, value, onChange, placeholder, error }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button type="button" onClick={() => setOpen(!open)}
+        className={`w-full px-4 py-2.5 bg-white border rounded-xl text-sm text-left flex items-center justify-between transition-all ${
+          error ? 'border-red-400' : open ? 'border-violet-400 ring-2 ring-violet-200' : 'border-gray-200 hover:border-gray-300'
+        }`}>
+        <span className={value ? 'text-gray-800 font-medium' : 'text-gray-400'}>{value || placeholder}</span>
+        <ChevronDown size={16} className={`text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}
+            className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+            {options.map((opt) => (
+              <button key={opt} type="button" onClick={() => { onChange(opt); setOpen(false); }}
+                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-violet-50 transition-colors ${value === opt ? 'text-violet-700 font-semibold bg-violet-50' : 'text-gray-700'}`}>
+                {opt}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+/* ── OTP Box ── */
 const OtpInput = ({ length = 6, value, onChange }) => {
   const refs = useRef([]);
   const handleChange = (i, v) => {
@@ -42,163 +145,295 @@ const OtpInput = ({ length = 6, value, onChange }) => {
   return (
     <div className="flex gap-2 justify-center">
       {Array.from({ length }).map((_, i) => (
-        <motion.input key={i} ref={(el) => (refs.current[i] = el)} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
-          type="text" inputMode="numeric" maxLength={1} value={value[i] || ''} onChange={(e) => handleChange(i, e.target.value)} onKeyDown={(e) => handleKey(i, e)}
-          className="w-11 h-12 text-center text-lg font-bold bg-[#0A0D14] border border-border rounded-xl text-highlight outline-none focus:ring-1 focus:ring-primary transition-all" />
+        <input key={i} ref={(el) => (refs.current[i] = el)}
+          type="text" inputMode="numeric" maxLength={1} value={value[i] || ''}
+          onChange={(e) => handleChange(i, e.target.value)} onKeyDown={(e) => handleKey(i, e)}
+          className="w-11 h-12 text-center text-lg font-bold bg-white border-2 border-gray-200 rounded-xl text-gray-800 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all" />
       ))}
     </div>
   );
 };
 
-const strengthLevel = (pw) => { let s = 0; if (pw.length >= 8) s++; if (/[A-Z]/.test(pw)) s++; if (/[0-9]/.test(pw)) s++; if (/[^A-Za-z0-9]/.test(pw)) s++; return s; };
-const strengthColor = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500', 'bg-green-600'];
-const strengthLabel = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
-
+/* ── Main Component ── */
 const RegisterPage = () => {
-  const [tab, setTab] = useState('email');
-  const [form, setForm] = useState({ name: '', businessName: '', email: '', phone: '', password: '', confirm: '' });
-  const [showPw, setShowPw] = useState(false);
-  const [terms, setTerms] = useState(false);
+  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [phoneForm, setPhoneForm] = useState({ name: '', businessName: '', phone: '' });
-  const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [timer, setTimer] = useState(0);
-  const [phoneTerms, setPhoneTerms] = useState(false);
-  const { register, registerWithPhone, sendOtp, verifyOtp } = useAuth();
+  const [terms, setTerms] = useState(false);
+  const [keepSigned, setKeepSigned] = useState(false);
+
+  const [step1, setStep1] = useState({ phone: '', otp: '', email: '', fullName: '' });
+  const [step2, setStep2] = useState({ businessModel: '', products: [], gstin: '' });
+
+  const { register, sendOtp, verifyOtp } = useAuth();
   const { addToast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => { if (timer > 0) { const t = setTimeout(() => setTimer(timer - 1), 1000); return () => clearTimeout(t); } }, [timer]);
 
-  const up = (k, v) => setForm((p) => ({ ...p, [k]: v }));
-  const pwStr = strengthLevel(form.password);
-  const ic = 'w-full px-4 py-2.5 bg-[#0A0D14] border border-border rounded-xl text-sm text-highlight outline-none focus:ring-1 focus:ring-primary placeholder-muted transition-all';
+  const up1 = (k, v) => setStep1((p) => ({ ...p, [k]: v }));
+  const up2 = (k, v) => setStep2((p) => ({ ...p, [k]: v }));
 
-  const validate = () => {
+  /* ── Step 1 validation ── */
+  const validateStep1 = () => {
     const e = {};
-    if (!form.name.trim()) e.name = 'Required';
-    if (!form.businessName.trim()) e.businessName = 'Required';
-    if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Invalid email';
-    if (form.password.length < 8) e.password = 'Min 8 characters';
-    else if (!/[A-Z]/.test(form.password)) e.password = 'Need 1 uppercase';
-    else if (!/[0-9]/.test(form.password)) e.password = 'Need 1 number';
-    if (form.password !== form.confirm) e.confirm = 'Passwords don\'t match';
-    if (!terms) e.terms = 'Accept terms to continue';
+    if (!/^\d{10}$/.test(step1.phone)) e.phone = 'Enter a valid 10-digit phone number';
+    if (!otpSent) { e.otp = 'Please send and verify OTP first'; }
+    else if (step1.otp.length !== 6) e.otp = 'Enter the 6-digit OTP';
+    if (!step1.email.trim()) e.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(step1.email)) e.email = 'Enter a valid email address';
+    if (!step1.fullName.trim()) e.fullName = 'Full name is required';
+    else if (step1.fullName.trim().length < 2) e.fullName = 'Name must be at least 2 characters';
+    if (!terms) e.terms = 'You must accept the Terms & Conditions';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
-  const handleEmailRegister = async (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-    setLoading(true);
-    try {
-      const user = await register({ ...form, phone: form.phone || '0000000000' });
-      addToast(`Welcome, ${user.name}!`, 'success');
-      navigate('/dashboard');
-    } catch (err) { setErrors({ form: err.message }); } finally { setLoading(false); }
+  /* ── Step 2 validation ── */
+  const validateStep2 = () => {
+    const e = {};
+    if (!step2.businessModel) e.businessModel = 'Please select a business model';
+    if (step2.products.length === 0) e.products = 'Select at least one product category';
+    if (!step2.gstin.trim()) e.gstin = 'GSTIN is required';
+    else if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(step2.gstin.trim().toUpperCase()))
+      e.gstin = 'Enter a valid GSTIN (e.g. 22AAAAA0000A1Z5)';
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
-  const handlePhoneSendOtp = async () => {
-    setErrors({});
-    if (!phoneForm.name.trim()) { setErrors({ pname: 'Required' }); return; }
-    if (!phoneForm.businessName.trim()) { setErrors({ pbiz: 'Required' }); return; }
-    if (!/^\d{10}$/.test(phoneForm.phone)) { setErrors({ pphone: '10 digits required' }); return; }
-    if (!phoneTerms) { setErrors({ pterms: 'Accept terms' }); return; }
+  const handleSendOtp = async () => {
+    const e = {};
+    if (!/^\d{10}$/.test(step1.phone)) { e.phone = 'Enter a valid 10-digit phone number'; setErrors(e); return; }
     setLoading(true);
     try {
-      await sendOtp(phoneForm.phone).catch(() => {});
+      await sendOtp('+91' + step1.phone);
       setOtpSent(true); setTimer(30);
-      addToast('OTP sent!', 'info');
-    } catch { /* new phone, that's fine */ setOtpSent(true); setTimer(30); } finally { setLoading(false); }
+      addToast('OTP sent to +91' + step1.phone, 'info');
+    } catch (err) {
+      setErrors({ phone: err.message });
+    } finally { setLoading(false); }
   };
 
-  const handlePhoneVerify = async () => {
-    setErrors({});
-    if (otp.length !== 6) { setErrors({ otp: 'Enter 6-digit OTP' }); return; }
-    if (otp !== '123456') { setErrors({ otp: 'Invalid OTP. Please try again.' }); return; }
+  const handleNext = () => {
+    if (validateStep1()) setStep(2);
+  };
+
+  const handleSubmit = async () => {
+    if (!validateStep2()) return;
     setLoading(true);
     try {
-      const user = await registerWithPhone(phoneForm);
-      addToast(`Welcome, ${user.name}!`, 'success');
+      const user = await register({
+        name: step1.fullName,
+        email: step1.email,
+        phone: '+91' + step1.phone,
+        password: 'Temp@' + Math.random().toString(36).slice(2, 10),
+        role: 'supplier',
+      });
+      addToast(`Welcome, ${user.full_name || user.name}!`, 'success');
       navigate('/dashboard');
-    } catch (err) { setErrors({ form: err.message }); } finally { setLoading(false); }
+    } catch (err) {
+      setErrors({ submit: err.message });
+    } finally { setLoading(false); }
   };
 
-  const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
-  const fadeUp = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
+  const FieldError = ({ name }) => errors[name]
+    ? <p className="mt-1 text-xs text-red-500">{errors[name]}</p>
+    : null;
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4 py-10 relative">
-      <FloatingBg />
-      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.4 }} className="relative z-10 w-full max-w-lg">
-        <motion.div variants={stagger} initial="hidden" animate="show" className="bg-surface border border-border rounded-2xl shadow-strong p-8 sm:p-10">
-          <motion.div variants={fadeUp} className="text-center mb-5">
-            <div className="w-14 h-14 mx-auto mb-3 rounded-xl chrome-gradient flex items-center justify-center">
-              <GearIcon className="w-7 h-7 text-background animate-gearSpin" />
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden py-8">
+      {/* Background */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${BG_IMAGE}')` }} />
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-900/70 via-purple-800/60 to-indigo-900/70" />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: 'easeOut' }}
+        className="relative z-10 w-full max-w-md mx-4"
+      >
+        <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-10">
+
+          {/* Stepper */}
+          <Stepper step={step} />
+
+          {/* Header */}
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-gray-900">
+              {step === 1 ? 'Step 1 : Signup' : 'Step 2 : Important Details'}
+            </h2>
+          </div>
+
+          {errors.submit && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl">
+              <p className="text-red-600 text-xs">{errors.submit}</p>
             </div>
-            <h1 className="text-2xl font-bold text-highlight tracking-wide">Create Supplier Account</h1>
-            <p className="text-muted text-xs mt-1">Join our global trading network</p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="h-px bg-border mb-5" />
-
-          <motion.div variants={fadeUp} className="flex bg-[#0A0D14] rounded-xl p-1 mb-5">
-            {['email', 'phone'].map((t) => (
-              <button key={t} onClick={() => { setTab(t); setErrors({}); }} className={`flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all ${tab === t ? 'bg-accent text-white shadow-lg' : 'text-muted hover:text-highlight'}`}>
-                {t === 'email' ? 'Email Registration' : 'Phone Registration'}
-              </button>
-            ))}
-          </motion.div>
-
-          {errors.form && <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl"><p className="text-red-400 text-xs">{errors.form}</p></div>}
+          )}
 
           <AnimatePresence mode="wait">
-            {tab === 'email' ? (
-              <motion.form key="email-reg" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.2 }} onSubmit={handleEmailRegister} className="space-y-3">
-                <motion.div variants={fadeUp}><label className="block text-xs font-semibold text-highlight mb-1">Full Name</label><input value={form.name} onChange={(e) => up('name', e.target.value)} className={ic} placeholder="Your full name" />{errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}</motion.div>
-                <motion.div variants={fadeUp}><label className="block text-xs font-semibold text-highlight mb-1">Business Name</label><input value={form.businessName} onChange={(e) => up('businessName', e.target.value)} className={ic} placeholder="Company / brand" />{errors.businessName && <p className="mt-1 text-xs text-red-400">{errors.businessName}</p>}</motion.div>
-                <motion.div variants={fadeUp}><label className="block text-xs font-semibold text-highlight mb-1">Email Address</label><input type="email" value={form.email} onChange={(e) => up('email', e.target.value)} className={ic} placeholder="you@company.com" />{errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}</motion.div>
-                <motion.div variants={fadeUp}>
-                  <label className="block text-xs font-semibold text-highlight mb-1">Password</label>
-                  <div className="relative">
-                    <input type={showPw ? 'text' : 'password'} value={form.password} onChange={(e) => up('password', e.target.value)} className={`${ic} pr-10`} placeholder="Min 8 chars, 1 uppercase, 1 number" />
-                    <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-highlight cursor-pointer">{showPw ? <EyeOff size={18} /> : <Eye size={18} />}</button>
+            {step === 1 ? (
+              <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.22 }} className="space-y-4">
+
+                {/* Phone */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    Phone number <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center gap-1.5 px-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-600 whitespace-nowrap">
+                      <span>🇮🇳</span><span>+91</span>
+                    </div>
+                    <input type="tel" value={step1.phone}
+                      onChange={(e) => up1('phone', e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      className={ic} placeholder="Enter Phone Number" disabled={otpSent} />
                   </div>
-                  {form.password && <div className="mt-1.5 flex items-center gap-2"><div className="flex-1 flex gap-1">{[0,1,2,3].map((i) => <div key={i} className={`h-1 flex-1 rounded-full ${i < pwStr ? strengthColor[pwStr] : 'bg-border'}`} />)}</div><span className="text-[10px] text-muted">{strengthLabel[pwStr]}</span></div>}
-                  {errors.password && <p className="mt-1 text-xs text-red-400">{errors.password}</p>}
-                </motion.div>
-                <motion.div variants={fadeUp}><label className="block text-xs font-semibold text-highlight mb-1">Confirm Password</label><input type="password" value={form.confirm} onChange={(e) => up('confirm', e.target.value)} className={ic} placeholder="Repeat password" />{errors.confirm && <p className="mt-1 text-xs text-red-400">{errors.confirm}</p>}</motion.div>
-                <motion.div variants={fadeUp}><label className="flex items-start gap-2 cursor-pointer"><input type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} className="w-4 h-4 rounded border-border accent-[#E53E3E] mt-0.5" /><span className="text-xs text-muted leading-relaxed">I agree to the <span className="text-primary font-semibold cursor-pointer">Terms & Conditions</span></span></label>{errors.terms && <p className="mt-1 text-xs text-red-400">{errors.terms}</p>}</motion.div>
-                <motion.div variants={fadeUp}>
-                  <button type="submit" disabled={loading} className="w-full py-3 chrome-gradient text-background font-bold rounded-xl hover:shadow-chrome hover:brightness-110 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2">
-                    {loading ? <><Loader2 size={16} className="animate-spin" /> Creating…</> : <>Register <ArrowRight size={16} /></>}
-                  </button>
-                </motion.div>
-              </motion.form>
+                  <FieldError name="phone" />
+                  {!otpSent && (
+                    <button type="button" onClick={handleSendOtp} disabled={loading}
+                      className="mt-2 text-xs text-violet-600 font-semibold hover:text-violet-700 cursor-pointer disabled:opacity-50 flex items-center gap-1">
+                      {loading ? <Loader2 size={12} className="animate-spin" /> : null}
+                      Send OTP
+                    </button>
+                  )}
+                  {otpSent && (
+                    <div className="flex items-center justify-between mt-1">
+                      <span className="text-xs text-green-600 font-medium">✓ OTP sent</span>
+                      {timer > 0
+                        ? <span className="text-xs text-gray-400">Resend in {timer}s</span>
+                        : <button type="button" onClick={handleSendOtp} className="text-xs text-violet-600 font-semibold cursor-pointer">Resend</button>}
+                    </div>
+                  )}
+                </div>
+
+                {/* OTP */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    OTP <span className="text-red-500">*</span>
+                  </label>
+                  <input type="text" inputMode="numeric" maxLength={6} value={step1.otp}
+                    onChange={(e) => up1('otp', e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    className={ic} placeholder="Enter OTP" />
+                  <FieldError name="otp" />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    Email ID <span className="text-red-500">*</span>
+                  </label>
+                  <input type="email" value={step1.email} onChange={(e) => up1('email', e.target.value)}
+                    className={ic} placeholder="Enter Email Id" />
+                  <FieldError name="email" />
+                </div>
+
+                {/* Full Name */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <input type="text" value={step1.fullName} onChange={(e) => up1('fullName', e.target.value)}
+                    className={ic} placeholder="Enter Full Name" />
+                  <FieldError name="fullName" />
+                </div>
+
+                {/* Terms */}
+                <div>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)}
+                      className="w-4 h-4 rounded accent-violet-600" />
+                    <span className="text-xs text-gray-600">
+                      I Accept The{' '}
+                      <span className="text-violet-600 font-semibold underline cursor-pointer">Terms and Conditions</span>
+                    </span>
+                  </label>
+                  <FieldError name="terms" />
+                </div>
+
+                {/* Keep signed in */}
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={keepSigned} onChange={(e) => setKeepSigned(e.target.checked)}
+                    className="w-4 h-4 rounded accent-violet-600" />
+                  <span className="text-xs text-gray-600">
+                    Keep me signed in{' '}
+                    <span className="text-violet-600 font-semibold underline cursor-pointer">Details</span>
+                  </span>
+                </label>
+
+                {/* Next button */}
+                <button type="button" onClick={handleNext}
+                  className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md mt-2">
+                  Next <ArrowRight size={16} />
+                </button>
+              </motion.div>
             ) : (
-              <motion.div key="phone-reg" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }} className="space-y-3">
-                <div><label className="block text-xs font-semibold text-highlight mb-1">Full Name</label><input value={phoneForm.name} onChange={(e) => setPhoneForm({ ...phoneForm, name: e.target.value })} className={ic} placeholder="Your full name" disabled={otpSent} />{errors.pname && <p className="mt-1 text-xs text-red-400">{errors.pname}</p>}</div>
-                <div><label className="block text-xs font-semibold text-highlight mb-1">Business Name</label><input value={phoneForm.businessName} onChange={(e) => setPhoneForm({ ...phoneForm, businessName: e.target.value })} className={ic} placeholder="Company / brand" disabled={otpSent} />{errors.pbiz && <p className="mt-1 text-xs text-red-400">{errors.pbiz}</p>}</div>
-                <div><label className="block text-xs font-semibold text-highlight mb-1">Phone Number</label><div className="flex gap-2"><div className="flex items-center gap-1 px-3 bg-[#0A0D14] border border-border rounded-xl text-sm text-muted"><span>🇮🇳</span><span>+91</span></div><input type="tel" value={phoneForm.phone} onChange={(e) => setPhoneForm({ ...phoneForm, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })} className={ic} placeholder="10 digit number" disabled={otpSent} /></div>{errors.pphone && <p className="mt-1 text-xs text-red-400">{errors.pphone}</p>}</div>
-                <div><label className="flex items-start gap-2 cursor-pointer"><input type="checkbox" checked={phoneTerms} onChange={(e) => setPhoneTerms(e.target.checked)} className="w-4 h-4 rounded border-border accent-[#E53E3E] mt-0.5" /><span className="text-xs text-muted leading-relaxed">I agree to the <span className="text-primary font-semibold">Terms & Conditions</span></span></label>{errors.pterms && <p className="mt-1 text-xs text-red-400">{errors.pterms}</p>}</div>
-                {!otpSent ? (
-                  <button onClick={handlePhoneSendOtp} disabled={loading} className="w-full py-3 chrome-gradient text-background font-bold rounded-xl hover:shadow-chrome hover:brightness-110 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2">{loading ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Send OTP <ArrowRight size={16} /></>}</button>
-                ) : (
-                  <>
-                    <div><label className="block text-xs font-semibold text-highlight mb-2 text-center">Enter 6-digit OTP</label><OtpInput value={otp} onChange={setOtp} />{errors.otp && <p className="mt-1 text-xs text-red-400 text-center">{errors.otp}</p>}</div>
-                    <div className="text-center">{timer > 0 ? <p className="text-xs text-muted">Resend in {timer}s</p> : <button onClick={handlePhoneSendOtp} className="text-xs text-primary font-semibold cursor-pointer">Resend OTP</button>}</div>
-                    <button onClick={handlePhoneVerify} disabled={loading} className="w-full py-3 chrome-gradient text-background font-bold rounded-xl hover:shadow-chrome hover:brightness-110 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2">{loading ? <><Loader2 size={16} className="animate-spin" /> Verifying…</> : <>Verify & Register <ArrowRight size={16} /></>}</button>
-                  </>
-                )}
+              <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.22 }} className="space-y-5">
+
+                {/* Business Model */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    What is your business model? <span className="text-red-500">*</span>
+                  </label>
+                  <SingleSelect
+                    options={BUSINESS_MODELS}
+                    value={step2.businessModel}
+                    onChange={(v) => up2('businessModel', v)}
+                    placeholder="Select"
+                    error={errors.businessModel}
+                  />
+                  <FieldError name="businessModel" />
+                </div>
+
+                {/* Products Multi-select */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    Products You Wish To Sell <span className="text-red-500">*</span>
+                  </label>
+                  <MultiSelect
+                    options={PRODUCT_CATEGORIES}
+                    value={step2.products}
+                    onChange={(v) => up2('products', v)}
+                    placeholder="Categories"
+                    error={errors.products}
+                  />
+                  <FieldError name="products" />
+                </div>
+
+                {/* GSTIN */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+                    GSTIN <span className="text-red-500">*</span>
+                  </label>
+                  <input type="text" value={step2.gstin}
+                    onChange={(e) => up2('gstin', e.target.value.toUpperCase())}
+                    className={`${ic} uppercase tracking-widest`}
+                    placeholder="Enter GSTIN"
+                    maxLength={15}
+                  />
+                  <FieldError name="gstin" />
+                </div>
+
+                {/* Buttons */}
+                <div className="flex gap-3 pt-1">
+                  <button type="button" onClick={() => { setStep(1); setErrors({}); }}
+                    className="flex-1 py-3 bg-white border border-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all cursor-pointer">
+                    Back
+                  </button>
+                  <button type="button" onClick={handleSubmit} disabled={loading}
+                    className="flex-1 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 shadow-md">
+                    {loading ? <><Loader2 size={16} className="animate-spin" /> Submitting…</> : 'Submit'}
+                  </button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <motion.p variants={fadeUp} className="text-center text-xs text-muted mt-5">Already have an account? <Link to="/login" className="text-primary font-semibold hover:text-primary-light">Sign In</Link></motion.p>
-        </motion.div>
+          <p className="text-center text-xs text-gray-500 mt-6">
+            Already have an account?{' '}
+            <Link to="/login" className="text-violet-600 font-semibold hover:text-violet-700">Sign In</Link>
+          </p>
+        </div>
       </motion.div>
     </div>
   );

@@ -1,15 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
+import authService from '../api/authService';
 
 export const AuthContext = createContext(null);
 
-const MOCK_USER = {
-  id: 1,
-  name: 'Sophie Martin',
-  email: 'sophie@example.com',
-  phone: '+33 6 12 34 56 78',
-  avatar: 'https://picsum.photos/100/100?random=200',
-  role: 'buyer',
-  loyaltyPoints: 1250,
+const TOKEN_KEYS = {
+  access: 'access_token',
+  refresh: 'refresh_token',
+  user: 'user',
 };
 
 export const AuthProvider = ({ children }) => {
@@ -19,61 +16,77 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem('buyer_auth');
-    if (stored) {
+    const accessToken = localStorage.getItem(TOKEN_KEYS.access);
+    const storedUser = localStorage.getItem(TOKEN_KEYS.user);
+    if (accessToken && storedUser) {
       try {
-        const parsed = JSON.parse(stored);
-        setUser(parsed.user);
-        setToken(parsed.token);
+        const parsed = JSON.parse(storedUser);
+        setUser(parsed);
+        setToken(accessToken);
         setIsAuthenticated(true);
       } catch { /* ignore */ }
     }
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
-    // Mock login: any email + password "password123" = success
-    if (password !== 'password123') {
-      throw new Error('Mot de passe incorrect');
-    }
-    const userData = { ...MOCK_USER, email };
-    const tokenData = 'mock-jwt-token-' + Date.now();
+  const persist = (userData, tokens) => {
     setUser(userData);
-    setToken(tokenData);
+    setToken(tokens.access_token);
     setIsAuthenticated(true);
-    localStorage.setItem('buyer_auth', JSON.stringify({ user: userData, token: tokenData }));
-    localStorage.setItem('buyer_role', 'buyer');
-    return userData;
+    localStorage.setItem(TOKEN_KEYS.access, tokens.access_token);
+    localStorage.setItem(TOKEN_KEYS.refresh, tokens.refresh_token);
+    localStorage.setItem(TOKEN_KEYS.user, JSON.stringify(userData));
+  };
+
+  const extractError = (err) => {
+    const resp = err.response?.data;
+    if (resp?.message) return resp.message;
+    if (resp?.details) return Object.values(resp.details).join(', ');
+    return err.message || 'Something went wrong';
+  };
+
+  const login = async (email, password) => {
+    try {
+      const res = await authService.loginEmailPassword({ email, password });
+      const { user: userData, tokens } = res.data;
+      persist(userData, tokens);
+      return userData;
+    } catch (err) {
+      throw new Error(extractError(err));
+    }
   };
 
   const register = async ({ name, email, phone, password }) => {
-    if (password.length < 8) throw new Error('Le mot de passe doit contenir au moins 8 caractères');
-    const userData = { ...MOCK_USER, name, email, phone };
-    const tokenData = 'mock-jwt-token-' + Date.now();
-    setUser(userData);
-    setToken(tokenData);
-    setIsAuthenticated(true);
-    localStorage.setItem('buyer_auth', JSON.stringify({ user: userData, token: tokenData }));
-    localStorage.setItem('buyer_role', 'buyer');
-    return userData;
+    try {
+      const res = await authService.register({ name, email, phone, password });
+      const { user: userData, tokens } = res.data;
+      persist(userData, tokens);
+      return userData;
+    } catch (err) {
+      throw new Error(extractError(err));
+    }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await authService.logout();
+    } catch { /* ignore */ }
     setUser(null);
     setToken(null);
     setIsAuthenticated(false);
-    localStorage.removeItem('buyer_auth');
-    localStorage.removeItem('buyer_role');
+    localStorage.removeItem(TOKEN_KEYS.access);
+    localStorage.removeItem(TOKEN_KEYS.refresh);
+    localStorage.removeItem(TOKEN_KEYS.user);
   };
 
   const updateProfile = (updates) => {
     const updated = { ...user, ...updates };
     setUser(updated);
-    localStorage.setItem('buyer_auth', JSON.stringify({ user: updated, token }));
+    localStorage.setItem(TOKEN_KEYS.user, JSON.stringify(updated));
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, isAuthenticated, loading, role: 'buyer', login, register, logout, updateProfile }}>
+    <AuthContext.Provider value={{ user, token, isAuthenticated, loading, role: user?.role || 'buyer', login, register, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

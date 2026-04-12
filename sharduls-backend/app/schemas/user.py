@@ -1,61 +1,50 @@
-from pydantic import BaseModel, EmailStr, Field
-from typing import Optional
 from datetime import datetime
-from enum import Enum
+from typing import Optional, List
+from pydantic import BaseModel, EmailStr, Field, field_validator
+import re
+
+from app.models.user import UserRole
 
 
-class UserRole(str, Enum):
-    CUSTOMER = "customer"
-    SELLER = "seller"
-    ADMIN = "admin"
+# --------------- Auth schemas ---------------
+
+class UserCreate(BaseModel):
+    full_name: str = Field(..., min_length=2, max_length=150)
+    email: EmailStr
+    phone: Optional[str] = Field(None, max_length=20)
+    password: str = Field(..., min_length=8, max_length=128)
+    role: UserRole = UserRole.buyer
+
+    @field_validator("phone")
+    @classmethod
+    def validate_phone(cls, v):
+        if v is not None:
+            cleaned = re.sub(r"[\s\-]", "", v)
+            if not re.match(r"^\+?\d{10,15}$", cleaned):
+                raise ValueError("Invalid phone number format")
+        return v
 
 
-# ==================== BASE SCHEMAS ====================
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
 
-class UserBase(BaseModel):
-    email: Optional[EmailStr] = None
-    full_name: str = Field(..., min_length=2, max_length=100)
-    phone: Optional[str] = None
-
-
-# ==================== REGISTRATION ====================
-
-class UserCreate(UserBase):
-    password: str = Field(..., min_length=8)
-    role: UserRole = UserRole.CUSTOMER
-    email: EmailStr  # Email is required for registration
-
-
-# ==================== LOGIN SCHEMAS ====================
 
 class EmailPasswordLogin(BaseModel):
     email: EmailStr
     password: str
-    role: Optional[UserRole] = None
 
 
 class PhoneOTPLogin(BaseModel):
-    phone: str = Field(..., min_length=10, max_length=15)
-    otp: str = Field(..., min_length=6, max_length=6)
-    role: Optional[UserRole] = None
+    phone: str = Field(..., max_length=20)
 
 
 class EmailOTPLogin(BaseModel):
     email: EmailStr
-    otp: str = Field(..., min_length=6, max_length=6)
-    role: Optional[UserRole] = None
 
-
-class UserLogin(BaseModel):
-    """Legacy login schema - supports email/password"""
-    email: EmailStr
-    password: str
-
-
-# ==================== OTP SCHEMAS ====================
 
 class SendPhoneOTP(BaseModel):
-    phone: str = Field(..., min_length=10, max_length=15)
+    phone: str = Field(..., max_length=20)
 
 
 class SendEmailOTP(BaseModel):
@@ -63,64 +52,17 @@ class SendEmailOTP(BaseModel):
 
 
 class VerifyOTP(BaseModel):
-    identifier: str  # phone or email
-    otp: str = Field(..., min_length=6, max_length=6)
-
-
-class OTPResponse(BaseModel):
-    message: str
-    expires_in: int  # seconds
-
-
-# ==================== USER UPDATE ====================
-
-class UserUpdate(BaseModel):
-    full_name: Optional[str] = Field(None, min_length=2, max_length=100)
-    phone: Optional[str] = None
-    profile_image: Optional[str] = None
-
-
-# ==================== USER RESPONSE ====================
-
-class UserResponse(UserBase):
-    id: int
-    role: UserRole
-    is_active: bool
-    is_verified: bool
-    is_email_verified: bool
-    is_phone_verified: bool
-    profile_image: Optional[str]
-    created_at: datetime
-    last_login: Optional[datetime]
-
-    class Config:
-        from_attributes = True
-
-
-# ==================== TOKEN SCHEMAS ====================
-
-class TokenResponse(BaseModel):
-    access_token: str
-    refresh_token: str
-    token_type: str = "bearer"
-
-
-class AuthResponse(BaseModel):
-    access_token: str
-    refresh_token: str
-    token_type: str = "bearer"
-    user: UserResponse
+    identifier: str  # email or phone
+    otp: str = Field(..., min_length=4, max_length=10)
 
 
 class RefreshTokenRequest(BaseModel):
     refresh_token: str
 
 
-# ==================== PASSWORD MANAGEMENT ====================
-
 class PasswordChange(BaseModel):
     old_password: str
-    new_password: str = Field(..., min_length=8)
+    new_password: str = Field(..., min_length=8, max_length=128)
 
 
 class PasswordReset(BaseModel):
@@ -129,207 +71,218 @@ class PasswordReset(BaseModel):
 
 class PasswordResetConfirm(BaseModel):
     token: str
-    new_password: str = Field(..., min_length=8)
+    new_password: str = Field(..., min_length=8, max_length=128)
 
 
-# ==================== ADDRESS SCHEMAS ====================
+# --------------- Response schemas ---------------
 
-class AddressBase(BaseModel):
+class UserResponse(BaseModel):
+    id: int
     full_name: str
-    phone: str
+    email: str
+    phone: Optional[str] = None
+    role: UserRole
+    is_active: bool
+    is_verified: bool
+    avatar_url: Optional[str] = None
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+
+
+class OTPResponse(BaseModel):
+    message: str
+    expires_in_minutes: int
+
+
+class AuthResponse(BaseModel):
+    success: bool = True
+    message: str
+    data: Optional[dict] = None
+
+
+class UserUpdate(BaseModel):
+    full_name: Optional[str] = Field(None, min_length=2, max_length=150)
+    phone: Optional[str] = Field(None, max_length=20)
+    avatar_url: Optional[str] = None
+
+
+# --------------- Address schemas ---------------
+
+class AddressCreate(BaseModel):
+    label: Optional[str] = None
+    address_line1: str = Field(..., max_length=255)
+    address_line2: Optional[str] = Field(None, max_length=255)
+    city: str = Field(..., max_length=100)
+    state: str = Field(..., max_length=100)
+    pincode: str = Field(..., max_length=10)
+    country: str = Field(default="India", max_length=100)
+    is_default: bool = False
+
+
+class AddressUpdate(BaseModel):
+    label: Optional[str] = None
+    address_line1: Optional[str] = Field(None, max_length=255)
+    address_line2: Optional[str] = Field(None, max_length=255)
+    city: Optional[str] = Field(None, max_length=100)
+    state: Optional[str] = Field(None, max_length=100)
+    pincode: Optional[str] = Field(None, max_length=10)
+    country: Optional[str] = Field(None, max_length=100)
+    is_default: Optional[bool] = None
+
+
+class AddressResponse(BaseModel):
+    id: int
+    label: Optional[str] = None
     address_line1: str
     address_line2: Optional[str] = None
     city: str
     state: str
     pincode: str
-    country: str = "India"
-    address_type: str = "home"
-    is_default: bool = False
-
-
-class AddressCreate(AddressBase):
-    pass
-
-
-class AddressUpdate(BaseModel):
-    full_name: Optional[str] = None
-    phone: Optional[str] = None
-    address_line1: Optional[str] = None
-    address_line2: Optional[str] = None
-    city: Optional[str] = None
-    state: Optional[str] = None
-    pincode: Optional[str] = None
-    country: Optional[str] = None
-    address_type: Optional[str] = None
-    is_default: Optional[bool] = None
-
-
-class AddressResponse(AddressBase):
-    id: int
-    user_id: int
+    country: str
+    is_default: bool
     created_at: datetime
-    updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 
-# ==================== BUSINESS PROFILE SCHEMAS ====================
+# --------------- Business Profile schemas ---------------
 
-class UserBusinessProfileBase(BaseModel):
-    business_name: Optional[str] = None
+class UserBusinessProfileCreate(BaseModel):
+    company_name: str = Field(..., max_length=255)
+    gst_number: Optional[str] = Field(None, max_length=20)
+    pan_number: Optional[str] = Field(None, max_length=15)
+    business_type: Optional[str] = Field(None, max_length=100)
+    website: Optional[str] = Field(None, max_length=255)
+    description: Optional[str] = None
+
+
+class UserBusinessProfileUpdate(BaseModel):
+    company_name: Optional[str] = Field(None, max_length=255)
+    gst_number: Optional[str] = Field(None, max_length=20)
+    pan_number: Optional[str] = Field(None, max_length=15)
+    business_type: Optional[str] = Field(None, max_length=100)
+    website: Optional[str] = Field(None, max_length=255)
+    description: Optional[str] = None
+
+
+class UserBusinessProfileResponse(BaseModel):
+    id: int
+    company_name: str
+    gst_number: Optional[str] = None
+    pan_number: Optional[str] = None
     business_type: Optional[str] = None
-    gstin: Optional[str] = None
-    pan: Optional[str] = None
-    business_address: Optional[str] = None
-    business_city: Optional[str] = None
-    business_state: Optional[str] = None
-    business_pincode: Optional[str] = None
-
-
-class UserBusinessProfileCreate(UserBusinessProfileBase):
-    pass
-
-
-class UserBusinessProfileUpdate(UserBusinessProfileBase):
-    pass
-
-
-class UserBusinessProfileResponse(UserBusinessProfileBase):
-    id: int
-    user_id: int
+    website: Optional[str] = None
+    description: Optional[str] = None
     created_at: datetime
-    updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 
-# ==================== BANK DETAILS SCHEMAS ====================
+# --------------- Bank Details schemas ---------------
 
-class BankDetailsBase(BaseModel):
-    account_holder_name: str
-    account_number: str
-    bank_name: str
-    ifsc_code: str
-    branch_name: Optional[str] = None
-    account_type: str = "savings"
-
-
-class BankDetailsCreate(BankDetailsBase):
-    pass
+class BankDetailsCreate(BaseModel):
+    bank_name: str = Field(..., max_length=150)
+    account_number: str = Field(..., max_length=30)
+    ifsc_code: str = Field(..., max_length=15)
+    account_holder_name: str = Field(..., max_length=150)
 
 
 class BankDetailsUpdate(BaseModel):
-    account_holder_name: Optional[str] = None
-    account_number: Optional[str] = None
-    bank_name: Optional[str] = None
-    ifsc_code: Optional[str] = None
-    branch_name: Optional[str] = None
-    account_type: Optional[str] = None
+    bank_name: Optional[str] = Field(None, max_length=150)
+    account_number: Optional[str] = Field(None, max_length=30)
+    ifsc_code: Optional[str] = Field(None, max_length=15)
+    account_holder_name: Optional[str] = Field(None, max_length=150)
 
 
-class BankDetailsResponse(BankDetailsBase):
+class BankDetailsResponse(BaseModel):
     id: int
-    user_id: int
-    is_verified: bool
+    bank_name: str
+    account_number: str
+    ifsc_code: str
+    account_holder_name: str
     created_at: datetime
-    updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 
-# ==================== USER DOCUMENT SCHEMAS ====================
+# --------------- User Document schemas ---------------
 
-class UserDocumentBase(BaseModel):
-    document_type: str
-    document_number: Optional[str] = None
-    document_url: str
-
-
-class UserDocumentCreate(UserDocumentBase):
-    pass
+class UserDocumentCreate(BaseModel):
+    document_type: str = Field(..., max_length=50)
+    document_url: str = Field(..., max_length=500)
 
 
 class UserDocumentUpdate(BaseModel):
-    document_type: Optional[str] = None
-    document_number: Optional[str] = None
-    document_url: Optional[str] = None
+    document_type: Optional[str] = Field(None, max_length=50)
+    document_url: Optional[str] = Field(None, max_length=500)
+    is_verified: Optional[bool] = None
 
 
-class UserDocumentResponse(UserDocumentBase):
+class UserDocumentResponse(BaseModel):
     id: int
-    user_id: int
+    document_type: str
+    document_url: str
     is_verified: bool
     created_at: datetime
-    updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 
-# ==================== CATALOG SCHEMAS ====================
+# --------------- Catalog schemas ---------------
 
-class CatalogBase(BaseModel):
-    catalog_name: str
-    catalog_url: str
+class CatalogCreate(BaseModel):
+    title: str = Field(..., max_length=255)
+    file_url: str = Field(..., max_length=500)
     description: Optional[str] = None
-
-
-class CatalogCreate(CatalogBase):
-    pass
 
 
 class CatalogUpdate(BaseModel):
-    catalog_name: Optional[str] = None
-    catalog_url: Optional[str] = None
+    title: Optional[str] = Field(None, max_length=255)
+    file_url: Optional[str] = Field(None, max_length=500)
     description: Optional[str] = None
-    is_active: Optional[bool] = None
 
 
-class CatalogResponse(CatalogBase):
+class CatalogResponse(BaseModel):
     id: int
-    user_id: int
-    is_active: bool
+    title: str
+    file_url: str
+    description: Optional[str] = None
     created_at: datetime
-    updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 
-# ==================== REVIEW SCHEMAS ====================
+# --------------- Review schemas ---------------
 
-class ReviewBase(BaseModel):
-    rating: int = Field(..., ge=1, le=5)
-    title: Optional[str] = None
-    comment: Optional[str] = None
-
-
-class ReviewCreate(ReviewBase):
+class ReviewCreate(BaseModel):
     product_id: int
+    rating: float = Field(..., ge=1, le=5)
+    comment: Optional[str] = None
 
 
 class ReviewUpdate(BaseModel):
-    rating: Optional[int] = Field(None, ge=1, le=5)
-    title: Optional[str] = None
+    rating: Optional[float] = Field(None, ge=1, le=5)
     comment: Optional[str] = None
 
 
-class ReviewResponse(ReviewBase):
+class ReviewResponse(BaseModel):
     id: int
-    user_id: int
     product_id: int
-    is_verified_purchase: bool
+    rating: float
+    comment: Optional[str] = None
     created_at: datetime
-    updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 
-# ==================== WISHLIST SCHEMAS ====================
+# --------------- Wishlist schemas ---------------
 
 class WishlistCreate(BaseModel):
     product_id: int
@@ -337,9 +290,7 @@ class WishlistCreate(BaseModel):
 
 class WishlistResponse(BaseModel):
     id: int
-    user_id: int
     product_id: int
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}

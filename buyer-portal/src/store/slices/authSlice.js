@@ -26,18 +26,32 @@ const initialState = {
   otpLoading: false,
 };
 
+// Helper to extract error message from backend response
+const getErrorMessage = (error, fallback) => {
+  const data = error.response?.data;
+  if (data?.message) return data.message;
+  if (data?.details) return Object.values(data.details).join(', ');
+  return data?.detail || fallback;
+};
+
+// Helper to persist tokens and user from API response
+const persistAuth = (apiResponse) => {
+  const { user, tokens } = apiResponse.data;
+  localStorage.setItem('access_token', tokens.access_token);
+  localStorage.setItem('refresh_token', tokens.refresh_token);
+  localStorage.setItem('user', JSON.stringify(user));
+  return user;
+};
+
 // Async thunks
 export const register = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
       const response = await authService.register(userData);
-      localStorage.setItem('access_token', response.access_token);
-      localStorage.setItem('refresh_token', response.refresh_token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-      return response.user;
+      return persistAuth(response);
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'Registration failed');
+      return rejectWithValue(getErrorMessage(error, 'Registration failed'));
     }
   }
 );
@@ -47,12 +61,9 @@ export const loginEmailPassword = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authService.loginEmailPassword(credentials);
-      localStorage.setItem('access_token', response.access_token);
-      localStorage.setItem('refresh_token', response.refresh_token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-      return response.user;
+      return persistAuth(response);
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'Login failed');
+      return rejectWithValue(getErrorMessage(error, 'Login failed'));
     }
   }
 );
@@ -62,9 +73,9 @@ export const sendPhoneOTP = createAsyncThunk(
   async (phone, { rejectWithValue }) => {
     try {
       const response = await authService.sendPhoneOTP(phone);
-      return response;
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'Failed to send OTP');
+      return rejectWithValue(getErrorMessage(error, 'Failed to send OTP'));
     }
   }
 );
@@ -74,9 +85,9 @@ export const sendEmailOTP = createAsyncThunk(
   async (email, { rejectWithValue }) => {
     try {
       const response = await authService.sendEmailOTP(email);
-      return response;
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'Failed to send OTP');
+      return rejectWithValue(getErrorMessage(error, 'Failed to send OTP'));
     }
   }
 );
@@ -86,12 +97,9 @@ export const loginPhoneOTP = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authService.loginPhoneOTP(credentials);
-      localStorage.setItem('access_token', response.access_token);
-      localStorage.setItem('refresh_token', response.refresh_token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-      return response.user;
+      return persistAuth(response);
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'OTP verification failed');
+      return rejectWithValue(getErrorMessage(error, 'OTP verification failed'));
     }
   }
 );
@@ -101,12 +109,9 @@ export const loginEmailOTP = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authService.loginEmailOTP(credentials);
-      localStorage.setItem('access_token', response.access_token);
-      localStorage.setItem('refresh_token', response.refresh_token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-      return response.user;
+      return persistAuth(response);
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'OTP verification failed');
+      return rejectWithValue(getErrorMessage(error, 'OTP verification failed'));
     }
   }
 );
@@ -116,10 +121,11 @@ export const getCurrentUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await authService.getCurrentUser();
-      localStorage.setItem('user', JSON.stringify(response));
-      return response;
+      const user = response.data;
+      localStorage.setItem('user', JSON.stringify(user));
+      return user;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.detail || 'Failed to fetch user');
+      return rejectWithValue(getErrorMessage(error, 'Failed to fetch user'));
     }
   }
 );

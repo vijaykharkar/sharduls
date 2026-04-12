@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.api.v1 import auth, enquiry, supplier
+from app.core.errors import register_error_handlers
+from app.api.v1.auth import router as auth_router
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -18,15 +19,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Register error handlers
+register_error_handlers(app)
+
 # Include routers
-app.include_router(auth.router, prefix=f"{settings.API_V1_PREFIX}/auth", tags=["Authentication"])
-app.include_router(enquiry.router, prefix=f"{settings.API_V1_PREFIX}/enquiry", tags=["Enquiry"])
-app.include_router(supplier.router, prefix=f"{settings.API_V1_PREFIX}/supplier", tags=["Supplier"])
+app.include_router(auth_router, prefix=settings.API_V1_PREFIX)
 
 
 @app.get("/")
 async def root():
-    return {
+    return { 
         "message": f"Welcome to {settings.APP_NAME}",
         "version": settings.APP_VERSION,
         "docs": "/docs",

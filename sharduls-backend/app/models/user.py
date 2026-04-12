@@ -1,182 +1,136 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text, Float, ForeignKey, Enum as SQLEnum
-from sqlalchemy.orm import relationship
-from datetime import datetime
-from app.core.database import Base
 import enum
+from sqlalchemy import (
+    Column, Integer, String, Boolean, Text, Enum, ForeignKey,
+    DateTime, Float, func,
+)
+from sqlalchemy.orm import relationship
+from app.core.database import Base
+from app.models.base import TimestampMixin
 
 
 class UserRole(str, enum.Enum):
-    CUSTOMER = "customer"
-    SELLER = "seller"
-    ADMIN = "admin"
+    superadmin = "superadmin"
+    admin = "admin"
+    supplier = "supplier"
+    buyer = "buyer"
 
 
-class User(Base):
+class User(Base, TimestampMixin):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True, nullable=False)
-    phone = Column(String, unique=True, index=True, nullable=True)
-    password_hash = Column(String, nullable=False)
-    full_name = Column(String, nullable=False)
-    role = Column(SQLEnum(UserRole), default=UserRole.CUSTOMER, nullable=False)
-    
-    is_active = Column(Boolean, default=True)
-    is_verified = Column(Boolean, default=False)
-    is_email_verified = Column(Boolean, default=False)
-    is_phone_verified = Column(Boolean, default=False)
-    profile_image = Column(String, nullable=True)
-    
-    # Business/Seller specific fields
-    legal_entity_name = Column(String, nullable=True)
-    trade_name = Column(String, nullable=True)
-    contact_name = Column(String, nullable=True)
-    gstin = Column(String, unique=True, nullable=True, index=True)
-    country = Column(String, default="India")
-    pincode = Column(String, nullable=True)
-    state = Column(String, nullable=True)
-    city = Column(String, nullable=True)
-    alternate_email = Column(String, nullable=True)
-    tan = Column(String, nullable=True)
-    business_entity_type = Column(String, nullable=True)
-    has_registration_certificate = Column(Boolean, default=False)
-    
-    # Supplier/Seller approval fields
-    is_approved = Column(Boolean, default=False)
-    approval_status = Column(String, default="pending")
-    approved_by = Column(Integer, nullable=True)
-    approved_at = Column(DateTime, nullable=True)
-    rejection_reason = Column(Text, nullable=True)
-    catalog_visible = Column(Boolean, default=False)
-    
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    last_login = Column(DateTime, nullable=True)
-    
+    full_name = Column(String(150), nullable=False)
+    email = Column(String(255), unique=True, index=True, nullable=False)
+    phone = Column(String(20), unique=True, index=True, nullable=True)
+    password_hash = Column(String(255), nullable=True)
+    role = Column(Enum(UserRole), nullable=False, default=UserRole.buyer)
+    is_active = Column(Boolean, default=True, nullable=False)
+    is_verified = Column(Boolean, default=False, nullable=False)
+    avatar_url = Column(String(500), nullable=True)
+
+    # OTP fields
+    otp_code = Column(String(10), nullable=True)
+    otp_expires_at = Column(DateTime(timezone=True), nullable=True)
+
+    # Refresh token (stored hashed; one active refresh per user for simplicity)
+    refresh_token = Column(String(500), nullable=True)
+
     # Relationships
     addresses = relationship("Address", back_populates="user", cascade="all, delete-orphan")
-    orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
-    cart_items = relationship("CartItem", back_populates="user", cascade="all, delete-orphan")
     reviews = relationship("Review", back_populates="user", cascade="all, delete-orphan")
-    wishlist = relationship("Wishlist", back_populates="user", cascade="all, delete-orphan")
+    wishlist_items = relationship("Wishlist", back_populates="user", cascade="all, delete-orphan")
     business_profile = relationship("UserBusinessProfile", back_populates="user", uselist=False, cascade="all, delete-orphan")
-    bank_details = relationship("BankDetails", back_populates="user", cascade="all, delete-orphan")
+    bank_details = relationship("BankDetails", back_populates="user", uselist=False, cascade="all, delete-orphan")
     documents = relationship("UserDocument", back_populates="user", cascade="all, delete-orphan")
     catalogs = relationship("Catalog", back_populates="user", cascade="all, delete-orphan")
 
 
-class Address(Base):
+class Address(Base, TimestampMixin):
     __tablename__ = "addresses"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    full_name = Column(String, nullable=False)
-    phone = Column(String, nullable=False)
-    address_line1 = Column(String, nullable=False)
-    address_line2 = Column(String, nullable=True)
-    city = Column(String, nullable=False)
-    state = Column(String, nullable=False)
-    pincode = Column(String, nullable=False)
-    country = Column(String, default="India")
-    address_type = Column(String, default="home")
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    label = Column(String(50), nullable=True)  # e.g. Home, Office
+    address_line1 = Column(String(255), nullable=False)
+    address_line2 = Column(String(255), nullable=True)
+    city = Column(String(100), nullable=False)
+    state = Column(String(100), nullable=False)
+    pincode = Column(String(10), nullable=False)
+    country = Column(String(100), default="India", nullable=False)
     is_default = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user = relationship("User", back_populates="addresses")
 
 
-class Review(Base):
+class Review(Base, TimestampMixin):
     __tablename__ = "reviews"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
-    rating = Column(Integer, nullable=False)
-    title = Column(String, nullable=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    product_id = Column(Integer, nullable=False)  # FK added when product model exists
+    rating = Column(Float, nullable=False)
     comment = Column(Text, nullable=True)
-    is_verified_purchase = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user = relationship("User", back_populates="reviews")
-    product = relationship("Product", back_populates="reviews")
 
 
-class Wishlist(Base):
-    __tablename__ = "wishlist"
+class Wishlist(Base, TimestampMixin):
+    __tablename__ = "wishlists"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    product_id = Column(Integer, nullable=False)
 
-    user = relationship("User", back_populates="wishlist")
-    product = relationship("Product", back_populates="wishlist_items")
+    user = relationship("User", back_populates="wishlist_items")
 
 
-class UserBusinessProfile(Base):
+class UserBusinessProfile(Base, TimestampMixin):
     __tablename__ = "user_business_profiles"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), unique=True, nullable=False)
-    business_name = Column(String, nullable=True)
-    business_type = Column(String, nullable=True)
-    gstin = Column(String, nullable=True)
-    pan = Column(String, nullable=True)
-    business_address = Column(String, nullable=True)
-    business_city = Column(String, nullable=True)
-    business_state = Column(String, nullable=True)
-    business_pincode = Column(String, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), unique=True, nullable=False)
+    company_name = Column(String(255), nullable=False)
+    gst_number = Column(String(20), nullable=True)
+    pan_number = Column(String(15), nullable=True)
+    business_type = Column(String(100), nullable=True)
+    website = Column(String(255), nullable=True)
+    description = Column(Text, nullable=True)
 
     user = relationship("User", back_populates="business_profile")
 
 
-class BankDetails(Base):
+class BankDetails(Base, TimestampMixin):
     __tablename__ = "bank_details"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    account_holder_name = Column(String, nullable=False)
-    account_number = Column(String, nullable=False)
-    bank_name = Column(String, nullable=False)
-    ifsc_code = Column(String, nullable=False)
-    branch_name = Column(String, nullable=True)
-    account_type = Column(String, default="savings")
-    is_verified = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), unique=True, nullable=False)
+    bank_name = Column(String(150), nullable=False)
+    account_number = Column(String(30), nullable=False)
+    ifsc_code = Column(String(15), nullable=False)
+    account_holder_name = Column(String(150), nullable=False)
 
     user = relationship("User", back_populates="bank_details")
 
 
-class UserDocument(Base):
+class UserDocument(Base, TimestampMixin):
     __tablename__ = "user_documents"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    document_type = Column(String, nullable=False)
-    document_number = Column(String, nullable=True)
-    document_url = Column(String, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    document_type = Column(String(50), nullable=False)  # e.g. GST, PAN, Aadhaar
+    document_url = Column(String(500), nullable=False)
     is_verified = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user = relationship("User", back_populates="documents")
 
 
-class Catalog(Base):
+class Catalog(Base, TimestampMixin):
     __tablename__ = "catalogs"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    catalog_name = Column(String, nullable=False)
-    catalog_url = Column(String, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    title = Column(String(255), nullable=False)
+    file_url = Column(String(500), nullable=False)
     description = Column(Text, nullable=True)
-    is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user = relationship("User", back_populates="catalogs")

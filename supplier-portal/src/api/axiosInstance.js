@@ -32,15 +32,15 @@ axiosInstance.interceptors.response.use(
         const refreshToken = localStorage.getItem('supplier_refresh_token');
         if (!refreshToken) throw new Error('No refresh token');
 
-        const response = await axios.post(`${API_BASE_URL}/api/v1/auth/refresh`, {
+        const response = await axios.post(`${API_BASE_URL}/api/v1/auth/refresh-token`, {
           refresh_token: refreshToken,
         });
 
-        const { access_token, refresh_token: newRefreshToken } = response.data;
-        localStorage.setItem('supplier_access_token', access_token);
-        localStorage.setItem('supplier_refresh_token', newRefreshToken);
+        const tokens = response.data?.data?.tokens || response.data;
+        localStorage.setItem('supplier_access_token', tokens.access_token);
+        localStorage.setItem('supplier_refresh_token', tokens.refresh_token);
 
-        originalRequest.headers.Authorization = `Bearer ${access_token}`;
+        originalRequest.headers.Authorization = `Bearer ${tokens.access_token}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         localStorage.removeItem('supplier_access_token');

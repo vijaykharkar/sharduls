@@ -1,40 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Eye, EyeOff, Loader2, Phone, ArrowRight } from 'lucide-react';
+import { Mail, Eye, EyeOff, Loader2, Phone, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
-const GearIcon = ({ className = '' }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
-  </svg>
-);
-
-const FloatingBg = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(42,48,64,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(42,48,64,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-    {[...Array(8)].map((_, i) => (
-      <motion.div key={i} className="absolute text-primary/[0.04]"
-        initial={{ x: `${10 + i * 12}%`, y: '110%' }}
-        animate={{ y: '-10%' }}
-        transition={{ duration: 18 + i * 4, repeat: Infinity, ease: 'linear', delay: i * 2.5 }}
-      >
-        <svg width={40 + i * 10} height={40 + i * 10} viewBox="0 0 100 100" fill="currentColor">
-          {i % 3 === 0 ? <polygon points="50,3 97,25 97,75 50,97 3,75 3,25" /> : i % 3 === 1 ? <circle cx="50" cy="50" r="45" /> : <polygon points="50,5 95,50 50,95 5,50" />}
-        </svg>
-      </motion.div>
-    ))}
-    {[...Array(20)].map((_, i) => (
-      <motion.div key={`dot-${i}`} className="absolute w-1 h-1 bg-primary/10 rounded-full"
-        style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
-        animate={{ x: [0, (Math.random() - 0.5) * 40], y: [0, (Math.random() - 0.5) * 40] }}
-        transition={{ duration: 8 + Math.random() * 8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-      />
-    ))}
-  </div>
-);
+const BG_IMAGE = 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=80';
 
 const OtpInput = ({ length = 6, value, onChange }) => {
   const refs = useRef([]);
@@ -50,13 +21,16 @@ const OtpInput = ({ length = 6, value, onChange }) => {
   return (
     <div className="flex gap-2 justify-center">
       {Array.from({ length }).map((_, i) => (
-        <motion.input key={i} ref={(el) => (refs.current[i] = el)} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
-          type="text" inputMode="numeric" maxLength={1} value={value[i] || ''} onChange={(e) => handleChange(i, e.target.value)} onKeyDown={(e) => handleKey(i, e)}
-          className="w-11 h-12 text-center text-lg font-bold bg-[#0A0D14] border border-border rounded-xl text-highlight outline-none focus:ring-1 focus:ring-primary transition-all" />
+        <input key={i} ref={(el) => (refs.current[i] = el)}
+          type="text" inputMode="numeric" maxLength={1} value={value[i] || ''}
+          onChange={(e) => handleChange(i, e.target.value)} onKeyDown={(e) => handleKey(i, e)}
+          className="w-11 h-12 text-center text-lg font-bold bg-white border-2 border-gray-200 rounded-xl text-gray-800 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all" />
       ))}
     </div>
   );
 };
+
+const ic = 'w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 placeholder-gray-400 transition-all';
 
 const LoginPage = () => {
   const [tab, setTab] = useState('email');
@@ -78,118 +52,140 @@ const LoginPage = () => {
 
   const handleEmailLogin = async (e) => {
     e.preventDefault(); setError('');
-    if (!email || !password) { setError('All fields are required'); return; }
+    if (!email.trim()) { setError('Email is required'); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { setError('Enter a valid email address'); return; }
+    if (!password) { setError('Password is required'); return; }
     setLoading(true);
     try {
       const user = await login(email, password);
-      addToast(`Welcome back, ${user.name}!`, 'success');
-      navigate(user.role === 'admin' ? '/admin' : '/dashboard');
+      addToast(`Welcome back, ${user.full_name || user.name}!`, 'success');
+      const role = user.role;
+      navigate(role === 'admin' || role === 'superadmin' ? '/admin' : '/dashboard');
     } catch (err) { setError(err.message); } finally { setLoading(false); }
   };
 
   const handleSendOtp = async () => {
     setError('');
-    if (!/^\d{10}$/.test(phone)) { setError('Enter a valid 10-digit number'); return; }
+    if (!/^\d{10}$/.test(phone)) { setError('Enter a valid 10-digit phone number'); return; }
     setLoading(true);
     try {
-      const res = await sendOtp(phone);
+      await sendOtp('+91' + phone);
       setOtpSent(true); setTimer(30);
-      addToast(`OTP sent to ${res.maskedPhone}`, 'info');
+      addToast('OTP sent successfully!', 'info');
     } catch (err) { setError(err.message); } finally { setLoading(false); }
   };
 
   const handleVerifyOtp = async () => {
     setError('');
-    if (otp.length !== 6) { setError('Enter 6-digit OTP'); return; }
+    if (otp.length !== 6) { setError('Enter the 6-digit OTP'); return; }
     setLoading(true);
     try {
-      const user = await verifyOtp(phone, otp);
-      addToast(`Welcome back, ${user.name}!`, 'success');
-      navigate(user.role === 'admin' ? '/admin' : '/dashboard');
+      const user = await verifyOtp('+91' + phone, otp);
+      addToast(`Welcome back, ${user.full_name || user.name}!`, 'success');
+      navigate(user.role === 'admin' || user.role === 'superadmin' ? '/admin' : '/dashboard');
     } catch (err) { setError(err.message); } finally { setLoading(false); }
   };
 
-  const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
-  const fadeUp = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
-  const ic = 'w-full px-4 py-2.5 bg-[#0A0D14] border border-border rounded-xl text-sm text-highlight outline-none focus:ring-1 focus:ring-primary placeholder-muted transition-all';
-
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12 relative">
-      <FloatingBg />
-      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.4 }} className="relative z-10 w-full max-w-md">
-        <motion.div variants={stagger} initial="hidden" animate="show" className="bg-surface border border-border rounded-2xl shadow-strong p-10 sm:p-12">
-          {/* Logo */}
-          <motion.div variants={fadeUp} className="text-center mb-6">
-            <div className="w-14 h-14 mx-auto mb-3 rounded-xl chrome-gradient flex items-center justify-center">
-              <GearIcon className="w-7 h-7 text-background animate-gearSpin" />
-            </div>
-            <h1 className="text-2xl font-bold text-highlight tracking-wide">NexaForge</h1>
-            <p className="text-muted text-xs tracking-[0.2em] uppercase mt-0.5">Supplier Portal</p>
-          </motion.div>
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('${BG_IMAGE}')` }}
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-900/70 via-purple-800/60 to-indigo-900/70" />
 
-          <motion.div variants={fadeUp} className="h-px bg-border mb-6" />
+      {/* Card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: 'easeOut' }}
+        className="relative z-10 w-full max-w-md mx-4"
+      >
+        <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-10">
+          {/* Logo + Header */}
+          <div className="text-center mb-7">
+            <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-violet-600 to-purple-700 flex items-center justify-center shadow-lg">
+              <ShieldCheck className="w-7 h-7 text-white" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
+            <p className="text-gray-500 text-sm mt-1">Sign in to your Supplier Portal</p>
+          </div>
+
+          <div className="h-px bg-gray-100 mb-6" />
 
           {/* Tab Toggle */}
-          <motion.div variants={fadeUp} className="flex bg-[#0A0D14] rounded-xl p-1 mb-6">
+          <div className="flex bg-gray-100 rounded-xl p-1 mb-6">
             {['email', 'phone'].map((t) => (
-              <button key={t} onClick={() => { setTab(t); setError(''); setOtpSent(false); setOtp(''); }} className={`flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all ${tab === t ? 'bg-accent text-white shadow-lg' : 'text-muted hover:text-highlight'}`}>
+              <button key={t} onClick={() => { setTab(t); setError(''); setOtpSent(false); setOtp(''); }}
+                className={`flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all ${tab === t ? 'bg-violet-600 text-white shadow' : 'text-gray-500 hover:text-gray-700'}`}>
                 {t === 'email' ? 'Email / Password' : 'Phone OTP'}
               </button>
             ))}
-          </motion.div>
+          </div>
 
-          {error && <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl"><p className="text-red-400 text-xs">{error}</p></div>}
+          {error && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl">
+              <p className="text-red-600 text-xs">{error}</p>
+            </div>
+          )}
 
           <AnimatePresence mode="wait">
             {tab === 'email' ? (
-              <motion.form key="email-form" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.2 }} onSubmit={handleEmailLogin} className="space-y-4">
-                <motion.div variants={fadeUp}>
-                  <label className="block text-xs font-semibold text-highlight mb-1.5">Email Address</label>
+              <motion.form key="email-form" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 16 }} transition={{ duration: 0.2 }} onSubmit={handleEmailLogin} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">Email Address</label>
                   <div className="relative">
-                    <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${ic} pl-10`} placeholder="you@company.com" />
+                    <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${ic} pl-9`} placeholder="you@company.com" />
                   </div>
-                </motion.div>
-                <motion.div variants={fadeUp}>
-                  <label className="block text-xs font-semibold text-highlight mb-1.5">Password</label>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">Password</label>
                   <div className="relative">
                     <input type={showPw ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className={`${ic} pr-10`} placeholder="••••••••" />
-                    <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-highlight cursor-pointer">{showPw ? <EyeOff size={18} /> : <Eye size={18} />}</button>
+                    <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer">{showPw ? <EyeOff size={17} /> : <Eye size={17} />}</button>
                   </div>
-                </motion.div>
-                <motion.div variants={fadeUp} className="flex items-center justify-between">
-                  <label className="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="w-4 h-4 rounded border-border accent-[#E53E3E]" /><span className="text-xs text-muted">Remember me</span></label>
-                  <button type="button" className="text-xs text-primary font-semibold hover:text-primary-light cursor-pointer">Forgot password?</button>
-                </motion.div>
-                <motion.div variants={fadeUp}>
-                  <button type="submit" disabled={loading} className="w-full py-3 chrome-gradient text-background font-bold rounded-xl hover:shadow-chrome hover:brightness-110 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2">
-                    {loading ? <><Loader2 size={16} className="animate-spin" /> Signing in…</> : <>Sign In <ArrowRight size={16} /></>}
-                  </button>
-                </motion.div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="w-4 h-4 rounded accent-violet-600" />
+                    <span className="text-xs text-gray-500">Remember me</span>
+                  </label>
+                  <button type="button" className="text-xs text-violet-600 font-semibold hover:text-violet-700 cursor-pointer">Forgot password?</button>
+                </div>
+                <button type="submit" disabled={loading} className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 shadow-md">
+                  {loading ? <><Loader2 size={16} className="animate-spin" /> Signing in…</> : <>Sign In <ArrowRight size={16} /></>}
+                </button>
               </motion.form>
             ) : (
-              <motion.div key="phone-form" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }} className="space-y-4">
+              <motion.div key="phone-form" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.2 }} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-highlight mb-1.5">Phone Number</label>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">Phone Number</label>
                   <div className="flex gap-2">
-                    <div className="flex items-center gap-1 px-3 bg-[#0A0D14] border border-border rounded-xl text-sm text-muted"><span>🇮🇳</span><span>+91</span></div>
+                    <div className="flex items-center gap-1.5 px-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-600 whitespace-nowrap">
+                      <span>🇮🇳</span><span>+91</span>
+                    </div>
                     <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))} className={ic} placeholder="10 digit number" disabled={otpSent} />
                   </div>
                 </div>
                 {!otpSent ? (
-                  <button onClick={handleSendOtp} disabled={loading} className="w-full py-3 chrome-gradient text-background font-bold rounded-xl hover:shadow-chrome hover:brightness-110 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2">
+                  <button onClick={handleSendOtp} disabled={loading} className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 shadow-md">
                     {loading ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Send OTP <ArrowRight size={16} /></>}
                   </button>
                 ) : (
                   <>
                     <div>
-                      <label className="block text-xs font-semibold text-highlight mb-2 text-center">Enter 6-digit OTP</label>
+                      <label className="block text-xs font-semibold text-gray-700 mb-2 text-center">Enter 6-digit OTP</label>
                       <OtpInput value={otp} onChange={setOtp} />
                     </div>
                     <div className="text-center">
-                      {timer > 0 ? <p className="text-xs text-muted">Resend in {timer}s</p> : <button onClick={handleSendOtp} className="text-xs text-primary font-semibold cursor-pointer hover:text-primary-light">Resend OTP</button>}
+                      {timer > 0
+                        ? <p className="text-xs text-gray-400">Resend in {timer}s</p>
+                        : <button onClick={handleSendOtp} className="text-xs text-violet-600 font-semibold cursor-pointer hover:text-violet-700">Resend OTP</button>}
                     </div>
-                    <button onClick={handleVerifyOtp} disabled={loading} className="w-full py-3 chrome-gradient text-background font-bold rounded-xl hover:shadow-chrome hover:brightness-110 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2">
+                    <button onClick={handleVerifyOtp} disabled={loading} className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 shadow-md">
                       {loading ? <><Loader2 size={16} className="animate-spin" /> Verifying…</> : <>Verify & Login <ArrowRight size={16} /></>}
                     </button>
                   </>
@@ -198,14 +194,10 @@ const LoginPage = () => {
             )}
           </AnimatePresence>
 
-          <motion.div variants={fadeUp} className="mt-6 text-center">
-            <p className="text-xs text-muted">New supplier? <Link to="/register" className="text-primary font-semibold hover:text-primary-light">Register here</Link></p>
-          </motion.div>
-        </motion.div>
-
-        <motion.p variants={fadeUp} initial="hidden" animate="show" className="text-[10px] text-muted mt-4 text-center">
-          Admin: admin@nexaforge.com / Admin@2026 &nbsp;|&nbsp; Supplier: supplier@nexaforge.com / Supplier@2026
-        </motion.p>
+          <div className="mt-6 text-center">
+            <p className="text-xs text-gray-500">New supplier? <Link to="/register" className="text-violet-600 font-semibold hover:text-violet-700">Register here</Link></p>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

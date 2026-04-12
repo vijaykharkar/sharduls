@@ -42,18 +42,18 @@ axiosInstance.interceptors.response.use(
 
         // Try to refresh the token
         const response = await axios.post(
-          `${API_BASE_URL}/api/v1/auth/refresh`,
+          `${API_BASE_URL}/api/v1/auth/refresh-token`,
           { refresh_token: refreshToken }
         );
 
-        const { access_token, refresh_token: newRefreshToken } = response.data;
+        const tokens = response.data?.data?.tokens || response.data;
 
         // Save new tokens
-        localStorage.setItem('access_token', access_token);
-        localStorage.setItem('refresh_token', newRefreshToken);
+        localStorage.setItem('access_token', tokens.access_token);
+        localStorage.setItem('refresh_token', tokens.refresh_token);
 
         // Retry original request with new token
-        originalRequest.headers.Authorization = `Bearer ${access_token}`;
+        originalRequest.headers.Authorization = `Bearer ${tokens.access_token}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         // Refresh failed, clear tokens and redirect to login

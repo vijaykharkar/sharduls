@@ -1,225 +1,172 @@
+import random
+import string
+from datetime import datetime, timedelta, timezone
+
 from sqlalchemy.orm import Session
-from fastapi import HTTPException, status
-from app.repositories import user_repo
-from app.core.security import verify_password, validate_password_strength, decode_token, create_tokens
-from app.schemas.user import (
-    UserCreate, UserLogin, EmailPasswordLogin,
-    PhoneOTPLogin, EmailOTPLogin, UserRole
+
+from app.core.config import settings
+from app.core.security import (
+    hash_password,
+    verify_password,
+    validate_password_strength,
+    create_access_token,
+    create_refresh_token,
+    decode_token,
 )
-from app.models.user import User
-from app.services import otp_service
-from app.utils import email as email_utils
-from datetime import datetime
+from app.core.errors import raise_error
+import app.repositories.user_repository as repo
+from app.schemas.user import (
+    UserCreate,
+    EmailPasswordLogin,
+    VerifyOTP,
+    UserResponse,
+    TokenResponse,
+)
 
 
-def register(db: Session, user_data: UserCreate) -> dict:
-    """Register a new user with role-based registration."""
-    if user_data.email:
-        existing_user = user_repo.get_by_email(db, user_data.email)
-        if existing_user:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already registered"
-            )
+# --------------- Helpers ---------------
 
-    if user_data.phone:
-        existing_user = user_repo.get_by_phone(db, user_data.phone)
-        if existing_user:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Phone number already registered"
-            )
+def _generate_otp() -> str:
+    return "".join(random.choices(string.digits, k=settings.OTP_LENGTH))
 
-    is_valid, message = validate_password_strength(user_data.password)
-    if not is_valid:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=message
-        )
 
-    user = user_repo.create_user(
-        db=db,
-        email=user_data.email,
-        password=user_data.password,
-        full_name=user_data.full_name,
-        phone=user_data.phone,
-        role=user_data.role
+def _issue_tokens(db: Session, user) -> dict:
+    token_data = {"sub": str(user.id), "role": user.role.value}
+    access = create_access_token(token_data)
+    refresh = create_refresh_token(token_data)
+    repo.set_user_refresh_token(db, user, hash_password(refresh))
+    return TokenResponse(access_token=access, refresh_token=refresh).model_dump()
+
+
+# --------------- Register ---------------
+
+def register(db: Session, payload: UserCreate) -> dict:
+    pw_err = validate_password_strength(payload.password)
+    if pw_err:
+        raise_error('BAD_REQUEST', pw_err)
+
+    if repo.email_exists(db, payload.email):
+        raise_error('CONFLICT', 'Email already registered')
+    if payload.phone and repo.phone_exists(db, payload.phone):
+        raise_error('CONFLICT', 'Phone number already registered')
+
+    user = repo.create_user(
+        db,
+        full_name=payload.full_name,
+        email=payload.email,
+        phone=payload.phone,
+        password_hash=hash_password(payload.password),
+        role=payload.role,
     )
 
-    if user.email:
-        try:
-            email_utils.send_welcome_email(user.email, user.full_name)
-        except Exception as e:
-            print(f"Failed to send welcome email: {e}")
-
-    tokens = create_tokens(user.id, user.email or user.phone)
-
+    tokens = _issue_tokens(db, user)
     return {
-        **tokens,
-        "user": user
+        "user": UserResponse.model_validate(user).model_dump(),
+        "tokens": tokens,
     }
 
 
-def login_email_password(db: Session, credentials: EmailPasswordLogin) -> dict:
-    """Login user with email and password."""
-    user = user_repo.get_by_email(db, credentials.email)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid email or password"
-        )
+# --------------- Password Login ---------------
 
-    if credentials.role and user.role != credentials.role:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail=f"Invalid credentials for {credentials.role.value} login"
-        )
-
-    if not verify_password(credentials.password, user.password_hash):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid email or password"
-        )
-
+def login_password(db: Session, payload: EmailPasswordLogin) -> dict:
+    user = repo.get_user_by_email(db, payload.email)
+    if not user or not user.password_hash:
+        raise_error('UNAUTHORIZED', 'Invalid email or password')
+    if not verify_password(payload.password, user.password_hash):
+        raise_error('UNAUTHORIZED', 'Invalid email or password')
     if not user.is_active:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Account is inactive"
-        )
+        raise_error('UNAUTHORIZED', 'Account is deactivated')
 
-    user.last_login = datetime.utcnow()
-    db.commit()
-
-    tokens = create_tokens(user.id, user.email)
-
+    tokens = _issue_tokens(db, user)
     return {
-        **tokens,
-        "user": user
+        "user": UserResponse.model_validate(user).model_dump(),
+        "tokens": tokens,
     }
 
 
-def login_phone_otp(db: Session, credentials: PhoneOTPLogin) -> dict:
-    """Login user with phone and OTP."""
-    otp_service.verify_otp(credentials.phone, credentials.otp)
+# --------------- OTP Send ---------------
 
-    user = user_repo.get_by_phone(db, credentials.phone)
+def send_otp(db: Session, identifier: str) -> dict:
+    """Send OTP to email or phone. In production, deliver via SMS/email provider."""
+    user = repo.get_user_by_email(db, identifier) or repo.get_user_by_phone(db, identifier)
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Phone number not registered"
-        )
-
-    if credentials.role and user.role != credentials.role:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail=f"Invalid credentials for {credentials.role.value} login"
-        )
-
+        raise_error('NOT_FOUND', 'No account found with this email or phone')
     if not user.is_active:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Account is inactive"
-        )
+        raise_error('UNAUTHORIZED', 'Account is deactivated')
 
-    user.last_login = datetime.utcnow()
-    db.commit()
+    otp_code = _generate_otp()
+    expires_at = datetime.now(timezone.utc) + timedelta(minutes=settings.OTP_EXPIRE_MINUTES)
+    repo.set_user_otp(db, user, otp_code, expires_at)
 
-    tokens = create_tokens(user.id, user.phone)
-
+    # TODO: integrate actual SMS/email sending service
     return {
-        **tokens,
-        "user": user
+        "message": "OTP sent successfully",
+        "expires_in_minutes": settings.OTP_EXPIRE_MINUTES,
+        **({"otp": otp_code} if settings.DEBUG else {}),
     }
 
 
-def login_email_otp(db: Session, credentials: EmailOTPLogin) -> dict:
-    """Login user with email and OTP."""
-    otp_service.verify_otp(credentials.email, credentials.otp)
+# --------------- OTP Verify / Login ---------------
 
-    user = user_repo.get_by_email(db, credentials.email)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Email not registered"
-        )
-
-    if credentials.role and user.role != credentials.role:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail=f"Invalid credentials for {credentials.role.value} login"
-        )
-
-    if not user.is_active:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Account is inactive"
-        )
-
-    user.last_login = datetime.utcnow()
-    db.commit()
-
-    tokens = create_tokens(user.id, user.email)
-
-    return {
-        **tokens,
-        "user": user
-    }
-
-
-def login(db: Session, credentials: UserLogin) -> dict:
-    """Legacy login method - supports email/password only."""
-    email_password_creds = EmailPasswordLogin(
-        email=credentials.email,
-        password=credentials.password
+def verify_otp(db: Session, payload: VerifyOTP) -> dict:
+    user = (
+        repo.get_user_by_email(db, payload.identifier)
+        or repo.get_user_by_phone(db, payload.identifier)
     )
-    return login_email_password(db, email_password_creds)
+    if not user:
+        raise_error('NOT_FOUND', 'No account found')
+    if not user.is_active:
+        raise_error('UNAUTHORIZED', 'Account is deactivated')
+    if not user.otp_code or user.otp_code != payload.otp:
+        raise_error('BAD_REQUEST', 'Invalid OTP')
+    if user.otp_expires_at and user.otp_expires_at < datetime.now(timezone.utc):
+        raise_error('BAD_REQUEST', 'OTP has expired')
 
+    repo.clear_user_otp(db, user)
+
+    if not user.is_verified:
+        repo.update_user(db, user, is_verified=True)
+
+    tokens = _issue_tokens(db, user)
+    return {
+        "user": UserResponse.model_validate(user).model_dump(),
+        "tokens": tokens,
+    }
+
+
+# --------------- Refresh Token ---------------
 
 def refresh_token(db: Session, token: str) -> dict:
-    """Refresh access token."""
     try:
-        payload = decode_token(token)
-
-        if payload.get("type") != "refresh":
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token type"
-            )
-
-        user_id = int(payload.get("sub"))
-        user = user_repo.get_by_id(db, user_id)
-
-        if not user:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="User not found"
-            )
-
-        tokens = create_tokens(user.id, user.email or user.phone)
-
-        return tokens
+        token_payload = decode_token(token)
     except Exception:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid refresh token"
-        )
+        raise_error('UNAUTHORIZED', 'Invalid or expired refresh token')
 
+    if token_payload.get("type") != "refresh":
+        raise_error('UNAUTHORIZED', 'Invalid token type')
 
-def get_current_user(db: Session, token_payload: dict) -> User:
-    """Get current user from token payload."""
-    user_id = int(token_payload.get("sub"))
-    user = user_repo.get_by_id(db, user_id)
+    user_id = token_payload.get("sub")
+    if not user_id:
+        raise_error('UNAUTHORIZED', 'Invalid token payload')
 
+    user = repo.get_user_by_id(db, int(user_id))
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="User not found"
-        )
-
+        raise_error('UNAUTHORIZED', 'User not found')
     if not user.is_active:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Account is inactive"
-        )
+        raise_error('UNAUTHORIZED', 'Account is deactivated')
 
-    return user
+    if not user.refresh_token or not verify_password(token, user.refresh_token):
+        raise_error('UNAUTHORIZED', 'Refresh token revoked')
+
+    tokens = _issue_tokens(db, user)
+    return {
+        "user": UserResponse.model_validate(user).model_dump(),
+        "tokens": tokens,
+    }
+
+
+# --------------- Logout ---------------
+
+def logout(db: Session, user) -> dict:
+    repo.set_user_refresh_token(db, user, None)
+    return {"message": "Logged out successfully"}
