@@ -28,6 +28,8 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://localhost:5173",
         "http://localhost:5174",
+        "http://localhost:5175",
+        "http://localhost:5176",
     ]
 
     # Email / SMTP
@@ -40,8 +42,8 @@ class Settings(BaseSettings):
 
     # File Upload
     UPLOAD_DIR: str = "uploads"
-    MAX_UPLOAD_SIZE: int = 5242880
-    ALLOWED_EXTENSIONS: str = "jpg,jpeg,png,gif,pdf"
+    MAX_UPLOAD_SIZE: int = 10485760
+    ALLOWED_EXTENSIONS: str = "jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,csv,txt,webp,svg,bmp,tiff,zip,rar"
 
     # Security
     PASSWORD_MIN_LENGTH: int = 8

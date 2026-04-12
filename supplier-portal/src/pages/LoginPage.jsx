@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Eye, EyeOff, Loader2, Phone, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import { useSupplier } from '../context/SupplierContext';
 
 const BG_IMAGE = 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=80';
 
@@ -46,6 +47,7 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const { login, sendOtp, verifyOtp } = useAuth();
   const { addToast } = useToast();
+  const { refreshProfile } = useSupplier();
   const navigate = useNavigate();
 
   useEffect(() => { if (timer > 0) { const t = setTimeout(() => setTimer(timer - 1), 1000); return () => clearTimeout(t); } }, [timer]);
@@ -58,6 +60,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const user = await login(email, password);
+      await refreshProfile();
       addToast(`Welcome back, ${user.full_name || user.name}!`, 'success');
       const role = user.role;
       navigate(role === 'admin' || role === 'superadmin' ? '/admin' : '/dashboard');
@@ -81,6 +84,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const user = await verifyOtp('+91' + phone, otp);
+      await refreshProfile();
       addToast(`Welcome back, ${user.full_name || user.name}!`, 'success');
       navigate(user.role === 'admin' || user.role === 'superadmin' ? '/admin' : '/dashboard');
     } catch (err) { setError(err.message); } finally { setLoading(false); }

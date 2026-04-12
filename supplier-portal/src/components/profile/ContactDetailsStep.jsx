@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { useSupplier } from '../../context/SupplierContext';
 import { useToast } from '../../context/ToastContext';
+import profileService from '../../api/profileService';
 import ConfirmModal from '../ui/ConfirmModal';
 
 const pickupTimes = ['9AM-12PM', '12PM-3PM', '3PM-6PM', '6PM-9PM'];
 
 const ContactDetailsStep = ({ onNext, onPrev }) => {
-  const { contactDetails, saveContactDetails } = useSupplier();
+  const { contactDetails, saveContactDetails, seedFromApi } = useSupplier();
   const { addToast } = useToast();
   const [form, setForm] = useState(contactDetails?.primary || { name: '', phone: '', email: '', altEmail: '', pickupTime: '9AM-12PM' });
   const [others, setOthers] = useState(contactDetails?.others || []);
@@ -27,11 +28,34 @@ const ContactDetailsStep = ({ onNext, onPrev }) => {
     return Object.keys(e).length === 0;
   };
 
-  const handleSave = () => {
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
     if (!validate()) return;
-    saveContactDetails({ primary: form, others });
-    addToast('Contact details saved!', 'success');
-    onNext();
+    setSaving(true);
+    try {
+      const res = await profileService.saveContactDetails({
+        primary: {
+          contact_name: form.name,
+          phone: form.phone,
+          email: form.email,
+          alt_email: form.altEmail || null,
+          pickup_time: form.pickupTime,
+        },
+        others: others.map((o) => ({
+          contact_name: o.name,
+          phone: o.phone,
+          email: o.email,
+          location: o.location || null,
+        })),
+      });
+      seedFromApi(res?.data);
+      saveContactDetails({ primary: form, others });
+      addToast('Contact details saved!', 'success');
+      onNext();
+    } catch (err) {
+      addToast(err?.response?.data?.message || 'Failed to save', 'error');
+    } finally { setSaving(false); }
   };
 
   const addOther = () => {

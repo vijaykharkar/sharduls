@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSupplier } from '../../context/SupplierContext';
 import { useToast } from '../../context/ToastContext';
+import profileService from '../../api/profileService';
 import FileUpload from '../ui/FileUpload';
 import Badge from '../ui/Badge';
 
@@ -19,15 +20,33 @@ const DOC_LIST = [
 ];
 
 const DocumentsStep = ({ onPrev }) => {
-  const { documents, saveDocuments, completionPercentage } = useSupplier();
+  const { documents, saveDocuments, completionPercentage, seedFromApi } = useSupplier();
   const { addToast } = useToast();
   const [docs, setDocs] = useState(documents || {});
   const [submitted, setSubmitted] = useState(false);
+  const [uploading, setUploading] = useState({});
 
-  const updateDoc = (key, file) => {
-    const next = { ...docs, [key]: file };
-    setDocs(next);
-    saveDocuments(next);
+  const updateDoc = async (key, file) => {
+    // Clear
+    if (!file) {
+      const next = { ...docs };
+      delete next[key];
+      setDocs(next);
+      saveDocuments(next);
+      return;
+    }
+    // file is the actual File object from <input>
+    setUploading((p) => ({ ...p, [key]: true }));
+    try {
+      const res = await profileService.uploadDocument(key, file);
+      const next = { ...docs, [key]: { name: file.name, size: file.size, url: '' } };
+      setDocs(next);
+      saveDocuments(next);
+      seedFromApi(res?.data);
+      addToast(`${file.name} uploaded`, 'success');
+    } catch (err) {
+      addToast(err?.response?.data?.detail || err?.response?.data?.message || 'Upload failed', 'error');
+    } finally { setUploading((p) => ({ ...p, [key]: false })); }
   };
 
   const requiredDocs = DOC_LIST.filter((d) => d.required);
@@ -64,7 +83,7 @@ const DocumentsStep = ({ onPrev }) => {
                     <Badge status={status}>{status}</Badge>
                   </div>
                 </div>
-                <FileUpload value={file} onChange={(f) => updateDoc(doc.key, f)} />
+                <FileUpload value={file} onChange={(f) => updateDoc(doc.key, f)} disabled={!!uploading[doc.key]} />
               </motion.div>
             );
           })}

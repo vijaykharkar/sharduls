@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useSupplier } from '../../context/SupplierContext';
 import { useToast } from '../../context/ToastContext';
 import { validateGSTIN, lookupPincode, validatePincode } from '../../utils/helpers';
+import profileService from '../../api/profileService';
 import FileUpload from '../ui/FileUpload';
 
 const entityTypes = ['Sole Proprietorship', 'Partnership', 'LLP', 'Private Limited', 'Public Limited', 'Others'];
 
 const BusinessDetailsStep = ({ onNext }) => {
-  const { businessDetails, saveBusinessDetails } = useSupplier();
+  const { businessDetails, saveBusinessDetails, seedFromApi } = useSupplier();
   const { addToast } = useToast();
   const [form, setForm] = useState(businessDetails || {
     legalName: '', tradeName: '', gstin: '', country: 'India', pincode: '', state: '', city: '', tan: '', entityType: '', hasUdyam: 'no', udyamFile: null,
@@ -37,11 +38,32 @@ const BusinessDetailsStep = ({ onNext }) => {
     return Object.keys(e).length === 0;
   };
 
-  const handleSave = () => {
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
     if (!validate()) return;
-    saveBusinessDetails(form);
-    addToast('Business details saved!', 'success');
-    onNext();
+    setSaving(true);
+    try {
+      const res = await profileService.saveBusinessDetails({
+        legal_name: form.legalName,
+        trade_name: form.tradeName,
+        gstin: form.gstin,
+        country: form.country,
+        pincode: form.pincode,
+        state: form.state,
+        city: form.city,
+        tan: form.tan || null,
+        entity_type: form.entityType,
+        has_udyam: form.hasUdyam === 'yes',
+        udyam_file_url: null,
+      });
+      seedFromApi(res?.data);
+      saveBusinessDetails(form);
+      addToast('Business details saved!', 'success');
+      onNext();
+    } catch (err) {
+      addToast(err?.response?.data?.message || 'Failed to save', 'error');
+    } finally { setSaving(false); }
   };
 
   const inputClass = 'w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 bg-white text-gray-800 placeholder-gray-400 transition-all';

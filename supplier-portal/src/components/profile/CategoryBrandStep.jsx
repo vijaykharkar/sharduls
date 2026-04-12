@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Plus, Trash2 } from 'lucide-react';
 import { useSupplier } from '../../context/SupplierContext';
 import { useToast } from '../../context/ToastContext';
+import profileService from '../../api/profileService';
 import Badge from '../ui/Badge';
 import FileUpload from '../ui/FileUpload';
 import ConfirmModal from '../ui/ConfirmModal';
@@ -10,7 +11,7 @@ const CATEGORIES = ['Precision Parts', 'Industrial Tools', 'Fasteners', 'Bearing
 const NATURES = ['Manufacturer', 'Distributor', 'Retailer', 'Authorized Dealer'];
 
 const CategoryBrandStep = ({ onNext, onPrev }) => {
-  const { categoryBrand, saveCategoryBrand } = useSupplier();
+  const { categoryBrand, saveCategoryBrand, seedFromApi } = useSupplier();
   const { addToast } = useToast();
   const [categories, setCategories] = useState(categoryBrand?.categories || []);
   const [brands, setBrands] = useState(categoryBrand?.brands || []);
@@ -28,11 +29,24 @@ const CategoryBrandStep = ({ onNext, onPrev }) => {
   const updateRow = (i, k, v) => setBrandRows(brandRows.map((r, idx) => idx === i ? { ...r, [k]: v } : r));
   const removeRow = (i) => { setBrandRows(brandRows.filter((_, idx) => idx !== i)); setDeleteIdx(null); };
 
-  const handleSave = () => {
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
     if (categories.length === 0) { addToast('Select at least one category', 'warning'); return; }
-    saveCategoryBrand({ categories, brands, brandRows });
-    addToast('Category & Brand saved!', 'success');
-    onNext();
+    setSaving(true);
+    try {
+      const res = await profileService.saveCategoryBrand({
+        categories,
+        brands,
+        brand_rows: brandRows.map((r) => ({ name: r.name, nature: r.nature, cert_url: null, date: r.date || null, status: r.status })),
+      });
+      seedFromApi(res?.data);
+      saveCategoryBrand({ categories, brands, brandRows });
+      addToast('Category & Brand saved!', 'success');
+      onNext();
+    } catch (err) {
+      addToast(err?.response?.data?.message || 'Failed to save', 'error');
+    } finally { setSaving(false); }
   };
 
   return (

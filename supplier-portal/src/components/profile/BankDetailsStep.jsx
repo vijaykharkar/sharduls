@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useSupplier } from '../../context/SupplierContext';
 import { useToast } from '../../context/ToastContext';
 import { validateIFSC, lookupIFSC } from '../../utils/helpers';
+import profileService from '../../api/profileService';
 import FileUpload from '../ui/FileUpload';
 
 const acctTypes = ['Savings', 'Current', 'OD'];
 
 const BankDetailsStep = ({ onNext, onPrev }) => {
-  const { bankDetails, saveBankDetails } = useSupplier();
+  const { bankDetails, saveBankDetails, seedFromApi } = useSupplier();
   const { addToast } = useToast();
   const [form, setForm] = useState(bankDetails || {
     holderName: '', acctNumber: '', confirmAcct: '', acctType: 'Savings', ifsc: '', bankName: '', branch: '', city: '', cheque: null,
@@ -40,11 +41,29 @@ const BankDetailsStep = ({ onNext, onPrev }) => {
     return Object.keys(e).length === 0;
   };
 
-  const handleSave = () => {
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
     if (!validate()) return;
-    saveBankDetails(form);
-    addToast('Bank details saved!', 'success');
-    onNext();
+    setSaving(true);
+    try {
+      const res = await profileService.saveBankDetails({
+        account_holder_name: form.holderName,
+        account_number: form.acctNumber,
+        account_type: form.acctType,
+        ifsc_code: form.ifsc,
+        bank_name: form.bankName || null,
+        branch: form.branch || null,
+        city: form.city || null,
+        cheque_file_url: null,
+      });
+      seedFromApi(res?.data);
+      saveBankDetails(form);
+      addToast('Bank details saved!', 'success');
+      onNext();
+    } catch (err) {
+      addToast(err?.response?.data?.message || 'Failed to save', 'error');
+    } finally { setSaving(false); }
   };
 
   const ic = 'w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 bg-white text-gray-800 placeholder-gray-400 transition-all';

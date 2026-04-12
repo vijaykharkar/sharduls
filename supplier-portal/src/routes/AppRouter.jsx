@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import ProtectedRoute from './ProtectedRoute';
+import ProfileGuard from './ProfileGuard';
 import Sidebar from '../components/layout/Sidebar';
 import Navbar from '../components/layout/Navbar';
 
@@ -70,9 +71,9 @@ const AppRouter = () => {
         {/* Supplier routes */}
         <Route path="/dashboard" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><PageWrap><DashboardPage /></PageWrap></SupplierLayout></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><PageWrap><ProfilePage /></PageWrap></SupplierLayout></ProtectedRoute>} />
-        <Route path="/orders" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><PageWrap><OrdersPage /></PageWrap></SupplierLayout></ProtectedRoute>} />
-        <Route path="/products" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><PageWrap><ProductsPage /></PageWrap></SupplierLayout></ProtectedRoute>} />
-        <Route path="/payments" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><PageWrap><PaymentsPage /></PageWrap></SupplierLayout></ProtectedRoute>} />
+        <Route path="/orders" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><ProfileGuard><PageWrap><OrdersPage /></PageWrap></ProfileGuard></SupplierLayout></ProtectedRoute>} />
+        <Route path="/products" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><ProfileGuard><PageWrap><ProductsPage /></PageWrap></ProfileGuard></SupplierLayout></ProtectedRoute>} />
+        <Route path="/payments" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><ProfileGuard><PageWrap><PaymentsPage /></PageWrap></ProfileGuard></SupplierLayout></ProtectedRoute>} />
         <Route path="/support" element={<ProtectedRoute allowedRole="supplier"><SupplierLayout><PageWrap><SupportPage /></PageWrap></SupplierLayout></ProtectedRoute>} />
 
         {/* Admin placeholder */}

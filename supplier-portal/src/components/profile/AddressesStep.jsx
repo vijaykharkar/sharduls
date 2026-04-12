@@ -3,6 +3,7 @@ import { Plus, Edit2, Trash2, MapPin, AlertTriangle } from 'lucide-react';
 import { useSupplier } from '../../context/SupplierContext';
 import { useToast } from '../../context/ToastContext';
 import { lookupPincode, validatePincode } from '../../utils/helpers';
+import profileService from '../../api/profileService';
 import ConfirmModal from '../ui/ConfirmModal';
 
 const emptyAddr = () => ({ id: Date.now(), country: 'India', pincode: '', state: '', city: '', line1: '', line2: '', phone: '', isDefault: false });
@@ -52,11 +53,11 @@ const AddressCard = ({ addr, onEdit, onDelete, onSetDefault }) => (
 );
 
 const AddressesStep = ({ onNext, onPrev }) => {
-  const { addresses, saveAddresses } = useSupplier();
+  const { addresses, saveAddresses, seedFromApi } = useSupplier();
   const { addToast } = useToast();
   const [tab, setTab] = useState('billing');
   const [billing, setBilling] = useState(addresses?.billing || null);
-  const [pickup, setPickup] = useState(addresses?.pickup || [{ id: 1, country: 'India', pincode: '302001', state: 'Rajasthan', city: 'Jaipur', line1: '15 Artisan Colony, Sanganer', line2: '', phone: '9876543210', isDefault: true }]);
+  const [pickup, setPickup] = useState(addresses?.pickup || []);
   const [editing, setEditing] = useState(billing ? null : emptyAddr());
   const [editPickupIdx, setEditPickupIdx] = useState(null);
   const [newPickup, setNewPickup] = useState(null);
@@ -89,10 +90,27 @@ const AddressesStep = ({ onNext, onPrev }) => {
   const setPickupDefault = (i) => setPickup(pickup.map((p, idx) => ({ ...p, isDefault: idx === i })));
   const removePickup = (i) => { setPickup(pickup.filter((_, idx) => idx !== i)); setDeleteIdx(null); };
 
-  const handleSave = () => {
-    saveAddresses({ billing, pickup });
-    addToast('Addresses saved!', 'success');
-    onNext();
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const mapToApi = (a) => ({
+        country: a.country, pincode: a.pincode, state: a.state, city: a.city,
+        address_line1: a.line1, address_line2: a.line2 || null,
+        phone: a.phone, is_default: a.isDefault || false,
+      });
+      const res = await profileService.saveAddresses({
+        billing: billing ? { ...mapToApi(billing), address_type: 'billing' } : null,
+        pickup: pickup.map((p) => ({ ...mapToApi(p), address_type: 'pickup' })),
+      });
+      seedFromApi(res?.data);
+      saveAddresses({ billing, pickup });
+      addToast('Addresses saved!', 'success');
+      onNext();
+    } catch (err) {
+      addToast(err?.response?.data?.message || 'Failed to save', 'error');
+    } finally { setSaving(false); }
   };
 
   return (
