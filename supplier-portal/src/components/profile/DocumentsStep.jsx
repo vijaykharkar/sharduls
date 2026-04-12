@@ -43,9 +43,9 @@ const DocumentsStep = ({ onPrev }) => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-surface rounded-2xl border border-border p-6">
-        <h2 className="text-lg font-bold text-highlight mb-1">Business Documents</h2>
-        <p className="text-xs text-muted mb-5">Upload your business documents for verification</p>
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+        <h2 className="text-lg font-bold text-gray-800 mb-1">Business Documents</h2>
+        <p className="text-xs text-gray-500 mb-5">Upload your business documents for verification</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {DOC_LIST.map((doc) => {
@@ -58,7 +58,7 @@ const DocumentsStep = ({ onPrev }) => {
                 className={`rounded-xl border-2 p-4 transition-colors ${file ? 'border-accent bg-accent/5' : 'border-dashed border-border'}`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="text-xs font-semibold text-highlight">{doc.label}</h4>
+                  <h4 className="text-xs font-semibold text-gray-800">{doc.label}</h4>
                   <div className="flex items-center gap-1.5">
                     {doc.required && <span className="text-[8px] text-red-500 font-bold">REQUIRED</span>}
                     <Badge status={status}>{status}</Badge>
@@ -72,9 +72,9 @@ const DocumentsStep = ({ onPrev }) => {
       </div>
 
       {/* Progress bar */}
-      <div className="bg-surface rounded-2xl border border-border p-5">
+      <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-semibold text-highlight">Documents uploaded: {totalUploaded}/{DOC_LIST.length}</p>
+          <p className="text-xs font-semibold text-gray-800">Documents uploaded: {totalUploaded}/{DOC_LIST.length}</p>
           <p className="text-xs text-muted">Required: {uploadedRequired}/{requiredDocs.length}</p>
         </div>
         <div className="w-full h-2 bg-border rounded-full overflow-hidden">

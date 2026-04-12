@@ -11,10 +11,10 @@ const icons = {
   info: <Info size={18} className="text-blue-400" />,
 };
 const bg = {
-  success: 'border-l-4 border-green-500 bg-[#0d1f12]',
-  error: 'border-l-4 border-red-500 bg-[#1f0d0d]',
-  warning: 'border-l-4 border-yellow-500 bg-[#1f1a0d]',
-  info: 'border-l-4 border-blue-500 bg-[#0d141f]',
+  success: 'border-l-4 border-green-500 bg-white shadow-lg',
+  error: 'border-l-4 border-red-500 bg-white shadow-lg',
+  warning: 'border-l-4 border-yellow-500 bg-white shadow-lg',
+  info: 'border-l-4 border-blue-500 bg-white shadow-lg',
 };
 
 export const ToastProvider = ({ children }) => {
@@ -42,8 +42,8 @@ export const ToastProvider = ({ children }) => {
               className={`pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-strong ${bg[t.type]}`}
             >
               {icons[t.type]}
-              <p className="flex-1 text-sm text-highlight font-medium">{t.message}</p>
-              <button onClick={() => remove(t.id)} className="text-muted hover:text-highlight cursor-pointer"><X size={14} /></button>
+              <p className="flex-1 text-sm text-gray-800 font-medium">{t.message}</p>
+              <button onClick={() => remove(t.id)} className="text-gray-400 hover:text-gray-700 cursor-pointer"><X size={14} /></button>
             </motion.div>
           ))}
         </AnimatePresence>

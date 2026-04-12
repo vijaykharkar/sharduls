@@ -44,55 +44,55 @@ const BusinessDetailsStep = ({ onNext }) => {
     onNext();
   };
 
-  const inputClass = 'w-full px-4 py-2.5 border border-border rounded-xl text-sm outline-none focus:ring-1 focus:ring-primary bg-[#0A0D14] text-highlight placeholder-muted transition-all';
+  const inputClass = 'w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 bg-white text-gray-800 placeholder-gray-400 transition-all';
 
   return (
-    <div className="bg-surface rounded-2xl border border-border p-6">
-      <h2 className="text-lg font-bold text-highlight mb-1">Business Details</h2>
-      <p className="text-xs text-muted mb-5">Tell us about your business entity</p>
+    <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+      <h2 className="text-lg font-bold text-gray-800 mb-1">Business Details</h2>
+      <p className="text-xs text-gray-500 mb-5">Tell us about your business entity</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Legal Entity Name *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Legal Entity Name *</label>
           <input value={form.legalName} onChange={(e) => up('legalName', e.target.value)} className={inputClass} placeholder="Registered company name" />
           {errors.legalName && <p className="mt-1 text-xs text-red-500">{errors.legalName}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Trade Name *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Trade Name *</label>
           <input value={form.tradeName} onChange={(e) => up('tradeName', e.target.value)} className={inputClass} placeholder="Brand / trade name" />
           {errors.tradeName && <p className="mt-1 text-xs text-red-500">{errors.tradeName}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">GSTIN *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">GSTIN *</label>
           <input value={form.gstin} onChange={(e) => up('gstin', e.target.value)} className={inputClass} placeholder="15 character GSTIN" maxLength={15} style={{ textTransform: 'uppercase' }} />
           {errors.gstin && <p className="mt-1 text-xs text-red-500">{errors.gstin}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Country</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Country</label>
           <select value={form.country} onChange={(e) => up('country', e.target.value)} className={inputClass}>
             <option>India</option>
           </select>
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Pincode *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Pincode *</label>
           <input value={form.pincode} onChange={(e) => up('pincode', e.target.value.replace(/\D/g, '').slice(0, 6))} className={inputClass} placeholder="6 digit pincode" />
           {errors.pincode && <p className="mt-1 text-xs text-red-500">{errors.pincode}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">State</label>
-          <input value={form.state} onChange={(e) => up('state', e.target.value)} className={`${inputClass} ${form.state ? 'bg-surface' : ''}`} placeholder="Auto-filled from pincode" />
+          <label className="block text-xs font-semibold text-gray-700 mb-1">State</label>
+          <input value={form.state} onChange={(e) => up('state', e.target.value)} className={`${inputClass} ${form.state ? 'bg-gray-50' : ''}`} placeholder="Auto-filled from pincode" />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">City *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">City *</label>
           <input value={form.city} onChange={(e) => up('city', e.target.value)} className={inputClass} placeholder="City" />
           {errors.city && <p className="mt-1 text-xs text-red-500">{errors.city}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">TAN (optional)</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">TAN (optional)</label>
           <input value={form.tan} onChange={(e) => up('tan', e.target.value)} className={inputClass} placeholder="Enter TAN" />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Business Entity Type *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Business Entity Type *</label>
           <select value={form.entityType} onChange={(e) => up('entityType', e.target.value)} className={inputClass}>
             <option value="">Select type</option>
             {entityTypes.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -100,7 +100,7 @@ const BusinessDetailsStep = ({ onNext }) => {
           {errors.entityType && <p className="mt-1 text-xs text-red-500">{errors.entityType}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Udyam Registration Certificate</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Udyam Registration Certificate</label>
           <div className="flex gap-4 mt-1">
             <label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="udyam" checked={form.hasUdyam === 'no'} onChange={() => up('hasUdyam', 'no')} className="accent-[#E53E3E]" /><span className="text-sm">No</span></label>
             <label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="udyam" checked={form.hasUdyam === 'yes'} onChange={() => up('hasUdyam', 'yes')} className="accent-[#E53E3E]" /><span className="text-sm">Yes</span></label>

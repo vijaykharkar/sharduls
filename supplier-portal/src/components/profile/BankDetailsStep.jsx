@@ -47,52 +47,52 @@ const BankDetailsStep = ({ onNext, onPrev }) => {
     onNext();
   };
 
-  const ic = 'w-full px-4 py-2.5 border border-border rounded-xl text-sm outline-none focus:ring-1 focus:ring-primary bg-[#0A0D14] text-highlight placeholder-muted transition-all';
+  const ic = 'w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 bg-white text-gray-800 placeholder-gray-400 transition-all';
 
   return (
-    <div className="bg-surface rounded-2xl border border-border p-6 space-y-5">
+    <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm space-y-5">
       <div>
-        <h2 className="text-lg font-bold text-highlight mb-1">Bank Details</h2>
-        <p className="text-xs text-muted">For receiving payments</p>
+        <h2 className="text-lg font-bold text-gray-800 mb-1">Bank Details</h2>
+        <p className="text-xs text-gray-500">For receiving payments</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Account Holder Name *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Account Holder Name *</label>
           <input value={form.holderName} onChange={(e) => up('holderName', e.target.value)} className={ic} placeholder="As per bank records" />
           {errors.holderName && <p className="mt-1 text-xs text-red-500">{errors.holderName}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Account Number *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Account Number *</label>
           <input value={form.acctNumber} onChange={(e) => up('acctNumber', e.target.value.replace(/\D/g, ''))} className={ic} placeholder="Account number" />
           {errors.acctNumber && <p className="mt-1 text-xs text-red-500">{errors.acctNumber}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Confirm Account Number *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Confirm Account Number *</label>
           <input value={form.confirmAcct} onChange={(e) => up('confirmAcct', e.target.value.replace(/\D/g, ''))} className={ic} placeholder="Re-enter account number" />
           {errors.confirmAcct && <p className="mt-1 text-xs text-red-500">{errors.confirmAcct}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Account Type *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Account Type *</label>
           <select value={form.acctType} onChange={(e) => up('acctType', e.target.value)} className={ic}>
             {acctTypes.map((t) => <option key={t}>{t}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">IFSC Code *</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">IFSC Code *</label>
           <input value={form.ifsc} onChange={(e) => up('ifsc', e.target.value)} className={ic} placeholder="e.g. SBIN0000001" maxLength={11} style={{ textTransform: 'uppercase' }} />
           {errors.ifsc && <p className="mt-1 text-xs text-red-500">{errors.ifsc}</p>}
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Bank Name</label>
-          <input value={form.bankName} readOnly className={`${ic} bg-surface`} placeholder="Auto-filled from IFSC" />
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Bank Name</label>
+          <input value={form.bankName} readOnly className={`${ic} bg-gray-50`} placeholder="Auto-filled from IFSC" />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">Branch</label>
-          <input value={form.branch} readOnly className={`${ic} bg-surface`} placeholder="Auto-filled from IFSC" />
+          <label className="block text-xs font-semibold text-gray-700 mb-1">Branch</label>
+          <input value={form.branch} readOnly className={`${ic} bg-gray-50`} placeholder="Auto-filled from IFSC" />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-highlight mb-1">City</label>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">City</label>
           <input value={form.city} onChange={(e) => up('city', e.target.value)} className={ic} placeholder="City" />
         </div>
       </div>

@@ -122,6 +122,47 @@ class UserUpdate(BaseModel):
     avatar_url: Optional[str] = None
 
 
+class BusinessProfileResponse(BaseModel):
+    company_name: Optional[str] = None
+    business_type: Optional[str] = None
+    product_categories: Optional[List[str]] = None
+    gst_number: Optional[str] = None
+    pan_number: Optional[str] = None
+    website: Optional[str] = None
+    description: Optional[str] = None
+
+    model_config = {"from_attributes": True}
+
+
+class SupplierProfileResponse(BaseModel):
+    id: int
+    full_name: str
+    email: str
+    phone: Optional[str] = None
+    role: str
+    is_active: bool
+    is_verified: bool
+    avatar_url: Optional[str] = None
+    created_at: datetime
+    business_profile: Optional[BusinessProfileResponse] = None
+    profile_completion: int = 0
+
+    model_config = {"from_attributes": True}
+
+
+class SupplierProfileUpdate(BaseModel):
+    full_name: Optional[str] = Field(None, min_length=2, max_length=150)
+    phone: Optional[str] = Field(None, max_length=20)
+    avatar_url: Optional[str] = None
+    company_name: Optional[str] = Field(None, max_length=255)
+    business_type: Optional[str] = Field(None, max_length=100)
+    product_categories: Optional[List[str]] = None
+    gst_number: Optional[str] = Field(None, max_length=20)
+    pan_number: Optional[str] = Field(None, max_length=15)
+    website: Optional[str] = Field(None, max_length=255)
+    description: Optional[str] = None
+
+
 # --------------- Address schemas ---------------
 
 class AddressCreate(BaseModel):

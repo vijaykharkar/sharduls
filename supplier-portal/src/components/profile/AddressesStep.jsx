@@ -13,17 +13,17 @@ const AddressForm = ({ addr, onChange, onSave, onCancel, errors = {} }) => {
     if (k === 'pincode' && validatePincode(v)) { const loc = lookupPincode(v); next.state = loc.state; next.city = loc.city; }
     onChange(next);
   };
-  const ic = 'w-full px-4 py-2.5 border border-border rounded-xl text-sm outline-none focus:ring-1 focus:ring-primary bg-[#0A0D14] text-highlight placeholder-muted transition-all';
+  const ic = 'w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 bg-white text-gray-800 placeholder-gray-400 transition-all';
   return (
-    <div className="space-y-3 p-4 bg-[#0A0D14] rounded-xl border border-border">
+    <div className="space-y-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div><label className="block text-xs font-semibold text-highlight mb-1">Country</label><select value={addr.country} onChange={(e) => up('country', e.target.value)} className={ic}><option>India</option></select></div>
-        <div><label className="block text-xs font-semibold text-highlight mb-1">Pincode *</label><input value={addr.pincode} onChange={(e) => up('pincode', e.target.value.replace(/\D/g, '').slice(0, 6))} className={ic} placeholder="6 digits" />{errors.pincode && <p className="mt-1 text-xs text-red-500">{errors.pincode}</p>}</div>
-        <div><label className="block text-xs font-semibold text-highlight mb-1">State</label><input value={addr.state} className={`${ic} bg-surface`} readOnly /></div>
-        <div><label className="block text-xs font-semibold text-highlight mb-1">City</label><input value={addr.city} className={`${ic} bg-surface`} readOnly /></div>
-        <div className="sm:col-span-2"><label className="block text-xs font-semibold text-highlight mb-1">Address Line 1 *</label><input value={addr.line1} onChange={(e) => up('line1', e.target.value)} className={ic} placeholder="Street, building" />{errors.line1 && <p className="mt-1 text-xs text-red-500">{errors.line1}</p>}</div>
-        <div className="sm:col-span-2"><label className="block text-xs font-semibold text-highlight mb-1">Address Line 2</label><input value={addr.line2} onChange={(e) => up('line2', e.target.value)} className={ic} placeholder="Floor, landmark" /></div>
-        <div><label className="block text-xs font-semibold text-highlight mb-1">Phone *</label><input value={addr.phone} onChange={(e) => up('phone', e.target.value.replace(/\D/g, '').slice(0, 10))} className={ic} placeholder="10 digits" />{errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}</div>
+        <div><label className="block text-xs font-semibold text-gray-700 mb-1">Country</label><select value={addr.country} onChange={(e) => up('country', e.target.value)} className={ic}><option>India</option></select></div>
+        <div><label className="block text-xs font-semibold text-gray-700 mb-1">Pincode *</label><input value={addr.pincode} onChange={(e) => up('pincode', e.target.value.replace(/\D/g, '').slice(0, 6))} className={ic} placeholder="6 digits" />{errors.pincode && <p className="mt-1 text-xs text-red-500">{errors.pincode}</p>}</div>
+        <div><label className="block text-xs font-semibold text-gray-700 mb-1">State</label><input value={addr.state} className={`${ic} bg-gray-100`} readOnly /></div>
+        <div><label className="block text-xs font-semibold text-gray-700 mb-1">City</label><input value={addr.city} className={`${ic} bg-gray-100`} readOnly /></div>
+        <div className="sm:col-span-2"><label className="block text-xs font-semibold text-gray-700 mb-1">Address Line 1 *</label><input value={addr.line1} onChange={(e) => up('line1', e.target.value)} className={ic} placeholder="Street, building" />{errors.line1 && <p className="mt-1 text-xs text-red-500">{errors.line1}</p>}</div>
+        <div className="sm:col-span-2"><label className="block text-xs font-semibold text-gray-700 mb-1">Address Line 2</label><input value={addr.line2} onChange={(e) => up('line2', e.target.value)} className={ic} placeholder="Floor, landmark" /></div>
+        <div><label className="block text-xs font-semibold text-gray-700 mb-1">Phone *</label><input value={addr.phone} onChange={(e) => up('phone', e.target.value.replace(/\D/g, '').slice(0, 10))} className={ic} placeholder="10 digits" />{errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}</div>
       </div>
       <label className="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked={addr.isDefault} onChange={(e) => up('isDefault', e.target.checked)} className="accent-[#E53E3E]" /><span className="text-xs text-muted">Set as default address</span></label>
       <div className="flex gap-2 justify-end"><button onClick={onCancel} className="px-4 py-2 border border-border rounded-lg text-xs font-semibold text-muted cursor-pointer hover:border-primary">Cancel</button><button onClick={onSave} className="px-4 py-2 chrome-gradient text-background rounded-lg text-xs font-bold cursor-pointer hover:shadow-chrome">Save</button></div>
