@@ -7,7 +7,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold:       { DEFAULT: '#C9A84C', light: '#E0CB7E', dark: '#A68A30', 50: '#FBF6E8' },
         terracotta: { DEFAULT: '#C4622D', light: '#E08A5A', dark: '#9C4D22' },
         cream:      { DEFAULT: '#FAF3E0', dark: '#F0E4C8' },
         charcoal:   { DEFAULT: '#1A1A1A', light: '#2D2D2D', lighter: '#444444' },
