@@ -92,7 +92,8 @@ def get_current_user(token: Optional[str] = Depends(oauth2_scheme), db: Session 
 def require_roles(*allowed_roles: str):
     """Return a dependency that checks the user's role against allowed_roles."""
     def _check(current_user=Depends(get_current_user)):
-        if current_user.role.value not in allowed_roles:
+        role_val = current_user.role.value if hasattr(current_user.role, 'value') else current_user.role
+        if role_val not in allowed_roles:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail=f"Requires one of roles: {', '.join(allowed_roles)}",

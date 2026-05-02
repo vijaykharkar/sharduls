@@ -33,6 +33,22 @@ const adminService = {
     const res = await axiosInstance.post(`/admin/suppliers/${id}/reject`);
     return res.data;
   },
+  submitReview: async (id, reviewData) => {
+    const res = await axiosInstance.post(`/admin/suppliers/${id}/review`, reviewData);
+    return res.data;
+  },
+  getReview: async (id) => {
+    const res = await axiosInstance.get(`/admin/suppliers/${id}/review`);
+    return res.data;
+  },
+  getNotifications: async () => {
+    const res = await axiosInstance.get('/admin/notifications');
+    return res.data;
+  },
+  markNotificationRead: async (notifId) => {
+    const res = await axiosInstance.post(`/admin/notifications/${notifId}/read`);
+    return res.data;
+  },
 };
 
 export default adminService;

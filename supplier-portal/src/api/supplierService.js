@@ -49,6 +49,24 @@ const supplierService = {
     return response.data;
   },
 
+  // Get admin review for my profile
+  getMyReview: async () => {
+    const response = await axiosInstance.get('/supplier/my-review');
+    return response.data;
+  },
+
+  // Get my notifications
+  getMyNotifications: async () => {
+    const response = await axiosInstance.get('/supplier/notifications');
+    return response.data;
+  },
+
+  // Mark notification as read
+  markNotificationRead: async (notifId) => {
+    const response = await axiosInstance.post(`/supplier/notifications/${notifId}/read`);
+    return response.data;
+  },
+
   // Logout
   logout: () => {
     localStorage.removeItem('supplier_access_token');

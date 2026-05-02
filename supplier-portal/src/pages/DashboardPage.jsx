@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ShoppingBag, Clock, Banknote, Package, ArrowRight,
   CheckCircle, AlertCircle, FileText, Lock, Loader2, Upload,
-  Check, Shield,
+  Check, Shield, XCircle, MessageSquare, ClipboardCheck,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useSupplier } from '../context/SupplierContext';
+import supplierService from '../api/supplierService';
 
 /* ── Constants ───────────────────────────────────────────── */
 const STEP_LABELS = ['Business Details', 'Contact Details', 'Category & Brand', 'Addresses', 'Bank Details', 'Documents'];
@@ -89,9 +90,18 @@ const DocBadge = ({ uploaded }) => {
 };
 
 /* ── Dashboard ───────────────────────────────────────────── */
+const SECTION_LABELS = {
+  businessDetails: 'Business Details',
+  contactDetails: 'Contact Details',
+  categoryBrand: 'Category & Brand',
+  addresses: 'Addresses',
+  bankDetails: 'Bank Details',
+};
+
 const DashboardPage = () => {
   const { user } = useAuth();
   const { profileSteps, completionPercentage, apiProfile, profileLoading, documents } = useSupplier();
+  const [reviewData, setReviewData] = useState(null);
 
   const isApproved  = !!apiProfile?.is_profile_approved;
   const isComplete  = completionPercentage === 100;
@@ -99,6 +109,23 @@ const DashboardPage = () => {
 
   const stagger  = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
   const fadeUp   = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
+
+  // Fetch admin review feedback
+  useEffect(() => {
+    if (!apiProfile || isApproved) return;
+    supplierService.getMyReview()
+      .then((res) => setReviewData(res?.data || null))
+      .catch(() => {});
+  }, [apiProfile, isApproved]);
+
+  // Compute rejected items from review
+  const rejectedSections = reviewData?.sections
+    ? Object.entries(reviewData.sections).filter(([, v]) => v.verdict === 'rejected')
+    : [];
+  const rejectedDocs = reviewData?.documents
+    ? Object.entries(reviewData.documents).filter(([, v]) => v.verdict === 'rejected')
+    : [];
+  const hasReviewFeedback = rejectedSections.length > 0 || rejectedDocs.length > 0;
 
   if (profileLoading) {
     return (
@@ -154,6 +181,57 @@ const DashboardPage = () => {
           </span>
         </motion.div>
       ) : null}
+
+      {/* ── Admin Review Feedback ── */}
+      {hasReviewFeedback && !isApproved && (
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+          className="bg-red-50 border border-red-200 rounded-2xl overflow-hidden">
+          <div className="flex items-center gap-3 px-6 py-4 border-b border-red-200">
+            <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+              <ClipboardCheck size={20} className="text-red-600" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-bold text-red-800">Admin Review — Action Required</p>
+              <p className="text-xs text-red-600 mt-0.5">The admin has reviewed your profile and found issues with the following items. Please correct them and resubmit.</p>
+            </div>
+            <Link to="/profile" className="flex items-center gap-1.5 px-4 py-2 bg-red-500 text-white text-xs font-bold rounded-xl hover:bg-red-600 transition-colors flex-shrink-0">
+              Fix Issues <ArrowRight size={13} />
+            </Link>
+          </div>
+          <div className="px-6 py-4 space-y-2">
+            {rejectedSections.map(([key, val]) => (
+              <div key={key} className="flex items-start gap-2 bg-white rounded-xl border border-red-200 px-4 py-3">
+                <XCircle size={14} className="text-red-500 mt-0.5 flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-red-800">{SECTION_LABELS[key] || key}</p>
+                  {val.note && <p className="text-xs text-red-600 mt-0.5">{val.note}</p>}
+                </div>
+              </div>
+            ))}
+            {rejectedDocs.map(([key, val]) => {
+              const docLabel = DOC_LIST.find((d) => d.key === key)?.label || key;
+              return (
+                <div key={key} className="flex items-start gap-2 bg-white rounded-xl border border-red-200 px-4 py-3">
+                  <XCircle size={14} className="text-red-500 mt-0.5 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold text-red-800">Document: {docLabel}</p>
+                    {val.note && <p className="text-xs text-red-600 mt-0.5">{val.note}</p>}
+                  </div>
+                </div>
+              );
+            })}
+            {reviewData?.overallNote && (
+              <div className="flex items-start gap-2 bg-white rounded-xl border border-amber-200 px-4 py-3 mt-2">
+                <MessageSquare size={14} className="text-amber-600 mt-0.5 flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-amber-800">Admin's Overall Note</p>
+                  <p className="text-xs text-amber-700 mt-0.5">{reviewData.overallNote}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      )}
 
       {/* ── Profile Completion Card ── */}
       {!isComplete && (

@@ -52,6 +52,25 @@ const AdminDashboardPage = () => {
         <StatCard icon={FileText}    label="Total Documents"    value={s.total_documents || 0}    color="bg-violet-100 text-violet-600" />
       </div>
 
+      {/* Pending Reviews Alert */}
+      {(s.pending_approvals || 0) > 0 && (
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-4 bg-amber-50 border border-amber-200 rounded-2xl px-6 py-4">
+          <div className="w-11 h-11 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
+            <Clock size={20} className="text-amber-600" />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-bold text-amber-800">New Supplier Registrations</p>
+            <p className="text-xs text-amber-600 mt-0.5">
+              {s.pending_approvals} supplier{s.pending_approvals !== 1 ? 's' : ''} registered and awaiting your review. Please verify their details, documents, and approve or send feedback.
+            </p>
+          </div>
+          <Link to="/admin/suppliers?status=pending" className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 text-white text-xs font-bold rounded-xl hover:bg-amber-600 transition-colors flex-shrink-0">
+            Review Now <ArrowRight size={13} />
+          </Link>
+        </motion.div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
           <h2 className="text-sm font-bold text-gray-800 mb-4">Quick Actions</h2>
