@@ -49,6 +49,40 @@ const adminService = {
     const res = await axiosInstance.post(`/admin/notifications/${notifId}/read`);
     return res.data;
   },
+
+  // ── Products ──
+  listProducts: async (params = {}) => {
+    const res = await axiosInstance.get('/admin/products', { params });
+    return res.data;
+  },
+  getProductStats: async () => {
+    const res = await axiosInstance.get('/admin/products/stats');
+    return res.data;
+  },
+  getProduct: async (id) => {
+    const res = await axiosInstance.get(`/admin/products/${id}`);
+    return res.data;
+  },
+  updateProductPricing: async (id, data) => {
+    const res = await axiosInstance.patch(`/admin/products/${id}/pricing`, data);
+    return res.data;
+  },
+  approveProduct: async (id) => {
+    const res = await axiosInstance.post(`/admin/products/${id}/approve`);
+    return res.data;
+  },
+  rejectProduct: async (id, reason = '') => {
+    const res = await axiosInstance.post(`/admin/products/${id}/reject`, { reason });
+    return res.data;
+  },
+  bulkApproveProducts: async (productIds) => {
+    const res = await axiosInstance.post('/admin/products/bulk-approve', { product_ids: productIds });
+    return res.data;
+  },
+  bulkPricingProducts: async (productIds, pricing) => {
+    const res = await axiosInstance.post('/admin/products/bulk-pricing', { product_ids: productIds, ...pricing });
+    return res.data;
+  },
 };
 
 export default adminService;

@@ -7,6 +7,7 @@ from app.core.errors import register_error_handlers
 from app.api.v1.auth import router as auth_router
 from app.api.v1.profile import router as profile_router
 from app.api.v1.admin import router as admin_router
+from app.api.v1.products import router as products_router
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -30,6 +31,7 @@ register_error_handlers(app)
 app.include_router(auth_router, prefix=settings.API_V1_PREFIX)
 app.include_router(profile_router, prefix=settings.API_V1_PREFIX)
 app.include_router(admin_router, prefix=settings.API_V1_PREFIX)
+app.include_router(products_router, prefix=settings.API_V1_PREFIX)
 
 # Serve uploaded files
 upload_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), settings.UPLOAD_DIR)

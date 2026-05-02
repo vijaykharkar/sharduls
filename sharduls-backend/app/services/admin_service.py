@@ -2,11 +2,14 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from app.models.user import User
 from app.repositories import admin_repository as arepo
+from app.repositories import product_repository as prepo
 from app.services import profile_service as psvc
 
 
 def dashboard_stats(db: Session) -> dict:
-    return arepo.get_dashboard_stats(db)
+    stats = arepo.get_dashboard_stats(db)
+    stats.update(prepo.get_product_stats(db))
+    return stats
 
 
 def _serialize_supplier(db: Session, user: User) -> dict:

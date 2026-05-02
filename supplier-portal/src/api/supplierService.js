@@ -37,9 +37,9 @@ const supplierService = {
     return response.data;
   },
 
-  // Get product categories
+  // Get product categories (public endpoint)
   getProductCategories: async () => {
-    const response = await axiosInstance.get('/supplier/product-categories');
+    const response = await axiosInstance.get('/products/categories');
     return response.data;
   },
 
@@ -64,6 +64,34 @@ const supplierService = {
   // Mark notification as read
   markNotificationRead: async (notifId) => {
     const response = await axiosInstance.post(`/supplier/notifications/${notifId}/read`);
+    return response.data;
+  },
+
+  // ── Product Images ──
+  uploadProductImages: async (files) => {
+    const formData = new FormData();
+    files.forEach((file) => formData.append('files', file));
+    const response = await axiosInstance.post('/supplier/products/upload-images', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+  },
+
+  // ── Product CRUD ──
+  getMyProducts: async (params = {}) => {
+    const response = await axiosInstance.get('/supplier/products', { params });
+    return response.data;
+  },
+  createProduct: async (data) => {
+    const response = await axiosInstance.post('/supplier/products', data);
+    return response.data;
+  },
+  updateProduct: async (id, data) => {
+    const response = await axiosInstance.patch(`/supplier/products/${id}`, data);
+    return response.data;
+  },
+  deleteProduct: async (id) => {
+    const response = await axiosInstance.delete(`/supplier/products/${id}`);
     return response.data;
   },
 

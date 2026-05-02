@@ -21,6 +21,10 @@ import NotFoundPage from '../pages/NotFoundPage';
 import AdminDashboardPage from '../pages/admin/AdminDashboardPage';
 import AdminSuppliersPage from '../pages/admin/AdminSuppliersPage';
 import AdminSupplierDetailPage from '../pages/admin/AdminSupplierDetailPage';
+import AdminProductsPage from '../pages/admin/AdminProductsPage';
+import AdminProductDetailPage from '../pages/admin/AdminProductDetailPage';
+import AdminOrdersPage from '../pages/admin/AdminOrdersPage';
+import AdminPaymentsPage from '../pages/admin/AdminPaymentsPage';
 import AdminSettingsPage from '../pages/admin/AdminSettingsPage';
 
 const PageWrap = ({ children }) => (
@@ -75,6 +79,10 @@ const AppRouter = () => {
         <Route path="/admin" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminDashboardPage /></PageWrap></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/suppliers" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminSuppliersPage /></PageWrap></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/suppliers/:id" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminSupplierDetailPage /></PageWrap></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/products" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminProductsPage /></PageWrap></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/products/:id" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminProductDetailPage /></PageWrap></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/orders" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminOrdersPage /></PageWrap></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/payments" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminPaymentsPage /></PageWrap></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/settings" element={<ProtectedRoute allowedRole={['admin', 'superadmin']}><AdminLayout><PageWrap><AdminSettingsPage /></PageWrap></AdminLayout></ProtectedRoute>} />
 
         <Route path="/" element={<Navigate to="/login" replace />} />

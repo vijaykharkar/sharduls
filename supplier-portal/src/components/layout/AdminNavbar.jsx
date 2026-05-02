@@ -8,6 +8,9 @@ import adminService from '../../api/adminService';
 const pageTitles = {
   '/admin': 'Dashboard',
   '/admin/suppliers': 'Suppliers',
+  '/admin/products': 'Products',
+  '/admin/orders': 'Orders',
+  '/admin/payments': 'Payments',
   '/admin/settings': 'Settings',
 };
 
@@ -21,7 +24,8 @@ const AdminNavbar = () => {
   const [notifLoading, setNotifLoading] = useState(false);
 
   const title = Object.entries(pageTitles).find(([k]) => pathname.startsWith(k) && (k !== '/admin' || pathname === '/admin'))?.[1]
-    || (pathname.startsWith('/admin/suppliers/') ? 'Supplier Detail' : 'Admin');
+    || (pathname.startsWith('/admin/suppliers/') ? 'Supplier Detail'
+      : pathname.startsWith('/admin/products/') ? 'Product Detail' : 'Admin');
 
   const fetchPending = useCallback(async () => {
     setNotifLoading(true);

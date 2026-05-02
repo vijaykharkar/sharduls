@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import useProducts from '../hooks/useProducts';
 import ProductCard from '../components/product/ProductCard';
 import { ProductGridSkeleton } from '../components/ui/Skeleton';
-import { CATEGORIES } from '../data/mockProducts';
+import { CATEGORIES as MOCK_CATEGORIES } from '../data/mockProducts';
 
 const features = [
   { icon: Truck, title: 'Free Delivery', desc: 'On orders above ₹499' },
@@ -17,7 +17,8 @@ const features = [
 const catIcons = { Mobiles: '📱', Laptops: '💻', Electronics: '🎧', Fashion: '👕', Home: '🏠' };
 
 export default function HomePage() {
-  const { products, loading } = useProducts();
+  const { products, loading, apiCategories } = useProducts();
+  const CATEGORIES = apiCategories.length > 0 ? ['All', ...apiCategories] : MOCK_CATEGORIES;
 
   return (
     <div className="space-y-8 sm:space-y-10">

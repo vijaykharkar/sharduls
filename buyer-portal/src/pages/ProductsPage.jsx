@@ -4,7 +4,7 @@ import { SlidersHorizontal, X } from 'lucide-react';
 import useProducts from '../hooks/useProducts';
 import ProductCard from '../components/product/ProductCard';
 import { ProductGridSkeleton } from '../components/ui/Skeleton';
-import { CATEGORIES, BRANDS, SORT_OPTIONS } from '../data/mockProducts';
+import { CATEGORIES as MOCK_CATEGORIES, BRANDS as MOCK_BRANDS, SORT_OPTIONS } from '../data/mockProducts';
 
 export default function ProductsPage() {
   const [searchParams] = useSearchParams();
@@ -15,7 +15,11 @@ export default function ProductsPage() {
     sortBy, setSortBy,
     searchQuery, setSearchQuery,
     hasMore, loadMore,
+    apiCategories, apiBrands,
   } = useProducts();
+
+  const CATEGORIES = apiCategories.length > 0 ? ['All', ...apiCategories] : MOCK_CATEGORIES;
+  const BRANDS = apiBrands.length > 0 ? ['All', ...apiBrands] : MOCK_BRANDS;
 
   /* Sync URL params to filters */
   useEffect(() => {
@@ -23,7 +27,7 @@ export default function ProductsPage() {
     const q = searchParams.get('search');
     if (c && CATEGORIES.includes(c)) setCategory(c);
     if (q) setSearchQuery(q);
-  }, [searchParams]);
+  }, [searchParams, CATEGORIES]);
 
   const activeFilters = (category !== 'All' ? 1 : 0) + (brand !== 'All' ? 1 : 0) + (searchQuery ? 1 : 0);
 

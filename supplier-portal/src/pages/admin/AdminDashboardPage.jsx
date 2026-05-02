@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Users, ShieldCheck, Clock, FileText, ArrowRight, Loader2 } from 'lucide-react';
+import { Users, ShieldCheck, Clock, FileText, ArrowRight, Loader2, Package, CheckCircle } from 'lucide-react';
 import adminService from '../../api/adminService';
 
 const StatCard = ({ icon: Icon, label, value, color, sub }) => (
@@ -49,7 +49,23 @@ const AdminDashboardPage = () => {
         <StatCard icon={Users}       label="Total Suppliers"    value={s.total_suppliers || 0}    color="bg-blue-100 text-blue-600" />
         <StatCard icon={Clock}       label="Pending Approvals"  value={s.pending_approvals || 0}  color="bg-amber-100 text-amber-600" />
         <StatCard icon={ShieldCheck} label="Approved Suppliers" value={s.approved_suppliers || 0} color="bg-green-100 text-green-600" />
-        <StatCard icon={FileText}    label="Total Documents"    value={s.total_documents || 0}    color="bg-violet-100 text-violet-600" />
+        <StatCard icon={Package}     label="Total Products"     value={s.total_products || 0}     color="bg-violet-100 text-violet-600" />
+      </div>
+
+      {/* Product Stats Row */}
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center"><Clock size={16} /></div>
+          <div><p className="text-lg font-bold text-gray-800">{s.pending_products || 0}</p><p className="text-[10px] text-gray-500">Products Pending Review</p></div>
+        </div>
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-green-100 text-green-600 flex items-center justify-center"><CheckCircle size={16} /></div>
+          <div><p className="text-lg font-bold text-gray-800">{s.approved_products || 0}</p><p className="text-[10px] text-gray-500">Approved Products</p></div>
+        </div>
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-red-100 text-red-600 flex items-center justify-center"><FileText size={16} /></div>
+          <div><p className="text-lg font-bold text-gray-800">{s.rejected_products || 0}</p><p className="text-[10px] text-gray-500">Rejected Products</p></div>
+        </div>
       </div>
 
       {/* Pending Reviews Alert */}
@@ -91,6 +107,14 @@ const AdminDashboardPage = () => {
               </div>
               <ArrowRight size={16} className="text-blue-500" />
             </Link>
+            <Link to="/admin/products?status=pending" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
+              <Package size={18} className="text-violet-600" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-violet-800">Review Pending Products</p>
+                <p className="text-xs text-violet-600">{s.pending_products || 0} product(s) awaiting review</p>
+              </div>
+              <ArrowRight size={16} className="text-violet-500" />
+            </Link>
           </div>
         </div>
 
@@ -101,7 +125,8 @@ const AdminDashboardPage = () => {
               { label: 'Total Users', value: s.total_users || 0 },
               { label: 'Active Suppliers', value: s.active_suppliers || 0 },
               { label: 'Approved Suppliers', value: s.approved_suppliers || 0 },
-              { label: 'Uploaded Documents', value: s.total_documents || 0 },
+              { label: 'Total Documents', value: s.total_documents || 0 },
+              { label: 'Total Products', value: s.total_products || 0 },
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
                 <span className="text-xs text-gray-500">{item.label}</span>

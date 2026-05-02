@@ -3,14 +3,18 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, Users, ShieldCheck, Settings, LogOut, X, Menu, ChevronRight,
+  Package, ShoppingCart, Banknote,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import ConfirmModal from '../ui/ConfirmModal';
 
 const navItems = [
-  { to: '/admin',          icon: LayoutDashboard, label: 'Dashboard', end: true },
-  { to: '/admin/suppliers', icon: Users,           label: 'Suppliers' },
-  { to: '/admin/settings',  icon: Settings,        label: 'Settings' },
+  { to: '/admin',            icon: LayoutDashboard, label: 'Dashboard', end: true },
+  { to: '/admin/suppliers',  icon: Users,           label: 'Suppliers' },
+  { to: '/admin/products',   icon: Package,         label: 'Products' },
+  { to: '/admin/orders',     icon: ShoppingCart,     label: 'Orders' },
+  { to: '/admin/payments',   icon: Banknote,        label: 'Payments' },
+  { to: '/admin/settings',   icon: Settings,        label: 'Settings' },
 ];
 
 const SidebarContent = ({ onClose }) => {
