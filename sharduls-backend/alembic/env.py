@@ -7,6 +7,7 @@ from alembic import context
 from app.core.database import Base
 from app.models import user
 from app.models import product
+from app.models import order
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

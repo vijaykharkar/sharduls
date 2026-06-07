@@ -8,6 +8,9 @@ from app.api.v1.auth import router as auth_router
 from app.api.v1.profile import router as profile_router
 from app.api.v1.admin import router as admin_router
 from app.api.v1.products import router as products_router
+from app.api.v1.orders import router as orders_router
+from app.api.v1.payments import router as payments_router
+from app.api.v1.webhooks import router as webhooks_router
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -32,6 +35,18 @@ app.include_router(auth_router, prefix=settings.API_V1_PREFIX)
 app.include_router(profile_router, prefix=settings.API_V1_PREFIX)
 app.include_router(admin_router, prefix=settings.API_V1_PREFIX)
 app.include_router(products_router, prefix=settings.API_V1_PREFIX)
+app.include_router(orders_router, prefix=settings.API_V1_PREFIX)
+app.include_router(payments_router, prefix=settings.API_V1_PREFIX)
+# Webhook route is under /api/v1 but uses raw body — no auth middleware
+app.include_router(webhooks_router, prefix=settings.API_V1_PREFIX)
+
+# Validate Razorpay config at startup (fail fast)
+from app.core.config import validate_razorpay_config
+try:
+    validate_razorpay_config()
+except RuntimeError as e:
+    import logging
+    logging.getLogger(__name__).warning("Razorpay config warning: %s", e)
 
 # Serve uploaded files
 upload_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), settings.UPLOAD_DIR)

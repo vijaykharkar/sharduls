@@ -1,0 +1,56 @@
+import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ArrowRight } from 'lucide-react';
+
+const prodImg = (name) => { try { return new URL(`../../../assets/productImages/${name}`, import.meta.url).href; } catch { return ''; } };
+
+const OurExpertise = () => {
+  const sectionRef = useRef(null);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    const elements = sectionRef.current?.querySelectorAll('.scroll-animate');
+    elements?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const materials = [
+    { name: t('ourExpertise.materials.steel'), image: prodImg('steel_beams.jpg'), link: '/products' },
+    { name: t('ourExpertise.materials.copper'), image: prodImg('copper_beams.jpg'), link: '/products' },
+    { name: t('ourExpertise.materials.aluminium'), image: prodImg('aluminium_beams.jpg'), link: '/products' },
+    { name: t('ourExpertise.materials.brass'), image: prodImg('Brass_round.jpg'), link: '/products' },
+    { name: t('ourExpertise.materials.plastic'), image: prodImg('plastic_ball.jpg'), link: '/products' },
+  ];
+
+  return (
+    <section ref={sectionRef} className="py-12 md:py-16 lg:py-20 bg-[#f8f9fa]">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 md:mb-10 lg:mb-12">
+          <p className="scroll-animate text-[#d4a853] font-semibold text-xl tracking-[0.2em] uppercase mb-3 md:mb-4">{t('ourExpertise.label')}</p>
+          <h2 className="scroll-animate delay-100 text-3xl sm:text-2xl md:text-3xl font-bold text-[#1a3a5c] mb-3 md:mb-4">{t('ourExpertise.title')}</h2>
+          <p className="scroll-animate delay-200 text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">{t('ourExpertise.description')}</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
+          {materials.map((material, index) => (
+            <a key={index} className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer block">
+              <div className="aspect-square img-zoom relative">
+                <img src={material.image} alt={material.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-[#1a3a5c]/0 group-hover:bg-[#1a3a5c]/70 transition-all duration-300"></div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-[#1a3a5c]/90 to-transparent">
+                <div className="flex items-center justify-between">
+                  <p className="text-white font-semibold text-sm">{material.name}</p>
+                  <ArrowRight size={18} className="text-[#d4a853] opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
+                <div className="h-0.5 bg-[#d4a853] mt-2 w-0 group-hover:w-full transition-all duration-300"></div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default OurExpertise;

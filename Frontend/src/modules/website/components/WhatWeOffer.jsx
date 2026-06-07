@@ -1,0 +1,60 @@
+import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CheckCircle, ArrowRight } from 'lucide-react';
+
+const imgUrl = (name) => { try { return new URL(`../../../assets/images/${name}`, import.meta.url).href; } catch { return ''; } };
+
+const WhatWeOffer = () => {
+  const sectionRef = useRef(null);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    const elements = sectionRef.current?.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right');
+    elements?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const features = [
+    t('whatWeOffer.features.range'),
+    t('whatWeOffer.features.unique'),
+    t('whatWeOffer.features.sourcing'),
+    t('whatWeOffer.features.quality'),
+    t('whatWeOffer.features.logistics'),
+    t('whatWeOffer.features.sustainable'),
+  ];
+
+  return (
+    <section ref={sectionRef} className="py-12 md:py-16 lg:py-20 bg-white">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
+          <div>
+            <h2 className="scroll-animate-left delay-100 text-2xl sm:text-3xl md:text-4xl font-bold text-[#1a3a5c] mb-2">{t('whatWeOffer.title')}</h2>
+            <h3 className="scroll-animate-left delay-200 text-xl sm:text-2xl md:text-3xl font-bold text-[#d4a853] mb-4 md:mb-6">{t('whatWeOffer.subtitle')}</h3>
+            <p className="scroll-animate-left delay-300 text-gray-600 text-base sm:text-lg leading-relaxed mb-6 md:mb-8">{t('whatWeOffer.description')}</p>
+            <div className="scroll-animate-left delay-400 grid sm:grid-cols-2 gap-3 sm:gap-4 mb-6 md:mb-8">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <CheckCircle className="text-[#d4a853] flex-shrink-0" size={20} />
+                  <span className="text-gray-700 text-sm sm:text-base">{feature}</span>
+                </div>
+              ))}
+            </div>
+            <a href="/about" className="scroll-animate-left delay-500 inline-flex items-center gap-2 bg-[#d4a853] hover:bg-[#ff8c00] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-md font-bold text-sm sm:text-base transition-all duration-300 hover:-translate-y-1">
+              {t('whatWeOffer.button')}
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+          <div className="scroll-animate-right relative mt-8 lg:mt-0">
+            <div className="rounded-lg overflow-hidden img-zoom">
+              <img src={imgUrl('machiningparts.png')} alt="Machining parts" className="w-full h-[300px] sm:h-[350px] md:h-[400px] object-cover rounded-lg shadow-2xl" />
+            </div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-4 border-[#d4a853] rounded-lg -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhatWeOffer;
