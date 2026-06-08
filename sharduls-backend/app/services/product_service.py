@@ -13,9 +13,10 @@ def _slugify(text: str) -> str:
 
 
 def _serialize(p: Product) -> dict:
-    base_price = p.admin_price if p.admin_price is not None else p.supplier_price
-    discount_amount = (base_price * (p.discount_pct or 0) / 100)
-    final_price = base_price + (p.platform_fee or 0) - discount_amount
+    base_price  = p.admin_price if p.admin_price is not None else p.supplier_price
+    final_price = base_price + (p.platform_fee or 0)
+    if (p.discount_pct or 0) > 0:
+        final_price = final_price * (1 - p.discount_pct / 100)
 
     return {
         "id": p.id,

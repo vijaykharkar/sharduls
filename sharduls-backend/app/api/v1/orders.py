@@ -50,6 +50,7 @@ class ShippingAddressSchema(BaseModel):
 class CheckoutRequest(BaseModel):
     items: List[CartItemSchema] = Field(..., min_length=1, max_length=50)
     shipping_address: ShippingAddressSchema
+    payment_method: str = Field(default="online")
 
     @field_validator("items")
     @classmethod
@@ -57,6 +58,13 @@ class CheckoutRequest(BaseModel):
         ids = [i.product_id for i in v]
         if len(ids) != len(set(ids)):
             raise ValueError("Duplicate product IDs in cart")
+        return v
+
+    @field_validator("payment_method")
+    @classmethod
+    def valid_payment_method(cls, v):
+        if v not in ("online", "cod"):
+            raise ValueError("payment_method must be 'online' or 'cod'")
         return v
 
 
@@ -78,6 +86,7 @@ def checkout(
         user_id=user.id,
         cart_items=[item.model_dump() for item in payload.items],
         shipping_address=payload.shipping_address.model_dump(),
+        payment_method=payload.payment_method,
     )
     return success_response(data=result, message="Checkout initiated")
 

@@ -27,13 +27,9 @@ export default function useProducts() {
         ]);
         if (cancelled) return;
         const items = prodRes.data?.data?.items || [];
-        if (items.length > 0) {
-          setAllProducts(items);
-          setApiCategories(catRes.data?.data || []);
-          setApiBrands(brandRes.data?.data || []);
-        } else {
-          setAllProducts(MOCK_PRODUCTS);
-        }
+        setAllProducts(items);
+        setApiCategories(catRes.data?.data || []);
+        setApiBrands(brandRes.data?.data || []);
       } catch {
         if (!cancelled) setAllProducts(MOCK_PRODUCTS);
       } finally {

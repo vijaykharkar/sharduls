@@ -30,12 +30,13 @@ from app.models.base import TimestampMixin
 
 
 class PaymentStatus(str, enum.Enum):
-    pending    = "pending"
-    created    = "created"
-    authorized = "authorized"
-    captured   = "captured"
-    failed     = "failed"
-    refunded   = "refunded"
+    pending     = "pending"
+    created     = "created"
+    authorized  = "authorized"
+    captured    = "captured"
+    failed      = "failed"
+    refunded    = "refunded"
+    cod_pending = "cod_pending"
 
 
 class Payment(Base, TimestampMixin):

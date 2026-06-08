@@ -4,6 +4,9 @@ import authApi from '@shared/api/authApi';
 import { loginThunk, registerThunk, logoutThunk, fetchMeThunk } from '@features/auth/authThunks';
 import { setAuth, updateUser as updateUserAction, setAuthLoading } from '@features/auth/authSlice';
 import { selectUser, selectToken, selectRole, selectIsAuthenticated, selectAuthLoading } from '@features/auth/authSelectors';
+import { loadUserCart } from '@features/cart/cartSlice';
+import { loadUserAddresses } from '@features/address/addressSlice';
+import { loadUserWishlist } from '@features/wishlist/wishlistSlice';
 
 /**
  * AuthProvider — initializes the session on mount by validating the stored
@@ -16,7 +19,14 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (token) {
-      dispatch(fetchMeThunk());
+      dispatch(fetchMeThunk()).then((action) => {
+        if (fetchMeThunk.fulfilled.match(action) && action.payload?.id) {
+          const userId = action.payload.id;
+          dispatch(loadUserCart(userId));
+          dispatch(loadUserAddresses(userId));
+          dispatch(loadUserWishlist(userId));
+        }
+      });
     } else {
       dispatch(setAuthLoading(false));
     }

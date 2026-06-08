@@ -63,7 +63,12 @@ async def razorpay_webhook(request: Request, db: Session = Depends(get_db)):
     event_type = payload.get("event", "unknown")
     logger.info("Received Razorpay webhook event: %s", event_type)
 
-    result = psvc.process_webhook_event(db, payload)
-    logger.info("Webhook processing result: %s", result)
-
-    return {"received": True, "result": result}
+    try:
+        result = psvc.process_webhook_event(db, payload)
+        logger.info("Webhook processing result: %s", result)
+        return {"received": True, "result": result}
+    except Exception as exc:
+        # ALWAYS return 200 for valid-signature webhooks so Razorpay does NOT retry.
+        # The error is logged and can be investigated manually.
+        logger.exception("Webhook processing failed for event %s: %s", event_type, exc)
+        return {"received": True, "result": {"status": "error", "detail": str(exc)[:200]}}

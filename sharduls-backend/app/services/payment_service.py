@@ -56,10 +56,18 @@ def _compute_product_price(product: Product) -> float:
     return round(price, 2)
 
 
-def _generate_idempotency_key(user_id: int, order_id: int) -> str:
-    """Deterministic key — retrying the same order never creates a second Razorpay order."""
-    raw = f"rzp:order:{order_id}:user:{user_id}:v1"
-    return hashlib.sha256(raw.encode()).hexdigest()
+def _generate_idempotency_key(user_id: int, cart_items: list[dict]) -> str:
+    """
+    Deterministic key based on cart contents, NOT order_id.
+    Same user + same cart → same key → idempotency check fires BEFORE order creation,
+    preventing duplicate orders on retries / double-clicks.
+    """
+    fingerprint = json.dumps(
+        sorted([(i["product_id"], int(i.get("quantity", 1))) for i in cart_items]),
+        separators=(",", ":"),
+    )
+    raw = f"rzp:u{user_id}:{hashlib.md5(fingerprint.encode()).hexdigest()}"
+    return raw
 
 
 # ── Create Order ───────────────────────────────────────────────────────────
@@ -70,6 +78,7 @@ def create_order_with_payment(
     user_id:          int,
     cart_items:       list[dict],
     shipping_address: dict,
+    payment_method:   str = "online",
 ) -> dict:
     """
     Full Razorpay checkout flow:
@@ -128,6 +137,20 @@ def create_order_with_payment(
 
     currency = settings.RAZORPAY_CURRENCY
 
+    # ── Idempotency check BEFORE order creation ─────────────────────────────
+    # Key is derived from cart contents so double-clicks or retries with the
+    # same cart return the existing payment rather than creating a duplicate.
+    # Only reuse if payment is still in a non-terminal state (pending/created).
+    idempotency_key = _generate_idempotency_key(user_id, cart_items)
+    existing = pay_repo.get_payment_by_idempotency_key(db, idempotency_key)
+    if existing and existing.status not in _TERMINAL_STATES:
+        logger.info("Reusing existing payment (idempotency hit) for user %s", user_id)
+        existing_order = order_repo.get_order_by_id(db, existing.order_id)
+        if existing_order:
+            if existing.payment_method == "cod":
+                return _build_cod_response(existing_order, existing)
+            return _build_checkout_response(existing_order, existing)
+
     order_number = order_repo.generate_order_number(db)
     order = order_repo.create_order(
         db,
@@ -142,14 +165,27 @@ def create_order_with_payment(
         items=order_items,
     )
 
-    idempotency_key = _generate_idempotency_key(user_id, order.id)
-
-    existing = pay_repo.get_payment_by_idempotency_key(db, idempotency_key)
-    if existing:
-        logger.info("Reusing existing Razorpay order for order %s", order.order_number)
+    # ── COD path — no Razorpay call needed ─────────────────────────────────
+    if payment_method == "cod":
+        payment = pay_repo.create_payment(
+            db,
+            order_id=order.id,
+            user_id=user_id,
+            razorpay_order_id=f"COD-{order.id}",
+            amount=total_amount,
+            currency=currency,
+            idempotency_key=idempotency_key,
+        )
+        payment.payment_method = "cod"
+        payment.status         = "cod_pending"
+        for item in cart_items:
+            product = product_map[item["product_id"]]
+            product.stock = max(0, product.stock - int(item.get("quantity", 1)))
         db.commit()
-        return _build_checkout_response(order, existing)
+        logger.info("COD order created: %s", order.order_number)
+        return _build_cod_response(order, payment)
 
+    # ── Online path — Razorpay ───────────────────────────────────────────────
     try:
         rzp_order = create_razorpay_order(
             amount=total_amount,
@@ -175,9 +211,8 @@ def create_order_with_payment(
         idempotency_key=idempotency_key,
     )
 
-    for item in cart_items:
-        product = product_map[item["product_id"]]
-        product.stock = max(0, product.stock - int(item.get("quantity", 1)))
+    # NOTE: Stock is NOT deducted here — deducted only after payment verification
+    # to prevent phantom stock loss on abandoned/failed checkouts.
 
     db.commit()
     logger.info("Created order %s with Razorpay order %s", order.order_number, rzp_order["id"])
@@ -193,6 +228,20 @@ def _build_checkout_response(order, payment) -> dict:
         "amount":            order.total_amount,
         "currency":          order.currency,
         "payment_id":        payment.id,
+        "payment_method":    "online",
+    }
+
+
+def _build_cod_response(order, payment) -> dict:
+    return {
+        "order_id":       order.id,
+        "order_number":   order.order_number,
+        "amount":         order.total_amount,
+        "currency":       order.currency,
+        "payment_id":     payment.id,
+        "payment_method": "cod",
+        "status":         "cod_pending",
+        "message":        "Order placed successfully! Pay on delivery.",
     }
 
 
@@ -245,7 +294,7 @@ def verify_and_capture_payment(
     except Exception as e:
         logger.warning("Could not fetch Razorpay payment details: %s", e)
 
-    pay_repo.mark_payment_captured(
+    payment = pay_repo.mark_payment_captured(
         db,
         payment.id,
         razorpay_payment_id=razorpay_payment_id,
@@ -255,6 +304,14 @@ def verify_and_capture_payment(
         webhook_verified=False,
     )
     order_repo.update_order_status(db, payment.order_id, "confirmed")
+
+    # ── Deduct stock ONLY after payment is confirmed ──────────────────────
+    order = order_repo.get_order_by_id(db, payment.order_id)
+    for oi in order.items:
+        product = db.query(Product).filter(Product.id == oi.product_id).first()
+        if product:
+            product.stock = max(0, product.stock - oi.quantity)
+
     db.commit()
 
     logger.info(

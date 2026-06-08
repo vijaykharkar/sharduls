@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '@shared/context/AuthContext';
 import { useToast } from '@shared/context/ToastContext';
 import { openAuthModal, closeAuthModal as closeAuthModalAction, resetUI } from '@features/ui/uiSlice';
-import { clearCart } from '@features/cart/cartSlice';
-import { clearWishlist } from '@features/wishlist/wishlistSlice';
-import { clearAddresses } from '@features/address/addressSlice';
+import { saveUserCart, loadUserCart } from '@features/cart/cartSlice';
+import { saveUserWishlist, loadUserWishlist } from '@features/wishlist/wishlistSlice';
+import { saveUserAddresses, loadUserAddresses } from '@features/address/addressSlice';
 import { selectAuthModalOpen, selectAuthModalTab } from '@features/ui/uiSelectors';
 
 export default function useBuyerAuth() {
@@ -19,8 +19,13 @@ export default function useBuyerAuth() {
   const login = useCallback(async (email, password) => {
     try {
       const user = await auth.login(email, password);
+      if (user?.id) {
+        dispatch(loadUserCart(user.id));
+        dispatch(loadUserAddresses(user.id));
+        dispatch(loadUserWishlist(user.id));
+      }
       dispatch(closeAuthModalAction());
-      addToast(`Welcome back, ${user.full_name || user.name}!`, 'success');
+      addToast(`Welcome back, ${user?.full_name || user?.name || 'User'}!`, 'success');
       return user;
     } catch (err) {
       addToast(err.message || 'Login failed', 'error');
@@ -31,6 +36,11 @@ export default function useBuyerAuth() {
   const register = useCallback(async (data) => {
     try {
       const user = await auth.register({ ...data, role: 'buyer' });
+      if (user?.id) {
+        dispatch(loadUserCart(user.id));
+        dispatch(loadUserAddresses(user.id));
+        dispatch(loadUserWishlist(user.id));
+      }
       dispatch(closeAuthModalAction());
       addToast('Account created successfully!', 'success');
       return user;
@@ -41,11 +51,12 @@ export default function useBuyerAuth() {
   }, [auth, dispatch, addToast]);
 
   const logout = useCallback(async () => {
-    await auth.logout();
-    dispatch(clearCart());
-    dispatch(clearWishlist());
-    dispatch(clearAddresses());
+    const userId = auth.user?.id;
+    dispatch(saveUserCart(userId));
+    dispatch(saveUserAddresses(userId));
+    dispatch(saveUserWishlist(userId));
     dispatch(resetUI());
+    await auth.logout();
     addToast('Logged out', 'info');
   }, [auth, dispatch, addToast]);
 

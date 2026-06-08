@@ -73,7 +73,7 @@ export default function CartPage() {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between text-gray-600"><span>Price ({cartCount} item{cartCount !== 1 ? 's' : ''})</span><span>₹{fmt(cartMrpTotal)}</span></div>
               <div className="flex justify-between text-green-600 font-medium"><span>Discount</span><span>−₹{fmt(discount)}</span></div>
-              <div className="flex justify-between text-gray-600"><span>Delivery</span><span className="text-green-600 font-medium">{cartTotal >= 499 ? 'FREE' : '₹49'}</span></div>
+              <div className="flex justify-between text-gray-600"><span>Delivery</span><span className={cartTotal >= 499 ? 'text-green-600 font-medium' : 'text-gray-700'}>{cartTotal >= 499 ? 'FREE' : '₹49'}</span></div>
               <hr className="border-gray-100" />
               <div className="flex justify-between text-base font-bold text-gray-900"><span>Total</span><span>₹{fmt(cartTotal + (cartTotal < 499 ? 49 : 0))}</span></div>
             </div>

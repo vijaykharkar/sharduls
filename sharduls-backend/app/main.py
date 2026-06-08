@@ -11,6 +11,11 @@ from app.api.v1.products import router as products_router
 from app.api.v1.orders import router as orders_router
 from app.api.v1.payments import router as payments_router
 from app.api.v1.webhooks import router as webhooks_router
+from app.api.v1.buyer_addresses import router as buyer_addresses_router
+from app.api.v1.buyer_wishlist import router as buyer_wishlist_router
+from app.core.database import engine, Base
+import app.models  # noqa: F401 — registers all ORM models with Base.metadata
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -39,6 +44,8 @@ app.include_router(orders_router, prefix=settings.API_V1_PREFIX)
 app.include_router(payments_router, prefix=settings.API_V1_PREFIX)
 # Webhook route is under /api/v1 but uses raw body — no auth middleware
 app.include_router(webhooks_router, prefix=settings.API_V1_PREFIX)
+app.include_router(buyer_addresses_router, prefix=settings.API_V1_PREFIX)
+app.include_router(buyer_wishlist_router, prefix=settings.API_V1_PREFIX)
 
 # Validate Razorpay config at startup (fail fast)
 from app.core.config import validate_razorpay_config

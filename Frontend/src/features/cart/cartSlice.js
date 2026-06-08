@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const ACTIVE_KEY = 'buyer_cart';
+const userKey = (uid) => `buyer_cart_${uid}`;
+
 const loadCart = () => {
-  try { return JSON.parse(localStorage.getItem('buyer_cart') || '[]'); } catch { return []; }
+  try { return JSON.parse(localStorage.getItem(ACTIVE_KEY) || '[]'); } catch { return []; }
 };
+
+const save = (items) => localStorage.setItem(ACTIVE_KEY, JSON.stringify(items));
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -10,32 +15,43 @@ const cartSlice = createSlice({
   reducers: {
     setCart(state, { payload }) {
       state.items = payload;
-      localStorage.setItem('buyer_cart', JSON.stringify(state.items));
+      save(state.items);
     },
     addToCart(state, { payload }) {
       const existing = state.items.find((i) => i.id === payload.id);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        state.items.push({ ...payload, qty: 1 });
-      }
-      localStorage.setItem('buyer_cart', JSON.stringify(state.items));
+      if (existing) { existing.qty += 1; } else { state.items.push({ ...payload, qty: 1 }); }
+      save(state.items);
     },
     removeFromCart(state, { payload }) {
       state.items = state.items.filter((i) => i.id !== payload);
-      localStorage.setItem('buyer_cart', JSON.stringify(state.items));
+      save(state.items);
     },
     updateCartQty(state, { payload: { id, qty } }) {
       const item = state.items.find((i) => i.id === id);
       if (item) item.qty = Math.max(1, qty);
-      localStorage.setItem('buyer_cart', JSON.stringify(state.items));
+      save(state.items);
     },
     clearCart(state) {
       state.items = [];
-      localStorage.removeItem('buyer_cart');
+      localStorage.removeItem(ACTIVE_KEY);
+    },
+    saveUserCart(state, { payload: userId }) {
+      if (userId) localStorage.setItem(userKey(userId), JSON.stringify(state.items));
+      state.items = [];
+      localStorage.removeItem(ACTIVE_KEY);
+    },
+    loadUserCart(state, { payload: userId }) {
+      try {
+        const items = JSON.parse(localStorage.getItem(userKey(userId)) || '[]');
+        state.items = items;
+        save(items);
+      } catch { state.items = []; }
     },
   },
 });
 
-export const { setCart, addToCart, removeFromCart, updateCartQty, clearCart } = cartSlice.actions;
+export const {
+  setCart, addToCart, removeFromCart, updateCartQty, clearCart,
+  saveUserCart, loadUserCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;
