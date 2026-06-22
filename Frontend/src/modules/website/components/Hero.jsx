@@ -40,7 +40,7 @@ const Hero = () => {
   }, [startAutoPlay]);
 
   return (
-    <section ref={heroRef} className="relative w-full h-[450px] sm:h-[550px] md:h-[650px] lg:h-[650px] flex items-center justify-center overflow-hidden">
+    <section ref={heroRef} className="relative w-full h-[350px] sm:h-[400px] md:h-[550px] lg:h-[500px] flex items-center justify-center overflow-hidden">
       {heroSlides.map((slide, index) => (
         <div key={index} className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
           style={{ backgroundImage: `url(${slide.image})`, opacity: index === currentSlide ? 1 : 0 }}

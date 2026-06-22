@@ -90,10 +90,20 @@ const ProcessFlow = () => {
               <div>
                 <h3 className="scroll-animate text-2xl md:text-3xl lg:text-4xl font-bold text-[#1a3a5c] mb-8">{t('processFlow.quality.title')}</h3>
                 <div className="space-y-2 text-gray-700">
-                  <p className="scroll-animate delay-100 text-base leading-relaxed">At SHARDUL-GE Technologies Pvt. Ltd., quality is embedded in every stage of our operations — from initial design and sourcing to final delivery and after-sales support.</p>
-                  <p className="scroll-animate delay-200 text-base leading-relaxed">Quality assurance and control form the foundation of our business philosophy. Through ISO-certified systems and strict adherence to approved industry specifications, we maintain a disciplined and transparent quality framework.</p>
-                  <p className="scroll-animate delay-300 text-base leading-relaxed">Our dedicated quality team implements rigorous evaluation procedures across all operational phases. These standards are continuously strengthened through ongoing training, audits, and process improvements.</p>
-                  <p className="scroll-animate delay-300 text-base leading-relaxed">This commitment to continuous improvement allows SHARDUL-GE Technologies Pvt. Ltd. to deliver superior value, long-term reliability, and trusted partnerships to every client we serve.</p>
+                  <p className="scroll-animate delay-100 text-base md:text-md leading-relaxed">
+                    At SHARDUL-GE Technologies Pvt. Ltd., quality is embedded in every stage of our operations — from initial design and sourcing to final delivery and after-sales support. Our unwavering focus on excellence in products, processes, and people enables us to consistently deliver reliable solutions that meet and exceed industry standards.
+                  </p>
+
+                  <p className="scroll-animate delay-200 text-base md:text-md leading-relaxed">
+                    Quality assurance and control form the foundation of our business philosophy. Through ISO-certified systems and strict adherence to approved industry specifications, we maintain a disciplined and transparent quality framework. Our comprehensive inspection and testing programs are carefully structured to ensure product integrity, performance consistency, and complete customer confidence.
+                  </p>
+
+                  <p className="scroll-animate delay-300 text-base md:text-md leading-relaxed">
+                    Our dedicated quality team implements rigorous evaluation procedures across all operational phases. These standards are continuously strengthened through ongoing training, audits, and process improvements — ensuring continuous enhancement across manufacturing, procurement, and management levels.
+                  </p>
+                  <p className="scroll-animate delay-300 text-base md:text-md leading-relaxed">
+                    This commitment to continuous improvement allows SHARDUL-GE Technologies Pvt. Ltd. to deliver superior value, long-term reliability, and trusted partnerships to every client we serve.
+                  </p>
                 </div>
               </div>
               <div className="flex justify-center">
