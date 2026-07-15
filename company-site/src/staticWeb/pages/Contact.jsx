@@ -463,7 +463,7 @@ const Contact = () => {
           {/* Google Maps Embed */}
           <div className="scroll-animate delay-300 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
             <iframe
-              src="https://www.google.com/maps/place/D-144%2F2,+Phase+2,+Bhamboli,+Maharashtra+410501,+India/@18.8006481,73.7679281,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b48ac5e05409:0x5d79c1fff52c4080!8m2!3d18.800643!4d73.770503!16s%2Fg%2F11w_wgllmn?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDcxMy4wIKXMDSoASAFQAw%3D%3D"
+              src="https://maps.google.com/maps?q=D-144/2, Phase 2, Bhamboli, Maharashtra 410501, India&output=embed"
               width="100%"
               height="450"
               style={{ border: 0 }}
