@@ -15,7 +15,7 @@ from app.api.v1.buyer_addresses import router as buyer_addresses_router
 from app.api.v1.buyer_wishlist import router as buyer_wishlist_router
 from app.core.database import engine, Base
 import app.models  # noqa: F401 — registers all ORM models with Base.metadata
-Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title=settings.APP_NAME,

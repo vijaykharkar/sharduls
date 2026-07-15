@@ -39,7 +39,7 @@ const ContactPage = () => {
   };
 
   const offices = [
-    { region: 'India (Asia)', icon: '🇮🇳', address: 'Shardul-GE Technologies Pvt. Ltd., Office No. 16, Upper Ground Floor, A Wing, Jay Ganesh Samrajya, Spine Road, Bhosari, Pune - 411039', phone: '+91 9175582622', email: 'director@shardulge.com', businessHours: 'FOR EXPORT BUSINESS', businessHours1: 'FOR DOMESTIC BUSINESS (MRO/CAPEX ITEMS)', phone1: '+91 9175572622', email1: 'info@shardulge.com' },
+    { region: 'India (Asia)', icon: '🇮🇳', address: 'Shardul-GE Technologies Pvt. Ltd., Plot No. D-144/2, Chakan MIDC Phase II, Bhamboli, Tal. Khed, Dist. Pune – 410501, Maharashtra.', phone: '+91 9175582622', email: 'director@shardulge.com', businessHours: 'FOR EXPORT BUSINESS', businessHours1: 'FOR DOMESTIC BUSINESS (MRO/CAPEX ITEMS)', phone1: '+91 9175572622', email1: 'info@shardulge.com' },
     { region: 'Europe', icon: '🇪🇺', location: 'Lyon, France', businessHours: 'SALES & MARKETING REPRESENTATIVE', phone: '+33', email: 'export@shardulge.com' },
     { region: 'North America', icon: '🇺🇸', location: 'Boston, Massachusetts, USA', email: 'export@shardulge.com' },
   ];
@@ -124,10 +124,10 @@ const ContactPage = () => {
           <div className="text-center mb-12">
             <div className="scroll-animate flex justify-center mb-6"><div className="w-16 h-16 bg-[#d4a853] rounded-full flex items-center justify-center"><MapPin className="text-white" size={32} /></div></div>
             <h2 className="scroll-animate delay-100 text-3xl md:text-4xl font-bold text-[#1a3a5c] mb-6">Visit Our Office</h2>
-            <p className="scroll-animate delay-200 text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">Shardul-GE Technologies Pvt. Ltd., Office No. 16, Upper Ground Floor, A Wing, Jay Ganesh Samrajya, Spine Road, Bhosari, Pune 411039</p>
+            <p className="scroll-animate delay-200 text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">Shardul-GE Technologies Pvt. Ltd., Plot No. D-144/2, Chakan MIDC Phase II, Bhamboli, Tal. Khed, Dist. Pune – 410501, Maharashtra.</p>
           </div>
           <div className="scroll-animate delay-300 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.0286958774494!2d73.8438!3d18.6396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDM4JzIyLjYiTiA3M8KwNTAnMzcuNyJF!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="450" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Shardul-GE Technologies Office Location"></iframe>
+            <iframe src="https://www.google.com/maps/place/D-144%2F2,+Phase+2,+Bhamboli,+Maharashtra+410501,+India/@18.8006481,73.7679281,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b48ac5e05409:0x5d79c1fff52c4080!8m2!3d18.800643!4d73.770503!16s%2Fg%2F11w_wgllmn?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDcxMy4wIKXMDSoASAFQAw%3D%3D" width="100%" height="450" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Shardul-GE Technologies Office Location"></iframe>
           </div>
         </div>
       </section>
