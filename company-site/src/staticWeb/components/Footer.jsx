@@ -126,10 +126,10 @@ const Footer = () => {
                 </div>
                 <div className="text-gray-400 text-sm leading-relaxed font-normal">
                   <span className="text-white font-semibold block mb-1">SHARDUL-GE Technologies Pvt. Ltd.</span>
-                  Office No. 16, Upper Ground Floor,<br />
-                  A Wing, Jay Ganesh Samrajya,<br />
-                  Spine Road, Bhosari,<br />
-                  Pune-411039
+                  Plot No. D-144/2,<br />
+                  Chakan MIDC Phase II, Bhamboli,<br />
+                  Tal. Khed, Dist.<br />
+                  Pune – 410501, Maharashtra.
                 </div>
               </li>
               <li>
