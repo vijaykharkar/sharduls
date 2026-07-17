@@ -8,6 +8,7 @@ import director from '../../assets/images/director.jpeg';
 import director1 from '../../assets/images/director1.png';
 import outsourcing from '../../assets/images/outsourcing.jpg';
 import customfasteners from '../../assets/images/customfasteners.png';
+import shedImage from '../../assets/shedimage.png';
 import {
   CheckCircle,
   Handshake,
@@ -234,17 +235,47 @@ const About = () => {
       </section>
 
       {/* Corporate Philosophy Section */}
-      <section className="py-16 bg-[#1a3a5c]">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="scroll-animate text-3xl md:text-4xl font-bold text-white mb-6 italic">
-            Our Corporate Philosophy
-          </h2>
-          <p className="scroll-animate delay-100 text-gray-300 text-base md:text-lg leading-relaxed">
-            We believe in building lasting partnerships with our clients, delivering innovative
-            solutions, and maintaining unwavering commitment to quality. Our success is
-            measured by the trust our customers place in us and the excellence we deliver in every
-            project.
-          </p>
+      <section className="py-20 bg-[#1a3a5c] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
+
+            {/* Left: Facility Image */}
+            <div className="scroll-animate-left">
+              <div className="relative">
+                <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-br from-[#d4a853] via-[#d4a853]/60 to-transparent opacity-50 blur-md"></div>
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#d4a853]/20">
+                  <img
+                    src={shedImage}
+                    alt="Shardul-GE Global Facility"
+                    className="w-full h-80 md:h-96 object-cover object-center"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a3a5c]/80 to-transparent px-6 py-4">
+                    <p className="text-[#d4a853] font-semibold text-sm tracking-widest uppercase">Our Facility</p>
+                    <p className="text-white font-bold text-lg">Shardul-GE — Global Industrial Solutionist</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-[#d4a853]/10 blur-xl"></div>
+              </div>
+            </div>
+
+            {/* Right: Text */}
+            <div className="scroll-animate-right">
+              <p className="text-[#d4a853] font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+                What Drives Us
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 italic leading-tight">
+                Our Corporate Philosophy
+              </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-[#d4a853] to-transparent mb-8"></div>
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                We believe in building lasting partnerships with our clients, delivering innovative
+                solutions, and maintaining unwavering commitment to quality. Our success is
+                measured by the trust our customers place in us and the excellence we deliver in every
+                project.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
