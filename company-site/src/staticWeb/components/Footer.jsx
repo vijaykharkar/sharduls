@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.jpeg';
+import logos from '../../assets/images/logos.png';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 
 const Footer = () => {
@@ -43,7 +43,7 @@ const Footer = () => {
               <img
                 alt="SHARDUL-GE"
                 className="h-12 w-auto"
-                src={logo}
+                src={logos}
               />
               <div className="inline-block mb-4">
                 <span className="text-white font-bold text-xl tracking-wide">{t('footer.companyName')}</span>
