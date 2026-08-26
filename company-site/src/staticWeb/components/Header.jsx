@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import logo from '../../assets/images/shardulslogos.png';
+import logo from '../../assets/images/logoblack.png';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 
 const Header = () => {
@@ -90,7 +90,7 @@ const Header = () => {
                 <img
                   src={logo}
                   alt="SHARDUL-GE Logo"
-                  className="h-18 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                 />
               </div>
               {/* <div className="hidden sm:block">

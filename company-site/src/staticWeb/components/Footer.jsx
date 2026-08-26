@@ -42,7 +42,7 @@ const Footer = () => {
             <div className='flex items-center gap-3 mb-6'>
               <img
                 alt="SHARDUL-GE"
-                className="h-12 w-auto"
+                className="h-12 w-auto mb-3"
                 src={logos}
               />
               <div className="inline-block mb-4">
