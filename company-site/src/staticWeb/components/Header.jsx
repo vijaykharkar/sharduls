@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import logo from '../../assets/images/shardulslogo.png';
+import logo from '../../assets/images/shardulslogos.png';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 
 const Header = () => {
