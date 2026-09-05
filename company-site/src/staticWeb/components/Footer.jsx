@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="lg:col-span-4 flex flex-col h-full">
             <div className='flex items-center gap-3 mb-6'>
               <img
-                alt="SHARDUL-GE"
+                alt="SHARDUL GE"
                 className="h-12 w-auto mb-3"
                 src={logos}
               />
@@ -125,7 +125,7 @@ const Footer = () => {
                   <MapPin className="text-gold-primary flex-shrink-0 mt-1" size={18} />
                 </div>
                 <div className="text-gray-400 text-sm leading-relaxed font-normal">
-                  <span className="text-white font-semibold block mb-1">SHARDUL-GE Technologies Pvt. Ltd.</span>
+                  <span className="text-white font-semibold block mb-1">SHARDUL GE Technologies Pvt. Ltd.</span>
                   Plot No. D-144/2,<br />
                   Chakan MIDC Phase II, Bhamboli,<br />
                   Tal. Khed, Dist.<br />

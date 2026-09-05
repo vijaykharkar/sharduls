@@ -89,12 +89,12 @@ const Header = () => {
               <div className="flex items-center">
                 <img
                   src={logo}
-                  alt="SHARDUL-GE Logo"
+                  alt="SHARDUL GE Logo"
                   className="h-14 w-auto object-contain"
                 />
               </div>
               {/* <div className="hidden sm:block">
-                <p className="text-gray-300 font-bold text-lg">SHARDUL-GE</p>
+                <p className="text-gray-300 font-bold text-lg">SHARDUL GE</p>
                 <p className="text-[#d4a853] text-xs font-semibold tracking-wider">TECHNOLOGIES</p>
               </div> */}
             </Link>

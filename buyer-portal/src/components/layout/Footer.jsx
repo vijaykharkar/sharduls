@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-white text-lg font-bold mb-4">SHARDUL-GE</h3>
+            <h3 className="text-white text-lg font-bold mb-4">SHARDUL GE</h3>
             <p className="text-sm mb-4">
               Your trusted B2B marketplace for quality products and bulk orders.
             </p>
@@ -107,7 +107,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-          <p>&copy; 2026 SHARDUL-GE. All rights reserved.</p>
+          <p>&copy; 2026 SHARDUL GE. All rights reserved.</p>
         </div>
       </div>
     </footer>

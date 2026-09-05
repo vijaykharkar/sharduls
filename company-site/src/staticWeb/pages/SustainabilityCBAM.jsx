@@ -142,7 +142,7 @@ const SustainabilityCBAM = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#d4a853] to-transparent mx-auto mb-8"></div>
             <p className="scroll-animate text-gray-700 text-base md:text-lg max-w-4xl mx-auto leading-relaxed">
-              Sustainability is no longer a choice — it is a responsibility. At SHARDUL-GE, we are committed to integrating environmentally and socially responsible practices into every aspect of our business, helping create a future that is cleaner, fairer, and more resilient. We ensure supplier development those are well aware about sustainability responsibility and practice in regular work.
+              Sustainability is no longer a choice — it is a responsibility. At SHARDUL GE, we are committed to integrating environmentally and socially responsible practices into every aspect of our business, helping create a future that is cleaner, fairer, and more resilient. We ensure supplier development those are well aware about sustainability responsibility and practice in regular work.
             </p>
           </div>
 
@@ -183,7 +183,7 @@ const SustainabilityCBAM = () => {
           <div className="scroll-animate bg-gradient-to-br from-[#1a3a5c] to-[#102a43] rounded-3xl p-8 md:p-12">
             <div className="text-center mb-10">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Why Sustainability Matters at <span className="text-[#d4a853]">SHARDUL-GE</span>
+                Why Sustainability Matters at <span className="text-[#d4a853]">SHARDUL GE</span>
               </h3>
               <div className="w-16 h-1 bg-[#d4a853] mx-auto"></div>
             </div>
@@ -250,7 +250,7 @@ const SustainabilityCBAM = () => {
               </p>
 
               <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-                At SHARDUL-GE, we proactively monitor regulatory developments and ensure full compliance with CBAM requirements. Our carbon tracking systems, supplier engagement programs, and transparent reporting processes ensure we are ahead of the curve — protecting our clients and partners from compliance risks.
+                At SHARDUL GE, we proactively monitor regulatory developments and ensure full compliance with CBAM requirements. Our carbon tracking systems, supplier engagement programs, and transparent reporting processes ensure we are ahead of the curve — protecting our clients and partners from compliance risks.
               </p>
             </div>
 

@@ -208,7 +208,7 @@ const WhyChooseUs = () => {
             <h1 className="scroll-animate delay-100 text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               <span className="text-white">Why Choose</span>
               <br />
-              <span className="text-[#d4a853]">SHARDUL-GE?</span>
+              <span className="text-[#d4a853]">SHARDUL GE?</span>
             </h1>
             <p className="scroll-animate delay-200 text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
               Experience the perfect blend of quality, reliability, and innovation with India's best in-class sourcing partner

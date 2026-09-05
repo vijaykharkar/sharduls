@@ -115,7 +115,7 @@ const QualitySystems = () => {
     {
       icon: <CheckCircle2 className="w-6 h-6" />,
       title: "Documentation Validation",
-      description: "SHARDUL-GE reviews and validates inspection reports, test certificates, and EN10204 3.1 documentation prior to dispatch."
+      description: "SHARDUL GE reviews and validates inspection reports, test certificates, and EN10204 3.1 documentation prior to dispatch."
     },
     {
       icon: <Microscope className="w-6 h-6" />,
@@ -140,7 +140,7 @@ const QualitySystems = () => {
     {
       icon: <Target className="w-6 h-6" />,
       title: "Single Point Responsibility",
-      description: "SHARDUL-GE acts as a single point of responsibility, ensuring customer specifications are fully met across the complete supply chain."
+      description: "SHARDUL GE acts as a single point of responsibility, ensuring customer specifications are fully met across the complete supply chain."
     }
   ];
 
@@ -151,7 +151,7 @@ const QualitySystems = () => {
     },
     {
       title: "Single Point Responsibility",
-      description: "SHARDUL-GE acts as a single point of responsibility, ensuring customer specifications are fully met across the complete supply chain."
+      description: "SHARDUL GE acts as a single point of responsibility, ensuring customer specifications are fully met across the complete supply chain."
     }
   ];
 
@@ -214,7 +214,7 @@ const QualitySystems = () => {
                   As an innovative contract manufacturer, we are adept at developing custom inspection procedures that allow us to supply parts with a high degree of <span className="text-[#1a3a5c] font-semibold">complexity and precision</span> that is unmatched by our industry peers in India.
                 </p>
                 <p className="scroll-animate delay-300 text-gray-600 text-base md:text-lg leading-relaxed">
-                  Our customers' appreciation for the level of <span className="text-[#d4a853] font-semibold">quality, service, and reliability</span> that SHARDUL-GE provides is most important for us to maintained long term partnerships with them.
+                  Our customers' appreciation for the level of <span className="text-[#d4a853] font-semibold">quality, service, and reliability</span> that SHARDUL GE provides is most important for us to maintained long term partnerships with them.
                 </p>
               </div>
             </div>
@@ -343,7 +343,7 @@ const QualitySystems = () => {
               </button>
               <img
                 src={isoCertificate}
-                alt="ISO 9001:2015 Certificate - SHARDUL-GE Technologies"
+                alt="ISO 9001:2015 Certificate - SHARDUL GE Technologies"
                 className="w-full h-auto object-contain"
               />
             </div>

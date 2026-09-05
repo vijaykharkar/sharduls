@@ -69,7 +69,7 @@ const About = () => {
           </span>
           <h1 className="scroll-animate delay-100 text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             {/* <span className="text-white">About </span>
-            <span className="text-[#d4a853]">SHARDUL-GE</span> */}
+            <span className="text-[#d4a853]">SHARDUL GE</span> */}
             <p className="text-[#d4a853]">{t('about.hero.title')}</p>
           </h1>
           <p className="scroll-animate delay-200 text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -246,12 +246,12 @@ const About = () => {
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#d4a853]/20">
                   <img
                     src={shedImage}
-                    alt="Shardul-GE Global Facility"
+                    alt="SHARDUL GE Global Facility"
                     className="w-full h-80 md:h-96 object-cover object-center"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a3a5c]/80 to-transparent px-6 py-4">
                     <p className="text-[#d4a853] font-semibold text-sm tracking-widest uppercase">Our Facility</p>
-                    <p className="text-white font-bold text-lg">Shardul-GE — Global Industrial Solutionist</p>
+                    <p className="text-white font-bold text-lg">SHARDUL GE — Global Industrial Solutionist</p>
                   </div>
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-[#d4a853]/10 blur-xl"></div>

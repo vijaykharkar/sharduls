@@ -114,7 +114,7 @@ const Contact = () => {
     {
       region: 'India (Asia)',
       icon: '🇮🇳',
-      address: 'Shardul-GE Technologies Pvt. Ltd., Plot No. D-144/2, Chakan MIDC Phase II, Bhamboli, Tal. Khed, Dist. Pune – 410501, Maharashtra.',
+      address: 'SHARDUL GE Technologies Pvt. Ltd., Plot No. D-144/2, Chakan MIDC Phase II, Bhamboli, Tal. Khed, Dist. Pune – 410501, Maharashtra.',
       phone: '+91 9175582622',
       email: 'director@shardulge.com',
       businessHours: 'FOR EXPORT BUSINESS',
@@ -456,7 +456,7 @@ const Contact = () => {
             </h2>
 
             <p className="scroll-animate delay-200 text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-              Shardul-GE Technologies Pvt. Ltd., Plot No. D-144/2, Chakan MIDC Phase II, Bhamboli, Tal. Khed, Dist. Pune – 410501, Maharashtra.
+              SHARDUL GE Technologies Pvt. Ltd., Plot No. D-144/2, Chakan MIDC Phase II, Bhamboli, Tal. Khed, Dist. Pune – 410501, Maharashtra.
             </p>
           </div>
 
@@ -470,7 +470,7 @@ const Contact = () => {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Shardul-GE Technologies Office Location"
+              title="SHARDUL GE Technologies Office Location"
             ></iframe>
           </div>
         </div>

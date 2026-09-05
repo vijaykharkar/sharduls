@@ -170,7 +170,7 @@ const CableManagement = () => {
             Cable Management Products
           </h2>
           <p className="scroll-animate delay-200 text-gray-600 text-center max-w-2xl mx-auto mb-12">
-            At SHARDUL-GE, quality is of utmost importance. Our products are designed and
+            At SHARDUL GE, quality is of utmost importance. Our products are designed and
             manufactured under a quality system complying with international standards.
           </p>
           

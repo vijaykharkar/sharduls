@@ -13,7 +13,7 @@ const Home = () => {
               India's Leading B2B Marketplace
             </h1>
             <p className="text-xl mb-8 text-blue-100">
-              Connect with verified suppliers, get wholesale prices, and grow your business with SHARDUL-GE
+              Connect with verified suppliers, get wholesale prices, and grow your business with SHARDUL GE
             </p>
             <div className="flex space-x-4">
               <Link
@@ -38,7 +38,7 @@ const Home = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose SHARDUL-GE?
+            Why Choose SHARDUL GE?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -99,7 +99,7 @@ const Home = () => {
             Ready to Grow Your Business?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join thousands of businesses already trading on SHARDUL-GE
+            Join thousands of businesses already trading on SHARDUL GE
           </p>
           <Link
             to="/bulk-enquiry"
