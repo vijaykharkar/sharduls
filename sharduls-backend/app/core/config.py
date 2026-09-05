@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     )
 
     # App Settings
-    APP_NAME: str = "SHARDUL-GE E-commerce API"
+    APP_NAME: str = "SHARDUL GE E-commerce API"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
     API_V1_PREFIX: str = "/api/v1"
@@ -49,7 +49,7 @@ class Settings(BaseSettings):
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
     SMTP_FROM_EMAIL: str = "noreply@shardul-ge.com"
-    SMTP_FROM_NAME: str = "SHARDUL-GE"
+    SMTP_FROM_NAME: str = "SHARDUL GE"
 
     # File Upload Settings
     UPLOAD_DIR: str = "uploads"
