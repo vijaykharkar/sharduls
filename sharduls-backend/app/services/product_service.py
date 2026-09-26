@@ -203,6 +203,71 @@ def admin_bulk_pricing(db: Session, product_ids: list, pricing: dict) -> int:
     return count
 
 
+def admin_create_product(db: Session, admin_id: int, data: dict) -> dict:
+    """Admin creates a product directly (status=approved by default)."""
+    slug = _slugify(data["name"])
+    existing = db.query(Product).filter(Product.slug == slug).first()
+    if existing:
+        slug = f"{slug}-{admin_id}"
+    product_data = {
+        "supplier_id": admin_id,
+        "name": data["name"],
+        "slug": slug,
+        "description": data.get("description"),
+        "category": data["category"],
+        "brand": data.get("brand"),
+        "sku": data.get("sku"),
+        "images": data.get("images", []),
+        "specs": data.get("specs", {}),
+        "supplier_price": float(data.get("price", 0)),
+        "mrp": float(data["mrp"]) if data.get("mrp") else None,
+        "stock": int(data.get("stock", 0)),
+        "status": data.get("status", "approved"),
+        "is_featured": data.get("is_featured", False),
+        "admin_price": float(data["admin_price"]) if data.get("admin_price") else None,
+        "platform_fee": float(data["platform_fee"]) if data.get("platform_fee") else None,
+        "discount_pct": float(data["discount_pct"]) if data.get("discount_pct") else None,
+        "admin_notes": data.get("admin_notes"),
+        "admin_approved_at": datetime.now(timezone.utc),
+    }
+    p = prepo.create_product(db, product_data)
+    return _serialize(p)
+
+
+def admin_update_product(db: Session, product_id: int, data: dict) -> Optional[dict]:
+    """Admin can update any field on any product."""
+    p = prepo.get_product(db, product_id)
+    if not p:
+        return None
+    allowed = {
+        "name", "description", "category", "brand", "sku",
+        "images", "specs", "stock", "status", "is_featured",
+        "admin_price", "platform_fee", "discount_pct", "admin_notes", "mrp",
+    }
+    updates = {k: v for k, v in data.items() if k in allowed and v is not None}
+    if "price" in data:
+        updates["supplier_price"] = float(data["price"])
+    if "mrp" in data and data["mrp"] is not None:
+        updates["mrp"] = float(data["mrp"])
+    if "name" in updates:
+        slug = _slugify(updates["name"])
+        existing = db.query(Product).filter(Product.slug == slug, Product.id != product_id).first()
+        if existing:
+            slug = f"{slug}-{product_id}"
+        updates["slug"] = slug
+    if updates:
+        p = prepo.update_product(db, p, updates)
+    return _serialize(p)
+
+
+def admin_delete_product(db: Session, product_id: int) -> bool:
+    p = prepo.get_product(db, product_id)
+    if not p:
+        return False
+    prepo.delete_product(db, p)
+    return True
+
+
 def get_product_stats(db: Session) -> dict:
     return prepo.get_product_stats(db)
 

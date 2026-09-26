@@ -33,6 +33,12 @@ class ProductCreate(BaseModel):
     stock: int = 0
     images: Optional[list] = []
     specs: Optional[dict] = {}
+    status: Optional[str] = None
+    is_featured: Optional[bool] = False
+    admin_price: Optional[float] = None
+    platform_fee: Optional[float] = None
+    discount_pct: Optional[float] = None
+    admin_notes: Optional[str] = None
 
 
 class ProductUpdate(BaseModel):
@@ -46,6 +52,12 @@ class ProductUpdate(BaseModel):
     stock: Optional[int] = None
     images: Optional[list] = None
     specs: Optional[dict] = None
+    status: Optional[str] = None
+    is_featured: Optional[bool] = None
+    admin_price: Optional[float] = None
+    platform_fee: Optional[float] = None
+    discount_pct: Optional[float] = None
+    admin_notes: Optional[str] = None
 
 
 class AdminPricingUpdate(BaseModel):
@@ -252,6 +264,69 @@ def admin_reject_product(
     if not data:
         raise HTTPException(404, "Product not found")
     return success_response(data=data, message="Product rejected")
+
+
+@router.post("/admin/products")
+def admin_create_product(
+    payload: ProductCreate,
+    db: Session = Depends(get_db),
+    user=Depends(admin_dep),
+):
+    data = payload.model_dump()
+    result = psvc.admin_create_product(db, user.id, data)
+    return success_response(data=result, message="Product created")
+
+
+@router.patch("/admin/products/{product_id}")
+def admin_update_product(
+    product_id: int,
+    payload: ProductUpdate,
+    db: Session = Depends(get_db),
+    _=Depends(admin_dep),
+):
+    data = psvc.admin_update_product(db, product_id, payload.model_dump(exclude_none=True))
+    if not data:
+        raise HTTPException(404, "Product not found")
+    return success_response(data=data, message="Product updated")
+
+
+@router.delete("/admin/products/{product_id}")
+def admin_delete_product(
+    product_id: int,
+    db: Session = Depends(get_db),
+    _=Depends(admin_dep),
+):
+    ok = psvc.admin_delete_product(db, product_id)
+    if not ok:
+        raise HTTPException(404, "Product not found")
+    return success_response(message="Product deleted")
+
+
+@router.post("/admin/products/upload-images")
+async def admin_upload_images(
+    request: Request,
+    files: List[UploadFile] = File(...),
+    _=Depends(admin_dep),
+):
+    project_root = Path(__file__).resolve().parents[3]
+    upload_root = project_root / settings.UPLOAD_DIR / "products"
+    upload_root.mkdir(parents=True, exist_ok=True)
+
+    urls = []
+    for file in files:
+        ext = (file.filename or "").rsplit(".", 1)[-1].lower()
+        if ext not in ALLOWED_IMAGE_EXTS:
+            raise HTTPException(400, f"File type .{ext} not allowed")
+        content = await file.read()
+        if len(content) > settings.MAX_UPLOAD_SIZE:
+            raise HTTPException(400, "File too large (max 10 MB)")
+        filename = f"{uuid.uuid4().hex}.{ext}"
+        filepath = upload_root / filename
+        filepath.write_bytes(content)
+        base_url = str(request.base_url).rstrip("/")
+        urls.append(f"{base_url}/uploads/products/{filename}")
+
+    return success_response(data=urls, message="Images uploaded")
 
 
 @router.post("/admin/products/bulk-approve")

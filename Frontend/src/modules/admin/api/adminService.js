@@ -82,6 +82,26 @@ const adminService = {
     const res = await api.post('/admin/products/bulk-pricing', { product_ids: productIds, ...pricing });
     return res.data;
   },
+  createProduct: async (data) => {
+    const res = await api.post('/admin/products', data);
+    return res.data;
+  },
+  updateProduct: async (id, data) => {
+    const res = await api.patch(`/admin/products/${id}`, data);
+    return res.data;
+  },
+  deleteProduct: async (id) => {
+    const res = await api.delete(`/admin/products/${id}`);
+    return res.data;
+  },
+  uploadProductImages: async (files) => {
+    const formData = new FormData();
+    files.forEach((file) => formData.append('files', file));
+    const res = await api.post('/admin/products/upload-images', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return res.data;
+  },
 };
 
 export default adminService;
