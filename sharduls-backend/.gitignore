@@ -103,6 +103,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+shardul_env/
 
 # Spyder project settings
 .spyderproject
@@ -143,3 +144,4 @@ alembic/versions/*.py
 
 shardul_env/
 e-commerce/
+.env

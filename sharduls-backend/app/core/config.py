@@ -58,13 +58,13 @@ class Settings(BaseSettings):
 
     # Razorpay
     RAZORPAY_KEY_ID: str
-    RAZORPAY_SECRET: str
-    RAZORPAY_WEBHOOK_SECRET: str
-    RAZORPAY_CURRENCY: str
+    RAZORPAY_KEY_SECRET: str
+    RAZORPAY_WEBHOOK_SECRET: str = "https://andrews-intimate-sand-launched.trycloudflare.com/api/v1/payment/webhook"
+    RAZORPAY_CURRENCY: str = "INR"
 
     # URLs
-    FRONTEND_URL: str
-    BACKEND_URL: str
+    FRONTEND_URL: str = "http://localhost:5173"
+    BACKEND_URL: str = "http://localhost:8000"
 
     # Pagination
     DEFAULT_PAGE_SIZE: int
@@ -80,8 +80,8 @@ def validate_razorpay_config() -> None:
     if not settings.RAZORPAY_KEY_ID:
         missing.append("RAZORPAY_KEY_ID")
 
-    if not settings.RAZORPAY_SECRET:
-        missing.append("RAZORPAY_SECRET")
+    if not settings.RAZORPAY_KEY_SECRET:
+        missing.append("RAZORPAY_KEY_SECRET")
 
     if not settings.RAZORPAY_WEBHOOK_SECRET:
         missing.append("RAZORPAY_WEBHOOK_SECRET")

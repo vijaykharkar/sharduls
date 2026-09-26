@@ -1,34 +1,38 @@
+import sys
+import os
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+
+# -- Make the project root importable ------------------------------------
+# This allows "from app.core.config import settings" etc. to work
+# when running alembic from the project root directory.
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
+# -- Import app settings + database Base ---------------------------------
+from app.core.config import settings
 from app.core.database import Base
-from app.models import user
-from app.models import product
-from app.models import order
-from app.models import payment
+
+# -- Import ALL models so Base.metadata knows about every table ----------
+import app.models  # noqa: F401 -- registers User, Product, Order, Payment, etc.
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
+# Override sqlalchemy.url with the value from .env (via pydantic settings)
+# so we don't duplicate the DB URL in alembic.ini.
+config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+
 # Interpret the config file for Python logging.
-# This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
+# Point Alembic at our models' metadata for autogenerate support.
 target_metadata = Base.metadata
-
-# other values from the config, defined by the needs of env.py,
-# can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
-# ... etc.
 
 
 def run_migrations_offline() -> None:
@@ -41,7 +45,6 @@ def run_migrations_offline() -> None:
 
     Calls to context.execute() here emit the given string to the
     script output.
-
     """
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
@@ -60,7 +63,6 @@ def run_migrations_online() -> None:
 
     In this scenario we need to create an Engine
     and associate a connection with the context.
-
     """
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),

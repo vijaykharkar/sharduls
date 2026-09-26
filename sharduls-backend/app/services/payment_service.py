@@ -250,6 +250,7 @@ def _build_cod_response(order, payment) -> dict:
 def verify_and_capture_payment(
     db: Session,
     *,
+    user_id:             int,
     razorpay_order_id:   str,
     razorpay_payment_id: str,
     razorpay_signature:  str,
@@ -259,14 +260,23 @@ def verify_and_capture_payment(
 
     Steps:
     1. Lookup Payment by razorpay_order_id.
-    2. Guard against duplicate processing.
-    3. Verify HMAC-SHA256 signature — REJECT if invalid.
-    4. Mark payment as captured.
-    5. Confirm order.
-    6. Return order summary.
+    2. Verify the payment belongs to the requesting user (ownership check).
+    3. Guard against duplicate processing.
+    4. Verify HMAC-SHA256 signature — REJECT if invalid.
+    5. Mark payment as captured.
+    6. Confirm order.
+    7. Return order summary.
     """
     payment = pay_repo.get_payment_by_razorpay_order_id(db, razorpay_order_id)
     if not payment:
+        raise_error("NOT_FOUND", "Payment record not found for this Razorpay order")
+
+    # ── Ownership check — prevent one buyer from verifying another's payment ─
+    if payment.user_id != user_id:
+        logger.warning(
+            "SECURITY: User %s attempted to verify payment %s owned by user %s",
+            user_id, payment.id, payment.user_id,
+        )
         raise_error("NOT_FOUND", "Payment record not found for this Razorpay order")
 
     if payment.status in _TERMINAL_STATES:
@@ -306,11 +316,7 @@ def verify_and_capture_payment(
     order_repo.update_order_status(db, payment.order_id, "confirmed")
 
     # ── Deduct stock ONLY after payment is confirmed ──────────────────────
-    order = order_repo.get_order_by_id(db, payment.order_id)
-    for oi in order.items:
-        product = db.query(Product).filter(Product.id == oi.product_id).first()
-        if product:
-            product.stock = max(0, product.stock - oi.quantity)
+    _deduct_stock_for_order(db, payment.order_id)
 
     db.commit()
 
@@ -398,6 +404,21 @@ def process_webhook_event(db: Session, payload: dict) -> dict:
         return {"status": "error", "event_id": rzp_event_id, "error": str(exc)[:200]}
 
 
+def _deduct_stock_for_order(db: Session, order_id: int) -> None:
+    """
+    Deduct product stock for each item in the order.
+    Called after payment capture — either via verify endpoint or webhook.
+    Safe to call multiple times: only deducts if order status was just confirmed.
+    """
+    order = order_repo.get_order_by_id(db, order_id)
+    if not order:
+        return
+    for oi in order.items:
+        product = db.query(Product).filter(Product.id == oi.product_id).first()
+        if product:
+            product.stock = max(0, product.stock - oi.quantity)
+
+
 def _handle_payment_authorized(db: Session, payload: dict) -> dict:
     entity  = payload["payload"]["payment"]["entity"]
     rzp_oid = entity.get("order_id")
@@ -427,6 +448,7 @@ def _handle_payment_captured(db: Session, payload: dict) -> dict:
     if not payment:
         return {"detail": "payment_not_found"}
     if payment.status == "captured":
+        # Already captured (likely by verify endpoint); just mark webhook verified.
         pay_repo.update_payment_status(
             db, payment.id,
             status="captured",
@@ -434,6 +456,8 @@ def _handle_payment_captured(db: Session, payload: dict) -> dict:
             webhook_verified=True,
         )
         return {"detail": "already_captured_webhook_verified", "payment_id": payment.id}
+    if payment.status in _TERMINAL_STATES:
+        return {"detail": "already_terminal", "current_status": payment.status}
     pay_repo.mark_payment_captured(
         db, payment.id,
         razorpay_payment_id=entity.get("id", ""),
@@ -443,6 +467,7 @@ def _handle_payment_captured(db: Session, payload: dict) -> dict:
         webhook_verified=True,
     )
     order_repo.update_order_status(db, payment.order_id, "confirmed")
+    _deduct_stock_for_order(db, payment.order_id)
     return {"payment_id": payment.id, "new_status": "captured"}
 
 
@@ -476,6 +501,17 @@ def _handle_order_paid(db: Session, payload: dict) -> dict:
     payment = pay_repo.get_payment_by_razorpay_order_id(db, rzp_oid)
     if not payment:
         return {"detail": "payment_not_found"}
+    if payment.status == "captured":
+        # Already captured; just mark webhook verified.
+        pay_repo.update_payment_status(
+            db, payment.id,
+            status="captured",
+            webhook_event="order.paid",
+            webhook_verified=True,
+        )
+        return {"detail": "already_captured_webhook_verified", "payment_id": payment.id}
+    if payment.status in _TERMINAL_STATES:
+        return {"detail": "already_terminal", "current_status": payment.status}
     pay_repo.update_payment_status(
         db, payment.id,
         status="captured",
@@ -483,6 +519,7 @@ def _handle_order_paid(db: Session, payload: dict) -> dict:
         webhook_verified=True,
     )
     order_repo.update_order_status(db, payment.order_id, "confirmed")
+    _deduct_stock_for_order(db, payment.order_id)
     return {"payment_id": payment.id, "new_status": "captured"}
 
 

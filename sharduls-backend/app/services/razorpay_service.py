@@ -94,7 +94,7 @@ def verify_payment_signature(
     """
     message = f"{razorpay_order_id}|{razorpay_payment_id}"
     expected = hmac.new(
-        settings.RAZORPAY_SECRET.encode("utf-8"),
+        settings.RAZORPAY_KEY_SECRET.encode("utf-8"),
         message.encode("utf-8"),
         hashlib.sha256,
     ).hexdigest()

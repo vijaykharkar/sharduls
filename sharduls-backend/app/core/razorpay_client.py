@@ -30,13 +30,13 @@ def get_razorpay() -> razorpay.Client:
     """
     global _client
     if _client is None:
-        if not settings.RAZORPAY_KEY_ID or not settings.RAZORPAY_SECRET:
+        if not settings.RAZORPAY_KEY_ID or not settings.RAZORPAY_KEY_SECRET:
             raise RuntimeError(
-                "RAZORPAY_KEY_ID and RAZORPAY_SECRET must be set before "
+                "RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET must be set before "
                 "the Razorpay client can be used."
             )
         _client = razorpay.Client(
-            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_SECRET)
+            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
         )
         logger.info("Razorpay client initialised (key_id=%s…)", settings.RAZORPAY_KEY_ID[:8])
     return _client

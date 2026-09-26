@@ -57,6 +57,7 @@ def verify_payment(
     """
     result = psvc.verify_and_capture_payment(
         db,
+        user_id=user.id,
         razorpay_order_id=payload.razorpay_order_id,
         razorpay_payment_id=payload.razorpay_payment_id,
         razorpay_signature=payload.razorpay_signature,
